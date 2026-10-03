@@ -185,7 +185,7 @@ export default function SubcategoryModal({ productGroup, onClose }: SubcategoryM
         <div className="p-4 bg-white border-t border-gray-200 flex items-center justify-end shrink-0">
           <button
             onClick={onClose}
-            className="w-full sm:w-auto bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:brightness-110 text-white font-display font-black px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all shadow-[0_4px_15px_rgba(245,158,11,0.3)] text-center active:scale-95"
+            className="w-full sm:w-auto bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:brightness-110 text-white font-display font-black px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all shadow-[0_4px_15px_rgb(var(--brand-primary-rgb)/0.3)] text-center active:scale-95"
           >
             {t('ready') || 'LISTO'}
           </button>

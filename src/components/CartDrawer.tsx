@@ -33,7 +33,7 @@ export default function CartDrawer({ isOpen, onClose, onCheckout }: CartDrawerPr
       <div className="relative w-full max-w-md h-full bg-[#FFFFFF] border-l border-brand-primary/30 flex flex-col shadow-2xl transform transition-transform">
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(245, 158, 11,0.3)]">
+            <div className="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center shadow-[0_0_15px_rgb(var(--brand-primary-rgb)/0.3)]">
               <svg className="w-5 h-5 text-brand-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
             </div>
             <h2 className="font-display font-black text-2xl text-brand-ink uppercase tracking-wider">{t('your_order')}</h2>
@@ -86,7 +86,7 @@ export default function CartDrawer({ isOpen, onClose, onCheckout }: CartDrawerPr
                     </div>
                   )}
                   {item.notes && (
-                    <p className="text-xs text-amber-800 bg-amber-50 rounded-lg px-2 py-1 mt-1.5 border border-amber-200/60 inline-block font-medium">
+                    <p className="text-xs text-brand-ink bg-brand-primaryLight rounded-lg px-2 py-1 mt-1.5 border border-amber-200/60 inline-block font-medium">
                       📝 {item.notes}
                     </p>
                   )}
@@ -126,7 +126,7 @@ export default function CartDrawer({ isOpen, onClose, onCheckout }: CartDrawerPr
                   onClose();
                   onCheckout();
                 }}
-                className="w-full bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:from-brand-accent hover:to-brand-primary text-white font-display font-black py-4 rounded-xl text-lg uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(245, 158, 11,0.3)] hover:shadow-[0_0_30px_rgba(245, 158, 11,0.5)] transform hover:-translate-y-1"
+                className="w-full bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:from-brand-accent hover:to-brand-primary text-white font-display font-black py-4 rounded-xl text-lg uppercase tracking-wider transition-all shadow-[0_0_20px_rgb(var(--brand-primary-rgb)/0.3)] hover:shadow-[0_0_30px_rgb(var(--brand-primary-rgb)/0.5)] transform hover:-translate-y-1"
               >
                 {t('process_order')}
               </button>

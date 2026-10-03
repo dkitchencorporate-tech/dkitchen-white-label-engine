@@ -114,7 +114,7 @@ export default function AdminCategoryForm({ category, onClose, onSuccess }: Admi
               onChange={handleChange}
               rows={3}
               placeholder="Ej: Selección de nuestras mejores recetas elaboradas artesanalmente..."
-              className="w-full bg-white border border-zinc-300 rounded-xl px-4 py-2.5 text-zinc-900 text-sm focus:outline-none focus:border-amber-500 transition-colors resize-none"
+              className="w-full bg-white border border-zinc-300 rounded-xl px-4 py-2.5 text-zinc-900 text-sm focus:outline-none focus:border-brand-primary transition-colors resize-none"
             />
           </div>
 
@@ -126,7 +126,7 @@ export default function AdminCategoryForm({ category, onClose, onSuccess }: Admi
               value={formData.sort_order}
               onChange={handleChange}
               min="0"
-              className="w-full bg-white border border-zinc-300 rounded-xl px-4 py-2.5 text-zinc-900 text-sm focus:outline-none focus:border-amber-500 transition-colors"
+              className="w-full bg-white border border-zinc-300 rounded-xl px-4 py-2.5 text-zinc-900 text-sm focus:outline-none focus:border-brand-primary transition-colors"
             />
             <p className="text-[11px] text-zinc-400 mt-1">Número menor aparece primero. En el listado puedes usar las flechas ↑↓ para reordenar con seguridad.</p>
           </div>
@@ -142,7 +142,7 @@ export default function AdminCategoryForm({ category, onClose, onSuccess }: Admi
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex-1 py-3 rounded-xl font-extrabold bg-gradient-to-r from-amber-600 to-amber-500 text-white hover:brightness-105 transition-all disabled:opacity-50 text-xs uppercase shadow-sm"
+              className="flex-1 py-3 rounded-xl font-extrabold bg-gradient-to-r from-brand-primary to-brand-primaryHover text-white hover:brightness-105 transition-all disabled:opacity-50 text-xs uppercase shadow-sm"
             >
               {isSubmitting ? 'Guardando...' : 'Guardar Categoría'}
             </button>

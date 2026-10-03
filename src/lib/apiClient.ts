@@ -7,7 +7,7 @@ const TOKEN_KEY = 'brand_auth_token';
 
 export function getToken(): string | null {
   try {
-    return localStorage.getItem(TOKEN_KEY) || localStorage.getItem('sff_auth_token');
+    return localStorage.getItem(TOKEN_KEY);
   } catch {
     return null;
   }
@@ -19,7 +19,6 @@ export function setToken(token: string | null): void {
       localStorage.setItem(TOKEN_KEY, token);
     } else {
       localStorage.removeItem(TOKEN_KEY);
-      localStorage.removeItem('sff_auth_token');
     }
   } catch {
     /* almacenamiento no disponible — no debe romper la app */

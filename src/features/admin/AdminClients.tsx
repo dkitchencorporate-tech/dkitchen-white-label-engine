@@ -93,7 +93,7 @@ export default function AdminClients() {
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             placeholder="Buscar por nombre o teléfono..."
-            className="w-full bg-white border border-zinc-300 rounded-xl px-4 py-2.5 text-zinc-900 text-xs focus:outline-none focus:border-amber-500 transition-colors shadow-xs"
+            className="w-full bg-white border border-zinc-300 rounded-xl px-4 py-2.5 text-zinc-900 text-xs focus:outline-none focus:border-brand-primary transition-colors shadow-xs"
           />
         </div>
       </div>
@@ -325,35 +325,35 @@ function EditClientModal({ customer, onClose, onSuccess, onError }: {
           <div>
             <label className="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1">Nombre</label>
             <input type="text" value={fullName} onChange={e => setFullName(e.target.value)} required
-              className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm focus:border-amber-500 outline-none" />
+              className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm focus:border-brand-primary outline-none" />
           </div>
           <div>
             <label className="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1">Teléfono</label>
             <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} required
-              className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm focus:border-amber-500 outline-none font-mono" />
+              className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm focus:border-brand-primary outline-none font-mono" />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1">Calle (Opcional)</label>
               <input type="text" value={street} onChange={e => setStreet(e.target.value)}
-                className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm focus:border-amber-500 outline-none" />
+                className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm focus:border-brand-primary outline-none" />
             </div>
             <div>
               <label className="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1">Número (Opcional)</label>
               <input type="text" value={number} onChange={e => setNumber(e.target.value)}
-                className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm focus:border-amber-500 outline-none" />
+                className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm focus:border-brand-primary outline-none" />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1">CP (Opcional)</label>
               <input type="text" value={cp} onChange={e => setCp(e.target.value)}
-                className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm focus:border-amber-500 outline-none" />
+                className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm focus:border-brand-primary outline-none" />
             </div>
             <div>
               <label className="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1">Notas (Piso, puerta)</label>
               <input type="text" value={notes} onChange={e => setNotes(e.target.value)} placeholder="Ej: Piso 2A"
-                className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm focus:border-amber-500 outline-none" />
+                className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm focus:border-brand-primary outline-none" />
             </div>
           </div>
 
@@ -361,7 +361,7 @@ function EditClientModal({ customer, onClose, onSuccess, onError }: {
             <button type="button" onClick={onClose} className="flex-1 py-3 rounded-xl font-bold bg-zinc-100 text-zinc-700 hover:bg-zinc-200 transition-colors text-xs uppercase">
               Cancelar
             </button>
-            <button type="submit" disabled={isSubmitting} className="flex-1 py-3 rounded-xl font-extrabold bg-amber-600 hover:bg-amber-700 text-white transition-colors text-xs uppercase disabled:opacity-50 shadow-sm">
+            <button type="submit" disabled={isSubmitting} className="flex-1 py-3 rounded-xl font-extrabold bg-brand-primary hover:bg-brand-primaryHover text-white transition-colors text-xs uppercase disabled:opacity-50 shadow-sm">
               {isSubmitting ? 'Guardando...' : 'Guardar Cambios'}
             </button>
           </div>

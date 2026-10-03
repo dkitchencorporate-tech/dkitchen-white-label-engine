@@ -20,7 +20,7 @@ interface AdminUiState {
 
 const getInitialSilencedOrderIds = (): Set<string> => {
   try {
-    const raw = localStorage.getItem('brand_silenced_order_ids') || localStorage.getItem('sff_silenced_order_ids');
+    const raw = localStorage.getItem('brand_silenced_order_ids');
     if (raw) {
       const parsed = JSON.parse(raw);
       if (Array.isArray(parsed)) return new Set(parsed);

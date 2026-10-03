@@ -1,5 +1,6 @@
 /* =========================================================================
-   SEVEN FOOD FRIES PWA - CUSTOM DESIGN SYSTEM (LIGHT / WHITE THEME)
+   Estilos base del motor (comunes a todas las marcas; los colores salen de
+   las variables --brand-* que inyecta la marca activa).
    ========================================================================= */
 
 html {
@@ -7,9 +8,9 @@ html {
 }
 
 body {
-    background-color: #FFFFFF;
-    color: #18181B;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--brand-surface);
+    color: var(--brand-ink);
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
 }
@@ -42,7 +43,7 @@ body {
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+    border-bottom: 1px solid rgb(var(--brand-primary-rgb) / 0.25);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
@@ -50,7 +51,7 @@ body {
     background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(245, 158, 11, 0.2);
+    border: 1px solid rgb(var(--brand-primary-rgb) / 0.2);
 }
 
 /* Píldoras de Categoría */
@@ -60,27 +61,27 @@ body {
 }
 .category-pill:hover {
     color: #18181B;
-    border-color: #F59E0B;
+    border-color: var(--brand-primary);
     background-color: #FFF7ED;
 }
 .category-pill.active {
-    background-color: #F59E0B;
+    background-color: var(--brand-primary);
     color: #FFFFFF;
     font-weight: 800;
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+    box-shadow: 0 0 20px rgb(var(--brand-primary-rgb) / 0.4);
     border-color: #FACC15;
 }
 
 /* Tarjetas de Producto */
 .card-curved {
     background-color: #FFFFFF;
-    border: 2px solid rgba(245, 158, 11, 0.25);
+    border: 2px solid rgb(var(--brand-primary-rgb) / 0.25);
     border-radius: 1.8rem;
     transition: all 0.38s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card-curved:hover {
-    border-color: #F59E0B;
-    box-shadow: 0 0 30px rgba(245, 158, 11, 0.25);
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 30px rgb(var(--brand-primary-rgb) / 0.25);
     transform: translateY(-4px);
 }
 
@@ -115,8 +116,8 @@ body {
 }
 
 @keyframes glowPulse {
-    0%, 100% { box-shadow: 0 0 25px rgba(245, 158, 11, 0.3); }
-    50% { box-shadow: 0 0 45px rgba(245, 158, 11, 0.55); }
+    0%, 100% { box-shadow: 0 0 25px rgb(var(--brand-primary-rgb) / 0.3); }
+    50% { box-shadow: 0 0 45px rgb(var(--brand-primary-rgb) / 0.55); }
 }
 .animate-glow-pulse {
     animation: glowPulse 2.4s ease-in-out infinite;
@@ -137,20 +138,6 @@ body {
     mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
     background-repeat: repeat;
-}
-
-/* Fondo de splash "lluvia de paquetes de patatas" — arte y mecánica propios,
-   CSS puro sin dependencias externas. Ver FriesRainBackground.tsx. */
-@keyframes fryPacketFall {
-    0% { transform: translateY(-10vh) rotate(0deg); }
-    100% { transform: translateY(110vh) rotate(var(--fry-rotate, 360deg)); }
-}
-.fry-packet-fall {
-    position: absolute;
-    top: 0;
-    animation-name: fryPacketFall;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
 }
 
 /* Sello circular giratorio — firma de marca, gira sin depender del scroll */
@@ -296,3 +283,93 @@ body {
     visibility: hidden !important;
   }
 }
+
+/* ---- Estilos que antes vivían en index.html ---- */
+
+        body {
+            background-color: var(--brand-surface, #F4F4F5);
+            color: var(--brand-ink, #09090B);
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ocultación absoluta de barras de desplazamiento (scrollbars) en toda la PWA para estética 100% nativa */
+        *, *::before, *::after {
+            scrollbar-width: none !important; /* Firefox */
+            -ms-overflow-style: none !important; /* IE y Edge */
+        }
+
+        *::-webkit-scrollbar {
+            display: none !important; /* Chrome, Safari, Opera */
+            width: 0px !important;
+            height: 0px !important;
+            background: transparent !important;
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none !important; width: 0px !important; height: 0px !important; }
+        .no-scrollbar { -ms-overflow-style: none !important; scrollbar-width: none !important; }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--brand-border, #E4E4E7);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .glass-floating {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--brand-border, #E4E4E7);
+        }
+
+        .category-pill {
+            background-color: var(--brand-card, #FFFFFF);
+            color: var(--brand-muted, #71717A);
+            border: 1px solid var(--brand-border, #E4E4E7);
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+        }
+        .category-pill:hover {
+            color: var(--brand-ink, #09090B);
+            border-color: var(--brand-primary, #18181B);
+            background-color: var(--brand-surface, #F4F4F5);
+        }
+        .category-pill.active {
+            background: var(--brand-primary, #18181B);
+            color: #FFFFFF;
+            font-weight: 800;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--brand-primary, #18181B);
+        }
+
+        .card-curved {
+            background-color: var(--brand-card, #FFFFFF);
+            border: 1px solid var(--brand-border, #E4E4E7);
+            border-radius: 2rem;
+            transition: all 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-curved:hover {
+            border-color: var(--brand-primary, #18181B);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+        }
+
+        /* Defensive resets to prevent FOUC / layout blowouts on slow connections or initial render */
+        svg {
+            display: inline-block;
+            vertical-align: middle;
+            max-width: 100%;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade { animation: fadeIn 0.4s ease-out forwards; }
+    

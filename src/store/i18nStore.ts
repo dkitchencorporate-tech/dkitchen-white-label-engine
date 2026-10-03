@@ -131,7 +131,7 @@ const dictionary: Translations = {
   base_maxxi: { es: 'Maxxi (+3€)', en: 'Maxxi (+3€)' },
   special_notes: { es: 'Notas Especiales', en: 'Special Notes' },
   special_notes_placeholder: { es: 'Ej. Salsa aparte, sin sal...', en: 'Ex. Sauce on the side, no salt...' },
-  pizza_notes_placeholder: { es: 'Ej. Salsa aparte, sin sal...', en: 'Ex. Sauce on the side, no salt...' },
+  item_notes_placeholder: { es: 'Ej. Salsa aparte, sin sal...', en: 'Ex. Sauce on the side, no salt...' },
 
   // Checkout
   far_away_title: { es: '¡Estás un poco lejos!', en: "You're a bit far!" },
@@ -147,7 +147,7 @@ const dictionary: Translations = {
   redeem_25: { es: 'Canjear 25 ptos para obtener un descuento de', en: 'Redeem 25 pts to get a discount of' },
   choose_redeem_item: { es: 'Elige a qué producto aplicar tu descuento:', en: 'Choose which product to apply your discount to:' },
   add_product_redeem: { es: 'Añade un producto a tu pedido para canjear tus puntos.', en: 'Add a product to your order to redeem points.' },
-  add_pizza_redeem: { es: 'Añade un producto a tu pedido para canjear tus puntos.', en: 'Add a product to your order to redeem points.' },
+  add_item_redeem: { es: 'Añade un producto a tu pedido para canjear tus puntos.', en: 'Add a product to your order to redeem points.' },
   earn_points: { es: 'Sumarás', en: 'You will earn' },
   with_this_order: { es: 'pts con este pedido', en: 'pts with this order' },
   redeem_btn: { es: 'Canjear 25 ptos', en: 'Redeem 25 pts' },
@@ -193,7 +193,6 @@ const dictionary: Translations = {
 
   // UserModal & Profile
   vip_account: { es: 'Mi Cuenta VIP', en: 'My VIP Account' },
-  brand_name: { es: 'D-Kitchen Gourmet', en: 'D-Kitchen Gourmet' },
   vip_account_desc_logged_in: { es: 'Club de Fidelización y Pedidos', en: 'Loyalty & Ordering Club' },
   vip_account_desc_logged_out: { es: 'Inicia sesión para acumular puntos', en: 'Log in to earn points' },
   admin_session_title: { es: 'Sesión Administrativa', en: 'Admin Session' },
@@ -226,7 +225,7 @@ const dictionary: Translations = {
   order_history: { es: 'Historial de Pedidos', en: 'Order History' },
   available_rewards: { es: 'Recompensas Disponibles', en: 'Available Rewards' },
   free_portion: { es: 'Ración Gourmet Gratis', en: 'Free Gourmet Portion' },
-  free_pizza_burger: { es: 'Ración Gourmet Gratis', en: 'Free Gourmet Portion' },
+  free_reward_item: { es: 'Plato gratis', en: 'Free item' },
   unlocked: { es: 'Desbloqueado', en: 'Unlocked' },
   locked: { es: 'Bloqueado', en: 'Locked' },
   how_it_works_title: { es: '💡 ¿Cómo funciona?', en: '💡 How does it work?' },
@@ -344,15 +343,14 @@ const dictionary: Translations = {
   // IngredientsModal
   custom_taste: { es: 'A TU GUSTO', en: 'CUSTOM TASTE' },
   config_ingredients: { es: 'Personaliza tu plato con tus opciones favoritas', en: 'Customize your dish with your favorite options' },
-  config_pizza_ingredients: { es: 'Personaliza tu plato con tus opciones favoritas', en: 'Customize your dish with your favorite options' },
+  config_item_options: { es: 'Personaliza tu plato con tus opciones favoritas', en: 'Customize your dish with your favorite options' },
   base_label: { es: '(BASE)', en: '(BASE)' },
   add_extra_ingredients: { es: 'Añade Extras', en: 'Add Extras' },
   new_product: { es: 'Nuevo Producto', en: 'New Product' },
-  new_pizza: { es: 'Nuevo Producto', en: 'New Product' },
   from: { es: 'Desde', en: 'From' },
   view_options: { es: 'Ver Opciones', en: 'View Options' },
   total_product: { es: 'Total', en: 'Total' },
-  total_pizza: { es: 'Total', en: 'Total' },
+  total_label: { es: 'Total', en: 'Total' },
   add_to_order: { es: 'AÑADIR AL PEDIDO', en: 'ADD TO ORDER' },
 
   // Notifications
@@ -450,7 +448,6 @@ const dictionary: Translations = {
   carta: { es: 'Carta', en: 'Menu' },
   upsells: { es: 'Upsells', en: 'Upsells' },
   new_category: { es: 'Nueva Categoría', en: 'New Category' },
-  new_product: { es: 'Nuevo Producto', en: 'New Product' },
   agrupado: { es: 'AGRUPADO', en: 'GROUPED' },
   no_products_in_category: { es: 'No hay productos en esta categoría.', en: 'There are no products in this category.' },
   no_orders_to_export: { es: 'No hay pedidos para exportar en este rango.', en: 'No orders to export in this range.' },
@@ -552,8 +549,9 @@ const dictionary: Translations = {
   landing_success_cta: { es: 'Empezar a pedir ahora', en: 'Start ordering now' },
 };
 
+// Traducción automática de términos genéricos de carta (ES → EN). Las cartas
+// concretas de cada marca se traducirán desde la base de datos (fase de carta).
 const dynamicDictionary: Record<string, string> = {
-  // Términos comunes de menú gastronómico
   'EXTRAS': 'EXTRAS',
   'BEBIDAS': 'DRINKS',
   'POSTRES': 'DESSERTS',
@@ -561,42 +559,18 @@ const dynamicDictionary: Record<string, string> = {
   'ENTRANTES': 'STARTERS',
   'PRINCIPALES': 'MAINS',
   'COMBOS': 'COMBOS',
-  'ALITAS': 'WINGS',
-  'TENDERS': 'TENDERS',
-  'PATATAS': 'FRIES',
-  'PATATAS GOURMET': 'GOURMET FRIES',
-
-  // Toppings / modificadores estándar
-  'CEBOLLA CRUJIENTE': 'CRISPY ONION',
-  'BACON': 'BACON',
-  'POLLO TERIYAKI': 'TERIYAKI CHICKEN',
-  'PULLED PORK': 'PULLED PORK',
-  'CHORIZO': 'CHORIZO',
-  'JALAPEÑOS': 'JALAPEÑOS',
-  'PICO DE GALLO': 'PICO DE GALLO',
-  'GUACAMOLE': 'GUACAMOLE',
-  'EXTRA CHEDDAR FUNDIDO': 'EXTRA MELTED CHEDDAR',
-  'ACEITUNAS NEGRAS': 'BLACK OLIVES',
-  'MAÍZ': 'CORN',
-  'CHAMPIÑÓN': 'MUSHROOM',
-  'HUEVO': 'EGG',
-  'SÉSAMO TOSTADO': 'TOASTED SESAME',
-  'SALSA CHIPOTLE': 'CHIPOTLE SAUCE',
-  'SALSA CHEDDAR-JALAPEÑO': 'CHEDDAR-JALAPEÑO SAUCE',
-  'SALSA RANCH-CHEDDAR': 'RANCH-CHEDDAR SAUCE',
-  'ALIOLI DE AJO': 'GARLIC AIOLI',
-  'SALSA BBQ': 'BBQ SAUCE',
-  'CREMA AGRIA': 'SOUR CREAM',
-
-  // Genéricos y etiquetas
   'NUEVO': 'NEW',
+  'RECOMENDADO': 'RECOMMENDED',
+  'ESPECIAL': 'SPECIAL',
   'PICANTE': 'SPICY',
   'VEGANO': 'VEGAN',
   'VEGETARIANO': 'VEGETARIAN',
+  'SIN GLUTEN': 'GLUTEN FREE',
   'AGUAS': 'WATER',
   'CERVEZAS': 'BEERS',
-  'REFRESCOS GRANDES': 'LARGE SOFT DRINKS',
+  'VINOS': 'WINES',
   'REFRESCOS': 'SOFT DRINKS',
+  'CAFÉS': 'COFFEES',
 };
 
 interface I18nState {

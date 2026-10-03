@@ -79,7 +79,7 @@ export default function AdminBusiness() {
         value={form[name]}
         onChange={handleChange}
         placeholder={placeholder}
-        className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2.5 text-zinc-900 text-sm focus:outline-none focus:border-amber-500 transition-colors shadow-2xs"
+        className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2.5 text-zinc-900 text-sm focus:outline-none focus:border-brand-primary transition-colors shadow-2xs"
       />
     </div>
   );
@@ -144,7 +144,7 @@ export default function AdminBusiness() {
           <button
             onClick={handleSave}
             disabled={saving}
-            className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-amber-600 hover:bg-amber-700 disabled:opacity-50 text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-sm"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-brand-primary hover:bg-brand-primaryHover disabled:opacity-50 text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-sm"
           >
             {saving ? 'Guardando...' : saved ? '✓ Guardado con éxito' : 'Guardar datos del negocio'}
           </button>

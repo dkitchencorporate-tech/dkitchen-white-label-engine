@@ -200,7 +200,7 @@ export default function AdminOrders() {
             <p className="text-zinc-500 mb-6 text-xs leading-relaxed">{t('browser_security_message')}</p>
             <button 
               onClick={armAudio}
-              className="w-full bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:brightness-105 text-white font-display font-black py-3.5 px-6 rounded-xl uppercase tracking-wider shadow-md transition-all text-xs"
+              className="w-full bg-gradient-to-r from-brand-primary via-brand-primary to-brand-primaryHover hover:brightness-105 text-white font-display font-black py-3.5 px-6 rounded-xl uppercase tracking-wider shadow-md transition-all text-xs"
             >
               {t('activate_alarm')}
             </button>
@@ -209,7 +209,7 @@ export default function AdminOrders() {
       )}
 
       {isOpeningAlarm && (
-        <div className="absolute inset-x-0 top-0 z-40 bg-amber-600 text-white p-4 shadow-lg flex flex-col sm:flex-row items-center justify-between">
+        <div className="absolute inset-x-0 top-0 z-40 bg-brand-primary text-white p-4 shadow-lg flex flex-col sm:flex-row items-center justify-between">
           <div className="flex items-center gap-3">
             <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             <div>
@@ -514,9 +514,9 @@ export default function AdminOrders() {
                             <div className="space-y-2">
                               <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider text-center">Tiempo estimado de elaboración:</p>
                               <div className="flex gap-2">
-                                <button onClick={() => updateOrderStatus(order.id, 'cooking', '20')} className="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold py-2.5 rounded-xl transition-all shadow-xs">20 min</button>
-                                <button onClick={() => updateOrderStatus(order.id, 'cooking', '30')} className="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold py-2.5 rounded-xl transition-all shadow-xs">30 min</button>
-                                <button onClick={() => updateOrderStatus(order.id, 'cooking', '45')} className="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold py-2.5 rounded-xl transition-all shadow-xs">45 min</button>
+                                <button onClick={() => updateOrderStatus(order.id, 'cooking', '20')} className="flex-1 bg-brand-primary hover:bg-brand-primaryHover text-white text-xs font-bold py-2.5 rounded-xl transition-all shadow-xs">20 min</button>
+                                <button onClick={() => updateOrderStatus(order.id, 'cooking', '30')} className="flex-1 bg-brand-primary hover:bg-brand-primaryHover text-white text-xs font-bold py-2.5 rounded-xl transition-all shadow-xs">30 min</button>
+                                <button onClick={() => updateOrderStatus(order.id, 'cooking', '45')} className="flex-1 bg-brand-primary hover:bg-brand-primaryHover text-white text-xs font-bold py-2.5 rounded-xl transition-all shadow-xs">45 min</button>
                               </div>
                               <button onClick={() => updateOrderStatus(order.id, 'cancelled')} className="w-full mt-2 bg-white border border-red-200 text-red-600 hover:bg-red-50 text-xs font-bold py-2 rounded-xl transition-colors">Rechazar Pedido (Cancelar)</button>
                             </div>
@@ -546,7 +546,7 @@ export default function AdminOrders() {
                                   <button onClick={() => setMesaToPay(null)} className="w-full text-xs text-zinc-500 hover:text-zinc-800 pt-1">Cancelar</button>
                                 </div>
                               ) : (
-                                <button onClick={() => setMesaToPay(order.id)} className="w-full bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold py-3 rounded-xl transition-all shadow-xs">
+                                <button onClick={() => setMesaToPay(order.id)} className="w-full bg-brand-primary hover:bg-brand-primaryHover text-white text-xs font-bold py-3 rounded-xl transition-all shadow-xs">
                                   Cobrar y Finalizar Mesa
                                 </button>
                               )}

@@ -2,17 +2,12 @@ import { useState } from 'react';
 import DOMPurify from 'dompurify';
 import IngredientsModal from './IngredientsModal';
 import SubcategoryModal from './SubcategoryModal';
-import SauceModal from './SauceModal';
 import { useI18nStore } from '../store/i18nStore';
 import { getProductImageUrl, LOCAL_IMAGE_MAP } from '../data/products';
 
-// Ingredientes clave a resaltar en la descripción (resaltado tipográfico
-// automático si coincide con términos de autor).
-const KEY_INGREDIENTS = [
-  'cheddar', 'guacamole', 'pico de gallo', 'chipotle', 'bacon', 'chorizo',
-  'jalapeño', 'jalapeños', 'pulled pork', 'teriyaki', 'alioli', 'bbq',
-  'sésamo', 'crema agria', 'cebolla crujiente', 'huevo', 'maíz'
-];
+// Ingredientes a resaltar en la descripción: los define cada marca si quiere
+// (el motor no conoce ninguna carta concreta).
+const KEY_INGREDIENTS: string[] = [];
 
 interface Product {
   id: number | string;
@@ -69,7 +64,6 @@ export default function ProductCard({ product, onCustomize }: ProductCardProps) 
   const { t, tDynamic, lang } = useI18nStore() as any;
   const [showProductModal, setShowProductModal] = useState(false);
   const [showSubcategoryModal, setShowSubcategoryModal] = useState(false);
-  const [showSauceModal, setShowSauceModal] = useState(false);
 
   const rawName = product.name || '';
   const rawNameEn = product.name_en || '';
@@ -90,13 +84,7 @@ export default function ProductCard({ product, onCustomize }: ProductCardProps) 
       return;
     }
 
-    // Si es una salsa, abrir el modal de selección de salsa (Cheddar, BBQ, Ajo y Perejil a 2€)
-    if (product.name.toLowerCase().includes('salsa') || (product as any).category === 'SALSAS') {
-      setShowSauceModal(true);
-      return;
-    }
-
-    // Para todos los demás productos (Patatas Gourmet, Postres, Extras):
+    // Resto de productos:
     // Abrir el modal unificado con foto, extras, notas y cantidad
     if (onCustomize) {
       onCustomize(product);
@@ -106,7 +94,7 @@ export default function ProductCard({ product, onCustomize }: ProductCardProps) 
     setShowProductModal(true);
   };
 
-  const fallback = `data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='540' viewBox='0 0 800 540'><rect width='800' height='540' fill='%23FAFAFA'/><text x='400' y='260' font-size='28' font-family='sans-serif' font-weight='800' fill='%23F59E0B' text-anchor='middle' dominant-baseline='middle'>${encodeURIComponent(product.name)}</text></svg>`;
+  const fallback = `data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='540' viewBox='0 0 800 540'><rect width='800' height='540' fill='%23FAFAFA'/><text x='400' y='260' font-size='28' font-family='sans-serif' font-weight='800' fill='%2371717A' text-anchor='middle' dominant-baseline='middle'>${encodeURIComponent(product.name)}</text></svg>`;
   const localStaticFallback = LOCAL_IMAGE_MAP[product.name] || LOCAL_IMAGE_MAP[rawName];
   const imageSrc = getProductImageUrl(product) || fallback;
 
@@ -115,7 +103,7 @@ export default function ProductCard({ product, onCustomize }: ProductCardProps) 
       <div className={`group relative bg-white rounded-3xl border-2 overflow-hidden shadow-xl transition-all duration-300 flex flex-col ${
         !isAvailable 
           ? 'opacity-60 grayscale-[35%] border-gray-300' 
-          : 'border-gray-200 hover:border-brand-primary/60 hover:shadow-[0_0_30px_rgba(245,158,11,0.2)]'
+          : 'border-gray-200 hover:border-brand-primary/60 hover:shadow-[0_0_30px_rgb(var(--brand-primary-rgb)/0.2)]'
       }`}>
         {/* Imagen */}
         <div 
@@ -145,7 +133,7 @@ export default function ProductCard({ product, onCustomize }: ProductCardProps) 
             const rawBadge = product.badge || (product as any).customization_schema?.badge || product.name;
             if (!rawBadge) return null;
             const badgeText = (lang === 'en' && (product as any).badge_en) ? (product as any).badge_en : tDynamic(rawBadge);
-            const isSpicy = /pic|spicy|hot|chipotle/i.test(rawBadge);
+            const isSpicy = /picante|spicy|hot/i.test(rawBadge);
             return (
               <span className={`absolute top-3 left-3 z-20 bg-white/95 backdrop-blur-sm border-2 font-display font-black text-[10px] sm:text-xs uppercase tracking-wider px-3 py-1.5 rounded-xl shadow-lg leading-none ${isSpicy ? 'border-red-500 text-red-600' : 'border-brand-primary text-brand-ink'}`}>
                 {badgeText}
@@ -182,7 +170,7 @@ export default function ProductCard({ product, onCustomize }: ProductCardProps) 
             className={`w-full font-display font-black py-3.5 rounded-2xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-lg flex items-center justify-center gap-2 ${
               !isAvailable
                 ? 'bg-zinc-200 text-zinc-400 cursor-not-allowed shadow-none'
-                : 'bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:brightness-110 text-white hover:shadow-[0_10px_25px_-5px_rgba(245,158,11,0.4)] active:scale-95'
+                : 'bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:brightness-110 text-white hover:shadow-[0_10px_25px_-5px_rgb(var(--brand-primary-rgb)/0.4)] active:scale-95'
             }`}
           >
             {product.isGroup ? (
@@ -207,9 +195,6 @@ export default function ProductCard({ product, onCustomize }: ProductCardProps) 
         <SubcategoryModal productGroup={product} onClose={() => setShowSubcategoryModal(false)} />
       )}
 
-      {showSauceModal && (
-        <SauceModal product={product as any} onClose={() => setShowSauceModal(false)} />
-      )}
     </>
   );
 }

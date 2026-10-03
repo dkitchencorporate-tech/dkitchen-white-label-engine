@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="56" viewBox="0 0 220 56" role="img" aria-label="Marca Demo">
+  <rect x="2" y="6" width="44" height="44" rx="12" fill="#18181B"/>
+  <path d="M15 37V19h7.5c5.5 0 9.5 3.6 9.5 9s-4 9-9.5 9H15zm5-4.4h2.3c2.9 0 4.7-1.8 4.7-4.6s-1.8-4.6-4.7-4.6H20v9.2z" fill="#FFFFFF"/>
+  <text x="58" y="35" font-family="system-ui, sans-serif" font-size="20" font-weight="800" fill="#18181B" letter-spacing="0.5">MARCA DEMO</text>
+</svg>

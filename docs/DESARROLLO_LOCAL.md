@@ -14,7 +14,7 @@ psql -U postgres -c 'CREATE DATABASE motor_dev;' -c 'CREATE DATABASE motor_test;
 export MIGRATIONS_DATABASE_URL=postgres://postgres:postgres@localhost:5432/motor_dev
 npm run db:migrar
 
-# Marca neutra de ejemplo y administrador (la contraseña se muestra una sola vez)
+# Semilla de la marca (brands/<slug>/semilla.sql) y administrador (la contraseña se muestra una sola vez)
 npm run db:semilla -- demo
 npm run crear-admin -- admin@demo.example "Admin Demo"
 
@@ -31,6 +31,7 @@ export APP_DATABASE_URL=postgres://motor_api:motor_api_local@localhost:5432/moto
 export APP_JWT_SECRET=$(openssl rand -hex 32)
 npm run dev:api     # API en http://localhost:3001 (emula las rutas de vercel.json)
 npm run dev         # PWA en http://localhost:5173 (redirige /api a la API local)
+BRAND=otra npm run dev   # la misma PWA con la identidad de brands/otra
 ```
 
 ## 3. Pruebas

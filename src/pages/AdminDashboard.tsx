@@ -321,6 +321,7 @@ export default function AdminDashboard() {
             </button>
 
             {/* 2. TPV Mostrador */}
+            {BRAND_CONFIG.modulosActivos.kiosko && (
             <button 
               onClick={() => handleSelectTab('kiosk')}
               className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${
@@ -334,6 +335,7 @@ export default function AdminDashboard() {
               </svg>
               <span>TPV Mostrador</span>
             </button>
+            )}
 
             {/* 3. Clientes & VIP */}
             <button
@@ -566,6 +568,7 @@ export default function AdminDashboard() {
                 <span>Comandas</span>
               </button>
               
+              {BRAND_CONFIG.modulosActivos.kiosko && (
               <button
                 onClick={() => handleSelectTab('kiosk')}
                 className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs font-display font-extrabold uppercase tracking-wider transition-all flex items-center gap-2 ${
@@ -577,6 +580,7 @@ export default function AdminDashboard() {
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                 <span>TPV Mostrador</span>
               </button>
+              )}
             </div>
           </div>
 
@@ -655,6 +659,7 @@ export default function AdminDashboard() {
             <span>Comandas</span>
           </button>
 
+          {BRAND_CONFIG.modulosActivos.kiosko && (
           <button 
             onClick={() => handleSelectTab('kiosk')}
             className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl text-[10px] font-bold uppercase transition-all ${
@@ -664,6 +669,7 @@ export default function AdminDashboard() {
             <svg className="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
             <span>TPV</span>
           </button>
+          )}
 
           <button 
             onClick={() => handleSelectTab('catalog')}

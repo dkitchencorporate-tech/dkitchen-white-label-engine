@@ -86,7 +86,7 @@ export default function KioskIngredientsModal({ product, onClose, onAdd }: Ingre
 
           <div className="absolute bottom-4 left-4 sm:left-6 right-4">
             <h2 className="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-wider flex items-center gap-2 sm:gap-3 drop-shadow-xl">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-brand-primary rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.5)] shrink-0">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-brand-primary rounded-full flex items-center justify-center shadow-[0_0_15px_rgb(var(--brand-primary-rgb)/0.5)] shrink-0">
                 <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M12 4v16m8-8H4"></path></svg>
               </div>
               <span className="truncate">{t('custom_taste')}</span>

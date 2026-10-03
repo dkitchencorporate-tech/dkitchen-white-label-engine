@@ -35,15 +35,15 @@ export default function Footer() {
           </button>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto text-center mt-6 pt-4 border-t border-gray-100">
-        <a
-          href="https://dkitchencorporate.es/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-400 hover:text-gray-600 transition-colors text-[10px] uppercase tracking-widest font-medium"
-        >
-          © {currentYear} {BRAND_CONFIG.name} · Tecnología D-Kitchen Corporate Tech
-        </a>
+      <div className="max-w-7xl mx-auto text-center mt-6 pt-4 border-t border-gray-100 text-gray-400 text-[10px] uppercase tracking-widest font-medium">
+        © {currentYear} {BRAND_CONFIG.name}
+        {BRAND_CONFIG.creditos.mostrar && BRAND_CONFIG.creditos.texto && (
+          BRAND_CONFIG.creditos.url ? (
+            <> · <a href={BRAND_CONFIG.creditos.url} target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">{BRAND_CONFIG.creditos.texto}</a></>
+          ) : (
+            <> · {BRAND_CONFIG.creditos.texto}</>
+          )
+        )}
       </div>
     </footer>
   );

@@ -10,19 +10,27 @@
 
 *Actualizado: 3 de octubre de 2026.*
 
-- **Fase en curso:** **Fase 1A terminada** en la rama `nube/fase-1a-reparar-plantilla` (PR pendiente de revisión de karc0). Siguiente: Fase 1B (motor/marca).
+- **Fase en curso:** 1A fusionada (PR #2). **Fase 1B terminada** en `nube/fase-1b-motor-marca` (PR pendiente). Siguiente: Fase 1C (calidad y CI).
 - **Alcance aprobado (A9–A11):** base pulida 1A + 1B + 1C + 2, con la API reescrita desde cero y solo la plantilla neutra (≈ 51 €).
-- **Presupuesto:** 100 € de crédito; ≈ 28 € gastados hasta ahora (estimación).
+- **Presupuesto:** 100 € de crédito; ≈ 40 € gastados hasta ahora (estimación).
 - **Motor tras la 1A:**
   - API en TypeScript estricto + zod (`api/*.ts`).
   - Migraciones numeradas (`db/migraciones/0001–0003`) con RLS en todas las tablas y precio, opciones, horarios, puntos e idempotencia calculados en SQL.
   - Marca neutra `demo` (`db/semilla/demo.sql`), `crear-admin` sin contraseñas por defecto, servidor local de la API.
   - 18 pruebas de integración en verde contra Postgres real.
+- **Motor tras la 1B:**
+  - marcas en `brands/<slug>/` (configuración zod validada al compilar, tema, huecos Preloader/Logo/Hero/Pie, recursos y semilla); `BRAND=<slug>` elige la marca;
+  - plugin de Vite que inyecta metadatos y tema y genera manifest, iconos, robots y sitemap;
+  - Tailwind compilado (sin CDN) y CSP activa;
+  - `npm run nueva-marca`;
+  - preajustes por tipo de negocio con módulos (domicilio, recogida y kiosko ya conectados);
+  - interfaces `ProveedorPago` y `Impresora`/`Datafono`;
+  - restos de identidad eliminados;
+  - 23 pruebas en verde.
 - **Pendiente de la 1A para fases siguientes:**
-  - 12 errores de tipos antiguos del frontend → 1C;
-  - restos de identidad (SauceModal, robots/sitemap, colores fijos) → 1B;
+  - 5 errores de tipos antiguos del frontend → 1C;
   - 2FA bien hecho con pantalla de código → futuro;
-  - CSP → 1B (cuando se quite el Tailwind por CDN).
+  - fuentes de Google autoalojadas (privacidad) y adaptadores reales de pago y hardware → fases siguientes.
 - **Documentos:**
   - `docs/AUDITORIA_MOTOR.md`, `docs/AUDITORIA_VERSIONES_PREVIAS.md`, `docs/ANALISIS_PRODUCTO.md`;
   - `docs/ACTUALIZACIONES_MARCAS.md`, `docs/DESARROLLO_LOCAL.md`, `docs/PLAN_NESTOR_PRELANZAMIENTO.md`.
@@ -36,6 +44,7 @@
 
 *(La más reciente arriba; 1–3 líneas por tarea.)*
 
+- **03-oct-2026 · Fase 1B.** Separación motor/marca (`brands/demo`, esquema zod, huecos, preajustes), plugin de Vite de marca, Tailwind compilado + CSP, `nueva-marca`, capas de pagos y hardware, limpieza de restos (modales de salsas, geovalla fija en Madrid, claves `sff_`, colores ámbar, textos de otras marcas). Comparación de capturas antes/después sin regresiones (corrige el botón «Añadir» invisible y el diseño de escritorio). **Siguiente:** Fase 1C.
 - **03-oct-2026 · Fase 1A.** API reescrita (TS + zod), migraciones 0001–0003 con RLS y lógica en SQL, semilla demo, crear-admin, servidor local, 18 pruebas de integración en verde, frontend adaptado (opciones desde la carta, checkout con hora programada e idempotencia, kiosko marcado como tal). Corregido en revisión: el trigger de perfiles revertía el canje de puntos. **Siguiente:** Fase 1B.
 - **03-oct-2026 · Néstor en prelanzamiento.** PR #1 fusionado por encargo de karc0; Vercel lo desplegó en ~40 s. Su service worker no cachea, así que todos los clientes ven la pantalla. Para el lanzamiento: `PRELAUNCH_ACTIVE = false` y desplegar. **Siguiente:** Fase 1A del motor.
 - **03-oct-2026 · Fusiones y Néstor.** PR #1 del motor y los 3 PR de seguridad fusionados por encargo de karc0. Néstor: pantalla de prelanzamiento + bloqueo en servidor (trigger) en nestor-pizzas-pwa#1, probada con Playwright y Supabase simulado. **Siguiente:** Fase 1A.
@@ -52,6 +61,11 @@
 ---
 
 ## 3. Decisiones
+
+- **03-oct-2026 · Marcas en `brands/<slug>/`, y el código del motor sigue en `src/`, `api/`, `db/` y `scripts/`.** *Porqué:* cumple el «toda la identidad sale de brands/<slug>» del arranque sin reubicar todo el código. La separación física `motor/` se decidirá con el prototipo de sincronización (Fase 2).
+- **03-oct-2026 · Tailwind 3.4.17 compilado en el build** (se retira Tailwind 4, que no se estaba usando). *Porqué:* misma versión que la CDN, sin regresiones visuales. Permite CSP, rendimiento y privacidad.
+- **03-oct-2026 · La configuración de marca se valida al compilar y llega al navegador ya validada (módulo virtual).** *Porqué:* zod no viaja al cliente (−90 kB).
+- **03-oct-2026 · Fuera la geovalla del navegador** (distancia a la Puerta del Sol). *Porqué:* era un resto de otra marca que rechazaba clientes válidos y pedía la ubicación sin necesidad; la zona de reparto la valida el servidor por código postal.
 
 - **03-oct-2026 · Diseño de la API 1A.** Lógica de negocio en funciones SQL `SECURITY DEFINER` (precio, opciones, horarios, puntos, idempotencia). La API (rol `motor_app`) solo valida forma y fija `app.user_id`. RLS en todas las tablas. Revocación de tokens con `token_version`. Rate limit en tabla compartida. *Porqué:* la regla de oro (precio en servidor) queda garantizada aunque falle la API, y cada clon hereda la seguridad sin configurarla.
 - **03-oct-2026 · Retirados** `migrate-schema`, `cleanup-simulated`, `delete-test-data`, `verify-2fa` y `send-transactional-email`. *Porqué:* eran puertas abiertas. Los correos los envía ahora el servidor; las migraciones van por script; la «purga de pruebas» borraba por patrones de nombre (podía borrar pedidos reales) y se sustituye por el borrado individual del panel; el 2FA volverá con pantalla de código.

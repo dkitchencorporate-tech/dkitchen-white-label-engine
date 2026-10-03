@@ -133,14 +133,14 @@ export default function AdminSchedule() {
                       type="time"
                       value={row.open_time?.slice(0, 5) || ''}
                       onChange={(e) => updateLocal(day, { open_time: e.target.value })}
-                      className="bg-zinc-50 border border-zinc-300 rounded-lg px-2.5 py-1.5 text-zinc-900 text-xs font-bold focus:border-amber-500 outline-none"
+                      className="bg-zinc-50 border border-zinc-300 rounded-lg px-2.5 py-1.5 text-zinc-900 text-xs font-bold focus:border-brand-primary outline-none"
                     />
                     <span className="text-zinc-400 text-xs">a</span>
                     <input
                       type="time"
                       value={row.close_time?.slice(0, 5) || ''}
                       onChange={(e) => updateLocal(day, { close_time: e.target.value })}
-                      className="bg-zinc-50 border border-zinc-300 rounded-lg px-2.5 py-1.5 text-zinc-900 text-xs font-bold focus:border-amber-500 outline-none"
+                      className="bg-zinc-50 border border-zinc-300 rounded-lg px-2.5 py-1.5 text-zinc-900 text-xs font-bold focus:border-brand-primary outline-none"
                     />
                   </div>
                 ) : (
@@ -150,7 +150,7 @@ export default function AdminSchedule() {
                 <button
                   onClick={() => saveDay(day)}
                   disabled={savingDay === day}
-                  className="w-full sm:w-auto px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 disabled:opacity-50 text-white font-extrabold text-xs uppercase tracking-wider transition-all shrink-0 shadow-xs"
+                  className="w-full sm:w-auto px-4 py-2 rounded-xl bg-brand-primary hover:bg-brand-primaryHover disabled:opacity-50 text-white font-extrabold text-xs uppercase tracking-wider transition-all shrink-0 shadow-xs"
                 >
                   {savingDay === day ? 'Guardando...' : savedDay === day ? '✓ Guardado' : 'Guardar'}
                 </button>

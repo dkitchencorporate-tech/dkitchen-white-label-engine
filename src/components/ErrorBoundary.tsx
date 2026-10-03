@@ -4,7 +4,7 @@
 // or fallback to Spanish
 const getTranslation = (key: string) => {
   try {
-    const store = localStorage.getItem('brand-i18n-storage') || localStorage.getItem('sff-i18n');
+    const store = localStorage.getItem('brand-i18n-storage');
     if (store) {
       const parsed = JSON.parse(store);
       const lang = parsed.state?.lang || 'es';

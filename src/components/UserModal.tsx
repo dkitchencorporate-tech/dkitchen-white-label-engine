@@ -179,7 +179,7 @@ export default function UserModal() {
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v4H8v2h3v3h2v-3h3v-2h-3V7z"/>
               </svg>
             </div>
-            <h2 className="text-2xl font-display font-black text-brand-ink uppercase tracking-tight">{(user || profile) ? t('vip_account') : t('brand_name')}</h2>
+            <h2 className="text-2xl font-display font-black text-brand-ink uppercase tracking-tight">{(user || profile) ? t('vip_account') : BRAND_CONFIG.name}</h2>
             <p className="text-sm text-gray-500 mt-1">{(user || profile) ? t('vip_account_desc_logged_in') : t('vip_account_desc_logged_out')}</p>
           </div>
         </div>

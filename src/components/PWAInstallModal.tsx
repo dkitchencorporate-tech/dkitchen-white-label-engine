@@ -27,7 +27,7 @@ export default function PWAInstallModal({
 
   return (
     <div className="fixed inset-0 z-[1400] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fade-in">
-      <div className="bg-[#FFFFFF] border border-brand-border rounded-3xl w-full max-w-md overflow-hidden shadow-[0_0_50px_rgba(245,158,11,0.2)] relative flex flex-col">
+      <div className="bg-[#FFFFFF] border border-brand-border rounded-3xl w-full max-w-md overflow-hidden shadow-[0_0_50px_rgb(var(--brand-primary-rgb)/0.2)] relative flex flex-col">
         {/* Accent Bar */}
         <div className="h-1.5 bg-brand-primary"></div>
 
@@ -90,7 +90,7 @@ export default function PWAInstallModal({
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-600 font-bold text-sm shrink-0">
+                  <div className="w-8 h-8 rounded-xl bg-brand-primary/10 border border-brand-primary/30 flex items-center justify-center text-brand-primary font-bold text-sm shrink-0">
                     3
                   </div>
                   <div>

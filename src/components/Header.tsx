@@ -1,4 +1,5 @@
-﻿import { useAuthStore } from '../store/authStore';
+﻿import { Hueco } from '../marca/huecos';
+import { useAuthStore } from '../store/authStore';
 import { usePWAInstall } from '../hooks/usePWAInstall';
 import { useI18nStore } from '../store/i18nStore';
 import { useSettingsStore } from '../store/settingsStore';
@@ -46,18 +47,24 @@ export default function Header() {
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-4 sm:px-8 py-3">
         {/* Marca y Logo */}
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => window.scrollTo({top:0,behavior:'smooth'})}>
-          {BRAND_CONFIG.assets.logoUrl ? (
-            <img
-              src={BRAND_CONFIG.assets.logoUrl}
-              alt={BRAND_CONFIG.name}
-              className="h-9 md:h-10 w-auto object-contain"
-              onError={(e) => {
-                (e.target as HTMLElement).style.display = 'none';
-              }}
-            />
-          ) : (
-            <span className="font-display font-black text-xl text-brand-ink">{BRAND_CONFIG.shortName}</span>
-          )}
+          <Hueco
+            nombre="Logo"
+            props={{ className: 'h-9 md:h-10 w-auto', variante: 'claro' }}
+            porDefecto={
+              BRAND_CONFIG.assets.logoUrl ? (
+                <img
+                  src={BRAND_CONFIG.assets.logoUrl}
+                  alt={BRAND_CONFIG.name}
+                  className="h-9 md:h-10 w-auto object-contain"
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = 'none';
+                  }}
+                />
+              ) : (
+                <span className="font-display font-black text-xl text-brand-ink">{BRAND_CONFIG.shortName}</span>
+              )
+            }
+          />
           <div className="hidden sm:block">
             <span className="text-[9px] font-extrabold bg-brand-primaryLight text-brand-primary px-2 py-0.5 rounded-full uppercase tracking-wider font-display border border-brand-primary/20">
               {BRAND_CONFIG.city || 'ONLINE'}
@@ -78,11 +85,11 @@ export default function Header() {
           >
             {lang === 'es' ? <UKFlag /> : <ESFlag />}
           </button>
-          <button onClick={promptToInstall} className="hidden md:flex items-center gap-2 px-4 py-1.5 rounded-xl bg-gradient-to-r from-brand-accent to-brand-primary text-brand-ink font-display font-bold text-sm shadow-[0_4px_15px_rgba(250,204,21,0.35)] hover:scale-105 transition-transform uppercase tracking-widest border border-brand-accent/60">
+          <button onClick={promptToInstall} className="hidden md:flex items-center gap-2 px-4 py-1.5 rounded-xl bg-gradient-to-r from-brand-accent to-brand-primary text-brand-ink font-display font-bold text-sm shadow-[0_4px_15px_rgb(var(--brand-primary-rgb)/0.35)] hover:scale-105 transition-transform uppercase tracking-widest border border-brand-accent/60">
             <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
             <span>{t('install_app')}</span>
           </button>
-          <button onClick={promptToInstall} className="md:hidden flex items-center justify-center w-10 h-10 sm:w-8 sm:h-8 rounded-xl bg-brand-accent text-brand-ink shadow-[0_4px_15px_rgba(250,204,21,0.4)] transition-all hover:scale-105 shrink-0">
+          <button onClick={promptToInstall} className="md:hidden flex items-center justify-center w-10 h-10 sm:w-8 sm:h-8 rounded-xl bg-brand-accent text-brand-ink shadow-[0_4px_15px_rgb(var(--brand-primary-rgb)/0.4)] transition-all hover:scale-105 shrink-0">
             <svg className="w-5 h-5 sm:w-4 sm:h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
           </button>
 
