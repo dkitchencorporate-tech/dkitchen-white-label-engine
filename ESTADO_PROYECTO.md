@@ -10,7 +10,7 @@
 
 *Actualizado: 3 de octubre de 2026.*
 
-- **Fase en curso:** Fase 0 (auditoría) **entregada** en el PR desde `nube/fase-0-auditoria`. **A la espera de la aprobación de karc0** para empezar la siguiente (propuesta: Fase 0.5, parches críticos).
+- **Fase en curso:** Fase 0 (auditoría) **entregada** en el PR #1 desde `nube/fase-0-auditoria`. **A la espera de la aprobación de karc0** para empezar la siguiente (propuesta: Fase 0.5, parches críticos).
 - **Informe:** `docs/AUDITORIA_MOTOR.md` (arquitectura, restos de identidad, paridad con la plataforma QR, seguridad, mercado, plan de fases con coste).
 - **Situación del código en `main`:**
   - `api/account.js` y `api/orders.js` **no cargan** (importan `query`, que `api/_lib/db.js` no exporta) → login, registro y checkout dan 500.
@@ -27,7 +27,7 @@
 
 *(La más reciente arriba; 1–3 líneas por tarea.)*
 
-- **03-oct-2026 · Fase 0 · Auditoría.** Auditoría completa sin tocar código de la aplicación: `docs/AUDITORIA_MOTOR.md`, statusline (`.claude/`), este archivo reestructurado. PR desde `nube/fase-0-auditoria`. **Siguiente:** esperar aprobación; si se aprueba la Fase 0.5, empezar por S1–S5 y el import `query` (rama `nube/fase-0-5-parches-criticos`).
+- **03-oct-2026 · Fase 0 · Auditoría.** Auditoría completa sin tocar código de la aplicación: `docs/AUDITORIA_MOTOR.md`, statusline (`.claude/`), este archivo reestructurado. PR #1 desde `nube/fase-0-auditoria`. **Siguiente:** esperar aprobación; si se aprueba la Fase 0.5, empezar por S1–S5 y el import `query` (rama `nube/fase-0-5-parches-criticos`).
 - **28-sep-2026 · v3.1.0** (histórico previo). Publicación del repositorio en GitHub, renombrado del template de pizzerías a `template-pwa-pizzerias`, 2FA TOTP y verificación de email en el motor.
 - **26-sep-2026 · v3.0.0** (histórico previo). Saneamiento: binarios residuales, tokens, paleta neutra y tokenización de Tailwind con variables CSS.
 - **25-sep-2026 · v2.0.0** (histórico previo). Desacoplamiento de la arquitectura v3.0 a partir de la PWA de Seven Food Fries.
