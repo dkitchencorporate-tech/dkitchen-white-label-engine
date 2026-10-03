@@ -382,7 +382,7 @@ export default function UserModal() {
                           {getStatusBadge(order.status)}
                         </div>
                         <div className="text-right">
-                          <span className="font-black text-brand-ink text-lg">{Number(order.total_amount).toFixed(2)}€</span>
+                          <span className="font-black text-brand-ink text-lg">{Number(order.total).toFixed(2)}€</span>
                         </div>
                       </div>
 

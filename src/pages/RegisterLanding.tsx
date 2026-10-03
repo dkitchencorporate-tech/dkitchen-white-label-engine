@@ -164,12 +164,13 @@ export default function RegisterLanding() {
         gsap.set(els, { transformPerspective: 1000, transformOrigin: 'top center' });
         ScrollTrigger.batch(els, {
           start: 'top 85%',
-          onEnter: (batch: HTMLElement[]) =>
+          onEnter: (batch: Element[]) => {
             gsap.fromTo(
               batch,
               { opacity: 0, y: 70, rotateX: -35, scale: 0.9 },
               { opacity: 1, y: 0, rotateX: 0, scale: 1, duration: 0.9, ease: 'power3.out', stagger: 0.15 }
-            )
+            );
+          }
         });
       };
       setup3DBatch(stepCardsRef.current);

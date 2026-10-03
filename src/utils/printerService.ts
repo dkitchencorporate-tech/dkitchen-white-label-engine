@@ -133,11 +133,11 @@ export const sendToNetworkPrinter = async (order: any): Promise<boolean> => {
 
     text += `--------------------------------
 `;
-    if (order.discount_applied > 0) {
-      text += `DESCUENTO VIP:        -${order.discount_applied.toFixed(2)} EUR
+    if (order.discount > 0) {
+      text += `DESCUENTO VIP:        -${order.discount.toFixed(2)} EUR
 `;
     }
-    const totalFinal = typeof order.total_amount === 'number' ? order.total_amount.toFixed(2) : '0.00';
+    const totalFinal = typeof order.total === 'number' ? order.total.toFixed(2) : '0.00';
     text += `TOTAL:                 ${totalFinal} EUR
 `;
     

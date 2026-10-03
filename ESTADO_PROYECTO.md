@@ -10,9 +10,9 @@
 
 *Actualizado: 3 de octubre de 2026.*
 
-- **Fase en curso:** 1A fusionada (PR #2). **Fase 1B terminada** en `nube/fase-1b-motor-marca` (PR pendiente). Siguiente: Fase 1C (calidad y CI).
+- **Fase en curso:** 1A y 1B fusionadas (PR #2 y #3). **Fase 1C terminada** en `nube/fase-1c-calidad` (PR #4 pendiente). Siguiente: Fase 2 (prototipo de sincronización motor → clientes).
 - **Alcance aprobado (A9–A11):** base pulida 1A + 1B + 1C + 2, con la API reescrita desde cero y solo la plantilla neutra (≈ 51 €).
-- **Presupuesto:** 100 € de crédito; ≈ 40 € gastados hasta ahora (estimación).
+- **Presupuesto:** 100 € de crédito; ≈ 47 € gastados hasta ahora (estimación).
 - **Motor tras la 1A:**
   - API en TypeScript estricto + zod (`api/*.ts`).
   - Migraciones numeradas (`db/migraciones/0001–0003`) con RLS en todas las tablas y precio, opciones, horarios, puntos e idempotencia calculados en SQL.
@@ -27,8 +27,12 @@
   - interfaces `ProveedorPago` y `Impresora`/`Datafono`;
   - restos de identidad eliminados;
   - 23 pruebas en verde.
-- **Pendiente de la 1A para fases siguientes:**
-  - 5 errores de tipos antiguos del frontend → 1C;
+- **Motor tras la 1C:**
+  - TypeScript estricto también en el frontend (0 errores); oxlint sin errores (≈ 300 avisos heredados, sobre todo `any` y reglas del compilador de React, a reducir poco a poco);
+  - 29 pruebas Vitest (API + lógica del frontend) y 2 de punta a punta con Playwright en móvil (carta → extras → carrito → pedido → panel; credenciales erróneas);
+  - CI en GitHub Actions en cada PR con Postgres 16 efímero;
+  - las pruebas destaparon y se corrigieron: el total del pedido no se veía en el panel ni en el seguimiento (campos `total_amount`/`discount_applied` antiguos) y la barra del carrito no era un botón accesible.
+- **Pendiente para fases siguientes:**
   - 2FA bien hecho con pantalla de código → futuro;
   - fuentes de Google autoalojadas (privacidad) y adaptadores reales de pago y hardware → fases siguientes.
 - **Documentos:**
@@ -44,6 +48,7 @@
 
 *(La más reciente arriba; 1–3 líneas por tarea.)*
 
+- **03-oct-2026 · Fase 1C.** TS estricto en el frontend, oxlint (TypeScript 7 no tiene API JS para typescript-eslint), pruebas del frontend, Playwright de punta a punta y CI (`.github/workflows/ci.yml`). Corregidos el total invisible en panel/seguimiento y la barra del carrito sin rol de botón. **Siguiente:** Fase 2.
 - **03-oct-2026 · Fase 1B.** Separación motor/marca (`brands/demo`, esquema zod, huecos, preajustes), plugin de Vite de marca, Tailwind compilado + CSP, `nueva-marca`, capas de pagos y hardware, limpieza de restos (modales de salsas, geovalla fija en Madrid, claves `sff_`, colores ámbar, textos de otras marcas). Comparación de capturas antes/después sin regresiones (corrige el botón «Añadir» invisible y el diseño de escritorio). **Siguiente:** Fase 1C.
 - **03-oct-2026 · Fase 1A.** API reescrita (TS + zod), migraciones 0001–0003 con RLS y lógica en SQL, semilla demo, crear-admin, servidor local, 18 pruebas de integración en verde, frontend adaptado (opciones desde la carta, checkout con hora programada e idempotencia, kiosko marcado como tal). Corregido en revisión: el trigger de perfiles revertía el canje de puntos. **Siguiente:** Fase 1B.
 - **03-oct-2026 · Néstor en prelanzamiento.** PR #1 fusionado por encargo de karc0; Vercel lo desplegó en ~40 s. Su service worker no cachea, así que todos los clientes ven la pantalla. Para el lanzamiento: `PRELAUNCH_ACTIVE = false` y desplegar. **Siguiente:** Fase 1A del motor.
@@ -62,6 +67,8 @@
 
 ## 3. Decisiones
 
+- **03-oct-2026 · oxlint en lugar de ESLint + typescript-eslint.** *Porqué:* el proyecto usa TypeScript 7 (nativo), que no expone la API de JavaScript que necesita typescript-eslint; oxlint es nativo, rápido y no depende de ella. Las reglas de corrección bloquean; las de estilo y del compilador de React avisan.
+- **03-oct-2026 · El frontend usa los nombres de la API nueva** (`total`, `discount`) en lugar de adaptarlos en el servidor. *Porqué:* un único contrato de datos, sin alias que mantener.
 - **03-oct-2026 · Marcas en `brands/<slug>/`, y el código del motor sigue en `src/`, `api/`, `db/` y `scripts/`.** *Porqué:* cumple el «toda la identidad sale de brands/<slug>» del arranque sin reubicar todo el código. La separación física `motor/` se decidirá con el prototipo de sincronización (Fase 2).
 - **03-oct-2026 · Tailwind 3.4.17 compilado en el build** (se retira Tailwind 4, que no se estaba usando). *Porqué:* misma versión que la CDN, sin regresiones visuales. Permite CSP, rendimiento y privacidad.
 - **03-oct-2026 · La configuración de marca se valida al compilar y llega al navegador ya validada (módulo virtual).** *Porqué:* zod no viaja al cliente (−90 kB).

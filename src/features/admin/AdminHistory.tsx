@@ -163,19 +163,19 @@ export default function AdminHistory() {
     const deliveredOrders = filteredOrders.filter(o => o.status === 'delivered');
     const cancelledOrders = filteredOrders.filter(o => o.status === 'cancelled');
 
-    const totalRevenue = deliveredOrders.reduce((sum, o) => sum + Number(o.total_amount || 0), 0);
+    const totalRevenue = deliveredOrders.reduce((sum, o) => sum + Number(o.total || 0), 0);
 
     // Cash delivered orders (Rider Cash to be liquidated!)
     const cashDeliveryOrders = deliveredOrders.filter(o => 
       o.delivery_method === 'delivery' && (o.payment_method === 'cash' || !o.payment_method)
     );
-    const cashDeliveryTotal = cashDeliveryOrders.reduce((sum, o) => sum + Number(o.total_amount || 0), 0);
+    const cashDeliveryTotal = cashDeliveryOrders.reduce((sum, o) => sum + Number(o.total || 0), 0);
 
     // Cash in Local / Counter / Tables
     const cashLocalOrders = deliveredOrders.filter(o => 
       o.delivery_method !== 'delivery' && (o.payment_method === 'cash' || !o.payment_method)
     );
-    const cashLocalTotal = cashLocalOrders.reduce((sum, o) => sum + Number(o.total_amount || 0), 0);
+    const cashLocalTotal = cashLocalOrders.reduce((sum, o) => sum + Number(o.total || 0), 0);
 
     // Total Cash
     const totalCash = cashDeliveryTotal + cashLocalTotal;
@@ -184,23 +184,23 @@ export default function AdminHistory() {
     const tpvOrders = deliveredOrders.filter(o => 
       o.payment_method === 'tpv' || o.payment_method === 'physical' || o.payment_method === 'card_delivery'
     );
-    const totalTpv = tpvOrders.reduce((sum, o) => sum + Number(o.total_amount || 0), 0);
+    const totalTpv = tpvOrders.reduce((sum, o) => sum + Number(o.total || 0), 0);
 
     // Total Online / App
     const onlineOrders = deliveredOrders.filter(o =>
       o.payment_method === 'online'
     );
-    const totalOnline = onlineOrders.reduce((sum, o) => sum + Number(o.total_amount || 0), 0);
+    const totalOnline = onlineOrders.reduce((sum, o) => sum + Number(o.total || 0), 0);
 
     // Segregated Channels stats for fiscal report
     const deliveryOrders = deliveredOrders.filter(o => o.delivery_method === 'delivery');
-    const deliveryTotalRevenue = deliveryOrders.reduce((sum, o) => sum + Number(o.total_amount || 0), 0);
+    const deliveryTotalRevenue = deliveryOrders.reduce((sum, o) => sum + Number(o.total || 0), 0);
 
     const pickupOrders = deliveredOrders.filter(o => o.delivery_method === 'pickup');
-    const pickupTotalRevenue = pickupOrders.reduce((sum, o) => sum + Number(o.total_amount || 0), 0);
+    const pickupTotalRevenue = pickupOrders.reduce((sum, o) => sum + Number(o.total || 0), 0);
 
     const localDiningOrders = deliveredOrders.filter(o => o.delivery_method === 'local');
-    const localDiningTotalRevenue = localDiningOrders.reduce((sum, o) => sum + Number(o.total_amount || 0), 0);
+    const localDiningTotalRevenue = localDiningOrders.reduce((sum, o) => sum + Number(o.total || 0), 0);
 
     return {
       totalRevenue,
@@ -632,7 +632,7 @@ export default function AdminHistory() {
 
                   <div className="flex items-center justify-between sm:justify-end gap-6 sm:w-auto w-full">
                     <div className="text-right">
-                      <span className="block text-2xl font-black text-amber-600 leading-none">{Number(order.total_amount || 0).toFixed(2)}€</span>
+                      <span className="block text-2xl font-black text-amber-600 leading-none">{Number(order.total || 0).toFixed(2)}€</span>
                       <span className="text-[10px] text-zinc-400 uppercase tracking-widest font-bold">Importe Cobrado</span>
                     </div>
                     <svg className={`w-5 h-5 text-zinc-400 transition-transform duration-200 ${isExpanded ? 'rotate-180 text-amber-600' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -698,7 +698,7 @@ export default function AdminHistory() {
                         {/* Order Footer summary */}
                         <div className="p-3 bg-white rounded-xl border border-zinc-200 text-right flex justify-between items-center text-xs shadow-xs">
                           <span className="text-zinc-500 font-bold uppercase">Método: {isCash ? 'Efectivo en Mano' : (isTpv ? 'Datáfono TPV' : 'Pasarela Online')}</span>
-                          <span className="text-sm font-black text-zinc-900">Total: {Number(order.total_amount || 0).toFixed(2)}€</span>
+                          <span className="text-sm font-black text-zinc-900">Total: {Number(order.total || 0).toFixed(2)}€</span>
                         </div>
                       </div>
                     </div>
@@ -891,7 +891,7 @@ export default function AdminHistory() {
                     <td className="py-1 px-1.5 font-bold text-slate-900">{order.client_name || 'Sin Nombre'} {order.client_phone ? `(${order.client_phone})` : ''}</td>
                     <td className="py-1 px-1.5 text-slate-600 max-w-[170px] truncate">{order.delivery_address ? formatAddress(order.delivery_address as any) : '-'}</td>
                     <td className="py-1 px-1.5 font-medium">{formatPayMethod(order.payment_method)}</td>
-                    <td className="py-1 px-1.5 text-right font-black text-slate-900">{Number(order.total_amount || 0).toFixed(2)} €</td>
+                    <td className="py-1 px-1.5 text-right font-black text-slate-900">{Number(order.total || 0).toFixed(2)} €</td>
                   </tr>
                 ))}
               </tbody>
@@ -932,7 +932,7 @@ export default function AdminHistory() {
                     <td className="py-1 px-1.5 font-bold text-slate-900">{order.client_name || 'Mostrador'} {order.client_phone ? `(${order.client_phone})` : ''}</td>
                     <td className="py-1 px-1.5 text-slate-600 max-w-[170px] truncate">{order.notes || 'Recogida en mostrador'}</td>
                     <td className="py-1 px-1.5 font-medium">{formatPayMethod(order.payment_method)}</td>
-                    <td className="py-1 px-1.5 text-right font-black text-slate-900">{Number(order.total_amount || 0).toFixed(2)} €</td>
+                    <td className="py-1 px-1.5 text-right font-black text-slate-900">{Number(order.total || 0).toFixed(2)} €</td>
                   </tr>
                 ))}
               </tbody>
@@ -973,7 +973,7 @@ export default function AdminHistory() {
                     <td className="py-1 px-1.5 font-bold text-slate-900">{order.client_name || 'Mesa Local'}</td>
                     <td className="py-1 px-1.5 text-slate-600 max-w-[170px] truncate">{order.notes || '-'}</td>
                     <td className="py-1 px-1.5 font-medium">{formatPayMethod(order.payment_method)}</td>
-                    <td className="py-1 px-1.5 text-right font-black text-slate-900">{Number(order.total_amount || 0).toFixed(2)} €</td>
+                    <td className="py-1 px-1.5 text-right font-black text-slate-900">{Number(order.total || 0).toFixed(2)} €</td>
                   </tr>
                 ))}
               </tbody>
@@ -989,7 +989,7 @@ export default function AdminHistory() {
                 D. Pedidos Cancelados / Anulados ({stats.cancelledOrdersList.length} pedidos)
               </h3>
               <span className="font-bold text-[8.5px] text-slate-500">
-                Importe No Cobrado: {stats.cancelledOrdersList.reduce((sum, o) => sum + Number(o.total_amount || 0), 0).toFixed(2)} €
+                Importe No Cobrado: {stats.cancelledOrdersList.reduce((sum, o) => sum + Number(o.total || 0), 0).toFixed(2)} €
               </span>
             </div>
 
@@ -1010,7 +1010,7 @@ export default function AdminHistory() {
                     <td className="py-1 px-1.5">{new Date(order.created_at).toLocaleDateString('es-ES')}</td>
                     <td className="py-1 px-1.5">{order.client_name || 'Sin Nombre'}</td>
                     <td className="py-1 px-1.5 text-[8px] italic">{order.notes || 'Cancelado por administración'}</td>
-                    <td className="py-1 px-1.5 text-right line-through">{Number(order.total_amount || 0).toFixed(2)} €</td>
+                    <td className="py-1 px-1.5 text-right line-through">{Number(order.total || 0).toFixed(2)} €</td>
                   </tr>
                 ))}
               </tbody>
