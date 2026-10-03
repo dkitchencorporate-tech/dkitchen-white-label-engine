@@ -12,7 +12,7 @@
 
 - **Fase en curso:** Fase 0 (auditoría) + Fase A (análisis de producto) en el PR #1 (`nube/fase-0-auditoria`). **Alcance aprobado: solo la base pulida (1A+1B+1C+2, ≈ 43 €).** Auditoría de versiones anteriores hecha (`docs/AUDITORIA_VERSIONES_PREVIAS.md`). Base ampliada a ≈ 51 € (API reescrita desde cero). Siguiente: que karc0 fusione el PR #1 y empezar la Fase 1A.
 - **Análisis:** `docs/ANALISIS_PRODUCTO.md` (decisiones A1–A8, arquitectura motor/marca, constructor, sincronización, plan con coste en €).
-- **Presupuesto:** 100 € de crédito; ≈ 6 € gastados hasta ahora (estimación). La statusline muestra `€/100€` cuando el entorno informa del coste.
+- **Presupuesto:** 100 € de crédito; ≈ 14 € gastados hasta ahora (estimación). La statusline muestra `€/100€` cuando el entorno informa del coste.
 - **Informe:** `docs/AUDITORIA_MOTOR.md` (arquitectura, restos de identidad, paridad con la plataforma QR, seguridad, mercado, plan de fases con coste).
 - **Situación del código en `main`:**
   - `api/account.js` y `api/orders.js` **no cargan** (importan `query`, que `api/_lib/db.js` no exporta) → login, registro y checkout dan 500.
@@ -24,7 +24,9 @@
 - **Contexto:** el motor no está desplegado; los fallos de la auditoría son defectos de plantilla que heredaría cada clon.
 - **Repos de DKitchen parcheados** (sin datos reales, escaparate): PR de seguridad abiertos en bokadipan-pwa#1, seven-food-fries-pwa#2, wing-boss-pwa#1. Pendiente de revisión y fusión por karc0.
 - **Néstor Pizzas** (cliente real, en producción, Supabase, repo público): **no se toca** sin una fase de análisis y plan aprobada por karc0. El cliente pide un aviso de «actualizaciones / próximo lanzamiento» en la web pública y en el registro.
-- **Pendiente de karc0:** fusionar el PR #1 y los 3 PR de seguridad; abrir sesión aparte para el análisis de Néstor (solo lectura, plan a aprobar). La Fase 1A arranca en cuanto se fusione el PR #1 (rama `nube/fase-1a-reparar-plantilla`).
+- **Accesos demos (03-oct):** admin único `dkitchen@dkitchencorporate.es` con contraseña propia por marca (entregadas a karc0 en el chat, nunca en el repo). Aplicado en Neon: Wing Boss y Seven Food Fries (resto de admins → usuario normal). Bokadipan pendiente de conectar su cuenta de Neon. Seven Food y Bokadipan necesitan fusionar su PR de seguridad para que el login de admin funcione.
+- **Documentos nuevos:** `docs/ACTUALIZACIONES_MARCAS.md` (qué hacer en cada marca tras el pulido) y `docs/PLAN_NESTOR_PRELANZAMIENTO.md` (pendiente de aprobación).
+- **Pendiente de karc0:** fusionar los 3 PR de seguridad; aprobar el plan de Néstor; conectar la cuenta de Neon de Bokadipan; abrir sesión aparte para el análisis de Néstor (solo lectura, plan a aprobar). La Fase 1A arranca en cuanto se fusione el PR #1 (rama `nube/fase-1a-reparar-plantilla`).
 
 ---
 
@@ -32,6 +34,7 @@
 
 *(La más reciente arriba; 1–3 líneas por tarea.)*
 
+- **03-oct-2026 · Accesos, actualizaciones por marca y plan de Néstor.** Login de admin reparado en los PR de Seven Food y Bokadipan (el desvío de superadmin/2FA bloqueaba el panel); contraseñas nuevas aplicadas en Neon (Wing Boss, Seven Food). `docs/ACTUALIZACIONES_MARCAS.md` y `docs/PLAN_NESTOR_PRELANZAMIENTO.md`. Fusión del PR #1 por encargo de karc0. **Siguiente:** Fase 1A.
 - **03-oct-2026 · Parches de seguridad en repos de DKitchen.** cleanup-simulated solo admin, fuera migrate-schema, 2FA sin claves ni PIN maestro, relé de correo cerrado. PR: bokadipan-pwa#1, seven-food-fries-pwa#2, wing-boss-pwa#1. Néstor excluido. **Siguiente:** que karc0 fusione y empezar la Fase 1A.
 - **03-oct-2026 · Auditoría de versiones anteriores.** Leídos en solo lectura Wing Boss, Bokadipan, Seven Food Fries, Néstor y la plantilla de pizzerías: genealogía, riesgos en producción, comparativa, nivel de diseño y patrones a heredar → `docs/AUDITORIA_VERSIONES_PREVIAS.md`. **Siguiente:** decisiones de karc0 y Fase 1A partiendo de la API de Wing Boss.
 - **03-oct-2026 · Alcance.** karc0 aprueba solo la base pulida (A9) y precisa la visión: PWA hiperoptimizada, pasarela de pago propia, hardware del negocio, personalización absoluta. **Siguiente:** auditar en solo lectura los repos de versiones anteriores que pase karc0.
