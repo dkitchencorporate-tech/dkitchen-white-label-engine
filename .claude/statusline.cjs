@@ -35,6 +35,30 @@ function usedTokens(cw) {
   return null;
 }
 
+// Crédito de la sesión: coste acumulado que informa Claude Code (USD) pasado a
+// euros con un cambio aproximado y comparado con el presupuesto. Se guarda en
+// .claude/.coste-sesion.json para que el agente pueda leerlo y reportarlo.
+const BUDGET_EUR = Number(process.env.DK_PRESUPUESTO_EUR) || 100;
+const USD_TO_EUR = Number(process.env.DK_USD_EUR) || 0.9;
+
+function creditText(cost) {
+  const usd = Number(cost && cost.total_cost_usd);
+  if (!Number.isFinite(usd)) return '';
+  const eur = usd * USD_TO_EUR;
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const dir = process.env.CLAUDE_PROJECT_DIR || process.cwd();
+    fs.writeFileSync(
+      path.join(dir, '.claude', '.coste-sesion.json'),
+      JSON.stringify({ usd, eur, presupuesto_eur: BUDGET_EUR, actualizado: new Date().toISOString() })
+    );
+  } catch {
+    /* sin permisos de escritura: solo se muestra */
+  }
+  return ` · ${eur.toFixed(2)}€/${BUDGET_EUR}€`;
+}
+
 function render(input) {
   let data = {};
   try {
@@ -42,12 +66,13 @@ function render(input) {
   } catch {
     /* JSON inválido: se muestra el estado desconocido */
   }
+  const credit = creditText(data.cost);
   const r = usedTokens(data.context_window);
-  if (!r) return 'ctx ?';
+  if (!r) return `ctx ?${credit}`;
 
   const k = Math.round(r.used / 1000);
   const pctTxt = r.pct == null ? '?' : Math.round(r.pct);
-  const base = `ctx ${pctTxt}% (${k}k)`;
+  const base = `ctx ${pctTxt}% (${k}k)${credit}`;
 
   if (r.used >= RED_AT) return `${C.red}${base} ⛔ BITÁCORA + /clear${C.reset}`;
   if (r.used >= YELLOW_AT) return `${C.yellow}${base} ⚠ 200k: documentar${C.reset}`;
