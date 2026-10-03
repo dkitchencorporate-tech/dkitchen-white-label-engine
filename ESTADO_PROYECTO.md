@@ -23,10 +23,10 @@
 - **Identidad:** `src/config/brandConfig.ts` (sin validación) + restos de Seven Food Fries y D-Kitchen listados en el informe §2.
 - **Contexto:** el motor no está desplegado; los fallos de la auditoría son defectos de plantilla que heredaría cada clon.
 - **Repos de DKitchen parcheados y FUSIONADOS** (03-oct): bokadipan-pwa#1, seven-food-fries-pwa#2, wing-boss-pwa#1.
-- **Néstor Pizzas** (cliente real): plan de prelanzamiento aprobado y ejecutado en **nestor-pizzas-pwa#1** (abierto). karc0 debe: 1) ejecutar `docs/sql/launch_lock.sql` en Supabase; 2) fusionar. Kiosko de admin permitido durante el bloqueo. Cualquier otro cambio en Néstor requiere plan aprobado.
+- **Néstor Pizzas** (cliente real): pantalla de prelanzamiento **solo en frontend** (sin tocar la BD, por decisión de karc0) en **nestor-pizzas-pwa#1** (abierto, basta con fusionar). Se quita poniendo `PRELAUNCH_ACTIVE = false` en `src/components/PreLaunchScreen.tsx` y desplegando. `/admin` y el kiosko siguen operativos. Cualquier otro cambio en Néstor requiere plan aprobado.
 - **Accesos demos (03-oct):** admin único `dkitchen@dkitchencorporate.es` con contraseña propia por marca (entregadas a karc0 en el chat, nunca en el repo). Aplicado en Neon: Wing Boss y Seven Food Fries (resto de admins → usuario normal). Bokadipan pendiente de conectar su cuenta de Neon. Seven Food y Bokadipan necesitan fusionar su PR de seguridad para que el login de admin funcione.
 - **Documentos nuevos:** `docs/ACTUALIZACIONES_MARCAS.md` (qué hacer en cada marca tras el pulido) y `docs/PLAN_NESTOR_PRELANZAMIENTO.md` (pendiente de aprobación).
-- **Pendiente de karc0:** SQL + fusión de nestor-pizzas-pwa#1; conectar la cuenta de Neon de Bokadipan (para aplicar su contraseña); abrir sesión aparte para el análisis de Néstor (solo lectura, plan a aprobar). La Fase 1A arranca en cuanto se fusione el PR #1 (rama `nube/fase-1a-reparar-plantilla`).
+- **Pendiente de karc0:** fusionar nestor-pizzas-pwa#1; conectar la cuenta de Neon de Bokadipan (para aplicar su contraseña); abrir sesión aparte para el análisis de Néstor (solo lectura, plan a aprobar). La Fase 1A arranca en cuanto se fusione el PR #1 (rama `nube/fase-1a-reparar-plantilla`).
 
 ---
 
