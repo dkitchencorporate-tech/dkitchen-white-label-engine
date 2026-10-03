@@ -131,3 +131,9 @@ Orden:
 1. Fusionar el PR #1.
 2. Auditoría de los repos anteriores → `docs/AUDITORIA_VERSIONES_PREVIAS.md` (patrones reutilizables y diferencias).
 3. Fase 1A en `nube/fase-1a-reparar-plantilla`.
+
+## 6. Decisiones posteriores a la auditoría de versiones anteriores
+
+- **A10:** en la base solo la plantilla **neutra**. Obrador (Bokadipan) y Street (Wing Boss) quedan como plantillas futuras.
+- **A11:** la API se **reescribe desde cero** (TypeScript + zod, precio siempre en servidor, migraciones numeradas, solo Neon/Postgres). Coste de la base ≈ 43 € + 8 € = **≈ 51 €**.
+- **Néstor Pizzas:** cliente real en producción. No se modifica sin una fase propia de análisis y plan aprobada por karc0. Petición pendiente del cliente: aviso de «actualizaciones / próximo lanzamiento» en la web pública y en el registro.

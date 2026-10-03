@@ -10,7 +10,7 @@
 
 *Actualizado: 3 de octubre de 2026.*
 
-- **Fase en curso:** Fase 0 (auditoría) + Fase A (análisis de producto) en el PR #1 (`nube/fase-0-auditoria`). **Alcance aprobado: solo la base pulida (1A+1B+1C+2, ≈ 43 €).** Auditoría de versiones anteriores hecha (`docs/AUDITORIA_VERSIONES_PREVIAS.md`). Siguiente: decisiones de karc0 sobre los riesgos en producción y la base de diseño; después, Fase 1A.
+- **Fase en curso:** Fase 0 (auditoría) + Fase A (análisis de producto) en el PR #1 (`nube/fase-0-auditoria`). **Alcance aprobado: solo la base pulida (1A+1B+1C+2, ≈ 43 €).** Auditoría de versiones anteriores hecha (`docs/AUDITORIA_VERSIONES_PREVIAS.md`). Base ampliada a ≈ 51 € (API reescrita desde cero). Siguiente: que karc0 fusione el PR #1 y empezar la Fase 1A.
 - **Análisis:** `docs/ANALISIS_PRODUCTO.md` (decisiones A1–A8, arquitectura motor/marca, constructor, sincronización, plan con coste en €).
 - **Presupuesto:** 100 € de crédito; ≈ 6 € gastados hasta ahora (estimación). La statusline muestra `€/100€` cuando el entorno informa del coste.
 - **Informe:** `docs/AUDITORIA_MOTOR.md` (arquitectura, restos de identidad, paridad con la plataforma QR, seguridad, mercado, plan de fases con coste).
@@ -22,8 +22,9 @@
   - `vite build` pasa; `tsc` da 14 errores; sin tests, sin lint, sin CI.
 - **Identidad:** `src/config/brandConfig.ts` (sin validación) + restos de Seven Food Fries y D-Kitchen listados en el informe §2.
 - **Contexto:** el motor no está desplegado; los fallos de la auditoría son defectos de plantilla que heredaría cada clon.
-- **⚠ Producción:** Bokadipan (repo público) y Seven Food Fries tienen `migrate-schema` con claves fijas y `cleanup-simulated` sin login; Wing Boss, `cleanup-simulated`. Fuera del alcance de este repo: decide karc0.
-- **Pendiente de karc0:** decidir sobre esos riesgos y fusionar el PR #1.
+- **Repos de DKitchen parcheados** (sin datos reales, escaparate): PR de seguridad abiertos en bokadipan-pwa#1, seven-food-fries-pwa#2, wing-boss-pwa#1. Pendiente de revisión y fusión por karc0.
+- **Néstor Pizzas** (cliente real, en producción, Supabase, repo público): **no se toca** sin una fase de análisis y plan aprobada por karc0. El cliente pide un aviso de «actualizaciones / próximo lanzamiento» en la web pública y en el registro.
+- **Pendiente de karc0:** fusionar el PR #1 y los 3 PR de seguridad; decidir cuándo empezar el análisis de Néstor.
 
 ---
 
@@ -31,6 +32,7 @@
 
 *(La más reciente arriba; 1–3 líneas por tarea.)*
 
+- **03-oct-2026 · Parches de seguridad en repos de DKitchen.** cleanup-simulated solo admin, fuera migrate-schema, 2FA sin claves ni PIN maestro, relé de correo cerrado. PR: bokadipan-pwa#1, seven-food-fries-pwa#2, wing-boss-pwa#1. Néstor excluido. **Siguiente:** que karc0 fusione y empezar la Fase 1A.
 - **03-oct-2026 · Auditoría de versiones anteriores.** Leídos en solo lectura Wing Boss, Bokadipan, Seven Food Fries, Néstor y la plantilla de pizzerías: genealogía, riesgos en producción, comparativa, nivel de diseño y patrones a heredar → `docs/AUDITORIA_VERSIONES_PREVIAS.md`. **Siguiente:** decisiones de karc0 y Fase 1A partiendo de la API de Wing Boss.
 - **03-oct-2026 · Alcance.** karc0 aprueba solo la base pulida (A9) y precisa la visión: PWA hiperoptimizada, pasarela de pago propia, hardware del negocio, personalización absoluta. **Siguiente:** auditar en solo lectura los repos de versiones anteriores que pase karc0.
 - **03-oct-2026 · Fase A · Análisis de producto.** Decisiones con karc0 (repo por cliente, prototipar copia+PR vs. paquete npm, constructor guiado + editor en vivo en Estudio y admin, 4 verticales, tokens+plantillas+huecos, base sólida primero). `docs/ANALISIS_PRODUCTO.md` y coste en la statusline, en el PR #1. **Siguiente:** que karc0 elija el alcance y empezar la Fase 1A.
@@ -42,6 +44,9 @@
 ---
 
 ## 3. Decisiones
+
+- **03-oct-2026 · A10 plantilla solo neutra en la base; A11 API reescrita desde cero** (TypeScript + zod). *Porqué:* karc0 prioriza una base impecable; Obrador/Street quedan como plantillas futuras. Coste de la base ≈ 51 €.
+- **03-oct-2026 · Néstor Pizzas es intocable sin plan aprobado.** *Porqué:* es el único cliente real y está recibiendo pedidos; hay riesgo de mezclar contextos entre proyectos.
 
 - **03-oct-2026 · A9: alcance = base pulida (1A+1B+1C+2).** *Porqué:* priorizar una base impecable y documentar el camino hasta el producto final dentro de los 100 €. Pagos y hardware se diseñan como puntos de extensión desde la 1B.
 
