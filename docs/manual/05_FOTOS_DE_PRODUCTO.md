@@ -57,7 +57,7 @@ El proveedor se elige según las variables del entorno; las claves nunca van al 
 2. **Rechaza** cualquier foto que tenga:
    - texto o marcas en etiquetas o latas (aunque sea ilegible);
    - marca de agua;
-   - un producto que no es el que dice (un salchichón que parece jamón);
+   - un producto que no es el que dice (un salchichón que parece jamón) o que no se presenta como se vende (mejillones o berberechos **con concha** en una lata de conserva, ventresca con aspecto de crudo);
    - en un combo, falta de piezas o piezas que no están en la descripción;
    - manos o caras;
    - objetos deformes o duplicados;
