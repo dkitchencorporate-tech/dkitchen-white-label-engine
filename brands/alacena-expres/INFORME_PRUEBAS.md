@@ -59,8 +59,8 @@ Todos los ataques de la guía 06 están bloqueados:
 ## 5. Fotos
 
 - **Generador:** Juggernaut XL vía AI Horde, gratis.
-- **Estado:** generación en curso (27 aprobadas de 88; 45 revisadas).
-- **Rechazadas hasta ahora:** 18 de 45 revisadas. Bonito y piquillos: el primero parecía crudo y los segundos, guindillas. Fino: botella con etiqueta. Los 8 vinos, por texto inventado en la etiqueta: los productos con etiqueta pasan a los agentes locales (`docs/entregas/FOTOS_PARA_AGENTES_LOCALES_ALACENA.md`). Mejillones y berberechos, por salir con concha. La ventresca, por parecer cruda. Y estas 4:
+- **Estado:** generación terminada (44 aprobadas de 88; 70 revisadas; las 47 restantes, incluidas las 3 provisionales de combos, las entregan los agentes locales).
+- **Rechazadas hasta ahora:** 26 de 70 revisadas. En la última tanda: mejillones y berberechos (con concha), ventresca (cruda), cerveza de trigo (logo), pacharán (etiqueta), sacacorchos (objeto extraño), arroz con leche (con nueces) y turrón (de Alicante, no de Jijona). Bonito y piquillos: el primero parecía crudo y los segundos, guindillas. Fino: botella con etiqueta. Los 8 vinos, por texto inventado en la etiqueta: los productos con etiqueta pasan a los agentes locales (`docs/entregas/FOTOS_PARA_AGENTES_LOCALES_ALACENA.md`). Mejillones y berberechos, por salir con concha. La ventresca, por parecer cruda. Y estas 4:
   - latas con una marca inventada;
   - un salchichón que parecía jamón;
   - una sobrasada glaseada;
