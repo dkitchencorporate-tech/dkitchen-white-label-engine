@@ -114,7 +114,7 @@ export default function GuestRegistrationModal({ isOpen, order, onSkip, onSucces
               <input
                 type="password"
                 required
-                minLength={6}
+                minLength={10}
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 className="w-full bg-white border border-gray-200 text-brand-ink rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500 transition-colors"

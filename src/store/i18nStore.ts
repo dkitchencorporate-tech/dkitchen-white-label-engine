@@ -393,7 +393,7 @@ const dictionary: Translations = {
   create_account_fast_1: { es: 'Crea una cuenta rápido y llévate', en: 'Create an account quickly and get' },
   vip_points_label: { es: 'Puntos VIP', en: 'VIP Points' },
   create_account_fast_2: { es: 'por este pedido.', en: 'for this order.' },
-  min_6_chars: { es: 'Mínimo 6 caracteres', en: 'Minimum 6 characters' },
+  min_6_chars: { es: 'Mínimo 10 caracteres', en: 'Minimum 10 characters' },
   yes_register_win_points: { es: 'Sí, Registrarme y Ganar Puntos', en: 'Yes, Register and Earn Points' },
   no_points_track_order: { es: 'No quiero puntos, seguir al Tracking', en: 'No points, continue to Tracking' },
   

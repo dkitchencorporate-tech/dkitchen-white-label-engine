@@ -10,23 +10,25 @@
 
 *Actualizado: 3 de octubre de 2026.*
 
-- **Fase en curso:** Fase 0 + Fase A **fusionadas** (PR #1). **Fase 1A arrancando** en `nube/fase-1a-reparar-plantilla`. **Alcance aprobado: solo la base pulida (1A+1B+1C+2, ≈ 43 €).** Auditoría de versiones anteriores hecha (`docs/AUDITORIA_VERSIONES_PREVIAS.md`). Base ampliada a ≈ 51 € (API reescrita desde cero). Siguiente: que karc0 fusione el PR #1 y empezar la Fase 1A.
-- **Análisis:** `docs/ANALISIS_PRODUCTO.md` (decisiones A1–A8, arquitectura motor/marca, constructor, sincronización, plan con coste en €).
-- **Presupuesto:** 100 € de crédito; ≈ 17 € gastados hasta ahora (estimación). La statusline muestra `€/100€` cuando el entorno informa del coste.
-- **Informe:** `docs/AUDITORIA_MOTOR.md` (arquitectura, restos de identidad, paridad con la plataforma QR, seguridad, mercado, plan de fases con coste).
-- **Situación del código en `main`:**
-  - `api/account.js` y `api/orders.js` **no cargan** (importan `query`, que `api/_lib/db.js` no exporta) → login, registro y checkout dan 500.
-  - El checkout fallaría igualmente: el frontend envía `product_id` y `process_checkout` lee `productId`.
-  - El esquema no tiene RLS y le faltan funciones que la API llama.
-  - Seguridad crítica: secreto TOTP y contraseñas maestras en el código, `verify-2fa` sin paso de contraseña, `migrate-schema` y `cleanup-simulated` públicos (ver §4 del informe).
-  - `vite build` pasa; `tsc` da 14 errores; sin tests, sin lint, sin CI.
-- **Identidad:** `src/config/brandConfig.ts` (sin validación) + restos de Seven Food Fries y D-Kitchen listados en el informe §2.
-- **Contexto:** el motor no está desplegado; los fallos de la auditoría son defectos de plantilla que heredaría cada clon.
-- **Repos de DKitchen parcheados y FUSIONADOS** (03-oct): bokadipan-pwa#1, seven-food-fries-pwa#2, wing-boss-pwa#1.
-- **Néstor Pizzas** (cliente real): pantalla de prelanzamiento **solo en frontend** (sin tocar la BD, por decisión de karc0) en **nestor-pizzas-pwa#1**, **fusionado y desplegado** en nestorpizzas.es (03-oct, bundle `index-CDBCH5ix.js` verificado). Se quita poniendo `PRELAUNCH_ACTIVE = false` en `src/components/PreLaunchScreen.tsx` y desplegando. `/admin` y el kiosko siguen operativos. Cualquier otro cambio en Néstor requiere plan aprobado.
-- **Accesos demos (03-oct):** admin único `dkitchen@dkitchencorporate.es` con contraseña propia por marca (entregadas a karc0 en el chat, nunca en el repo). Aplicado en Neon: Wing Boss y Seven Food Fries (resto de admins → usuario normal). Bokadipan pendiente de conectar su cuenta de Neon. Seven Food y Bokadipan necesitan fusionar su PR de seguridad para que el login de admin funcione.
-- **Documentos nuevos:** `docs/ACTUALIZACIONES_MARCAS.md` (qué hacer en cada marca tras el pulido) y `docs/PLAN_NESTOR_PRELANZAMIENTO.md` (pendiente de aprobación).
-- **Pendiente de karc0:** conectar la cuenta de Neon de Bokadipan (para aplicar su contraseña); abrir sesión aparte para el análisis de Néstor (solo lectura, plan a aprobar). La Fase 1A arranca en cuanto se fusione el PR #1 (rama `nube/fase-1a-reparar-plantilla`).
+- **Fase en curso:** **Fase 1A terminada** en la rama `nube/fase-1a-reparar-plantilla` (PR pendiente de revisión de karc0). Siguiente: Fase 1B (motor/marca).
+- **Alcance aprobado (A9–A11):** base pulida 1A + 1B + 1C + 2, con la API reescrita desde cero y solo la plantilla neutra (≈ 51 €).
+- **Presupuesto:** 100 € de crédito; ≈ 28 € gastados hasta ahora (estimación).
+- **Motor tras la 1A:**
+  - API en TypeScript estricto + zod (`api/*.ts`).
+  - Migraciones numeradas (`db/migraciones/0001–0003`) con RLS en todas las tablas y precio, opciones, horarios, puntos e idempotencia calculados en SQL.
+  - Marca neutra `demo` (`db/semilla/demo.sql`), `crear-admin` sin contraseñas por defecto, servidor local de la API.
+  - 18 pruebas de integración en verde contra Postgres real.
+- **Pendiente de la 1A para fases siguientes:**
+  - 12 errores de tipos antiguos del frontend → 1C;
+  - restos de identidad (SauceModal, robots/sitemap, colores fijos) → 1B;
+  - 2FA bien hecho con pantalla de código → futuro;
+  - CSP → 1B (cuando se quite el Tailwind por CDN).
+- **Documentos:**
+  - `docs/AUDITORIA_MOTOR.md`, `docs/AUDITORIA_VERSIONES_PREVIAS.md`, `docs/ANALISIS_PRODUCTO.md`;
+  - `docs/ACTUALIZACIONES_MARCAS.md`, `docs/DESARROLLO_LOCAL.md`, `docs/PLAN_NESTOR_PRELANZAMIENTO.md`.
+- **Repos de DKitchen** (Wing Boss, Bokadipan, Seven Food Fries): parches de seguridad fusionados (03-oct). Acceso admin unificado `dkitchen@dkitchencorporate.es`, aplicado en Neon en Wing Boss y Seven Food; **Bokadipan pendiente** de conectar su cuenta de Neon.
+- **Néstor Pizzas:** en prelanzamiento, solo frontend (nestor-pizzas-pwa#1 fusionado). **No se toca nada salvo indicación expresa de karc0.** Para el lanzamiento: `PRELAUNCH_ACTIVE = false`.
+- **Pendiente de karc0:** revisar y fusionar el PR de la 1A; conectar la cuenta de Neon de Bokadipan.
 
 ---
 
@@ -34,6 +36,7 @@
 
 *(La más reciente arriba; 1–3 líneas por tarea.)*
 
+- **03-oct-2026 · Fase 1A.** API reescrita (TS + zod), migraciones 0001–0003 con RLS y lógica en SQL, semilla demo, crear-admin, servidor local, 18 pruebas de integración en verde, frontend adaptado (opciones desde la carta, checkout con hora programada e idempotencia, kiosko marcado como tal). Corregido en revisión: el trigger de perfiles revertía el canje de puntos. **Siguiente:** Fase 1B.
 - **03-oct-2026 · Néstor en prelanzamiento.** PR #1 fusionado por encargo de karc0; Vercel lo desplegó en ~40 s. Su service worker no cachea, así que todos los clientes ven la pantalla. Para el lanzamiento: `PRELAUNCH_ACTIVE = false` y desplegar. **Siguiente:** Fase 1A del motor.
 - **03-oct-2026 · Fusiones y Néstor.** PR #1 del motor y los 3 PR de seguridad fusionados por encargo de karc0. Néstor: pantalla de prelanzamiento + bloqueo en servidor (trigger) en nestor-pizzas-pwa#1, probada con Playwright y Supabase simulado. **Siguiente:** Fase 1A.
 - **03-oct-2026 · Accesos, actualizaciones por marca y plan de Néstor.** Login de admin reparado en los PR de Seven Food y Bokadipan (el desvío de superadmin/2FA bloqueaba el panel); contraseñas nuevas aplicadas en Neon (Wing Boss, Seven Food). `docs/ACTUALIZACIONES_MARCAS.md` y `docs/PLAN_NESTOR_PRELANZAMIENTO.md`. Fusión del PR #1 por encargo de karc0. **Siguiente:** Fase 1A.
@@ -49,6 +52,9 @@
 ---
 
 ## 3. Decisiones
+
+- **03-oct-2026 · Diseño de la API 1A.** Lógica de negocio en funciones SQL `SECURITY DEFINER` (precio, opciones, horarios, puntos, idempotencia). La API (rol `motor_app`) solo valida forma y fija `app.user_id`. RLS en todas las tablas. Revocación de tokens con `token_version`. Rate limit en tabla compartida. *Porqué:* la regla de oro (precio en servidor) queda garantizada aunque falle la API, y cada clon hereda la seguridad sin configurarla.
+- **03-oct-2026 · Retirados** `migrate-schema`, `cleanup-simulated`, `delete-test-data`, `verify-2fa` y `send-transactional-email`. *Porqué:* eran puertas abiertas. Los correos los envía ahora el servidor; las migraciones van por script; la «purga de pruebas» borraba por patrones de nombre (podía borrar pedidos reales) y se sustituye por el borrado individual del panel; el 2FA volverá con pantalla de código.
 
 - **03-oct-2026 · A10 plantilla solo neutra en la base; A11 API reescrita desde cero** (TypeScript + zod). *Porqué:* karc0 prioriza una base impecable; Obrador/Street quedan como plantillas futuras. Coste de la base ≈ 51 €.
 - **03-oct-2026 · Néstor Pizzas es intocable sin plan aprobado.** *Porqué:* es el único cliente real y está recibiendo pedidos; hay riesgo de mezclar contextos entre proyectos.

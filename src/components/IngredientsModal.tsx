@@ -1,5 +1,5 @@
 import { generateSafeUUID } from '../utils/uuid';
-import { Product, getProductImageUrl, LOCAL_IMAGE_MAP, DEFAULT_EXTRA_TOPPINGS } from '../data/products';
+import { Product, getProductImageUrl, LOCAL_IMAGE_MAP, getOptionGroups, type OptionGroup } from '../data/products';
 import { useState } from 'react';
 import { useCartStore } from '../store/cartStore';
 import { useHardwareBack } from '../utils/useHardwareBack';
@@ -20,22 +20,28 @@ export default function IngredientsModal({ product, onClose }: IngredientsModalP
     : (product.description ? tDynamic(product.description) : product.desc ? tDynamic(product.desc) : '');
 
   const [quantity, setQuantity] = useState(1);
-  const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
+  // Opciones elegidas por grupo (ids). Los precios salen de la carta y el
+  // servidor los vuelve a calcular: lo que se ve aquí es solo orientativo.
+  const groups: OptionGroup[] = getOptionGroups(product);
+  const [selected, setSelected] = useState<Record<string, string[]>>({});
   const [itemNotes, setItemNotes] = useState('');
   const addItem = useCartStore(state => state.addItem);
 
-  // Comprobar si es un postre para no mostrar toppings salados de patatas (cheddar, jalapeño, bacon, etc.)
-  const isDessert = (product.category === 'POSTRES') ||
-    ((product as any).category_id === '903e8a8b-6bc4-4dda-b6f8-e1c2911823f2') ||
-    /brownie|tarta|helado|postre/i.test(product.name);
-
+  const chosen = groups.flatMap(g => g.options.filter(o => (selected[g.id] || []).includes(o.id)));
+  const missingGroup = groups.find(g => (selected[g.id] || []).length < (g.min || 0));
   const BASE_PRICE = product.price || 0;
-  const unitExtrasCost = selectedExtras.length * 1.00;
+  const unitExtrasCost = chosen.reduce((sum, o) => sum + (o.price || 0), 0);
   const unitPrice = BASE_PRICE + unitExtrasCost;
   const totalPrice = unitPrice * quantity;
 
-  const toggleExtra = (extra: string) => {
-    setSelectedExtras(prev => prev.includes(extra) ? prev.filter(i => i !== extra) : [...prev, extra]);
+  const toggleOption = (group: OptionGroup, optionId: string) => {
+    setSelected(prev => {
+      const current = prev[group.id] || [];
+      if (current.includes(optionId)) return { ...prev, [group.id]: current.filter(id => id !== optionId) };
+      if (group.max === 1) return { ...prev, [group.id]: [optionId] };
+      if (group.max && current.length >= group.max) return prev;
+      return { ...prev, [group.id]: [...current, optionId] };
+    });
   };
 
   const handleAddToCart = () => {
@@ -45,7 +51,8 @@ export default function IngredientsModal({ product, onClose }: IngredientsModalP
       name: product.name, // Mantener estrictamente el nombre de la ración seleccionada
       price: unitPrice,
       quantity,
-      extras: selectedExtras,
+      extras: chosen.map(o => o.name),
+      options: chosen.map(o => o.id),
       notes: itemNotes.trim()
     });
     onClose();
@@ -117,29 +124,22 @@ export default function IngredientsModal({ product, onClose }: IngredientsModalP
             )}
           </div>
 
-          {/* Sección de Toppings / Extras (Solo si no es postre) */}
-          {!isDessert && (
-            <div className="space-y-3 pt-3 border-t border-gray-100">
-              <div className="flex items-center justify-between">
-                <label className="text-brand-ink font-display font-bold uppercase tracking-wider text-xs flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-brand-primary inline-block"></span>
-                  {t('add_extra_ingredients') || 'Añadir Toppings Extras (+1,00 €/ud)'}
-                </label>
-                {selectedExtras.length > 0 && (
-                  <span className="text-[11px] font-bold text-brand-primaryHover bg-brand-primary/10 px-2 py-0.5 rounded-md whitespace-nowrap">
-                    +{(selectedExtras.length * 1.00).toFixed(2).replace('.', ',')}&nbsp;€
-                  </span>
-                )}
-              </div>
-
+          {/* Opciones del producto (definidas en la carta) */}
+          {groups.map(group => (
+            <div key={group.id} className="space-y-3 pt-3 border-t border-gray-100">
+              <label className="text-brand-ink font-display font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-brand-primary inline-block"></span>
+                {group.name}
+                {group.min > 0 && <span className="text-[10px] text-brand-primaryHover normal-case">({t('required') || 'obligatorio'})</span>}
+              </label>
               <div className="flex flex-wrap gap-2">
-                {DEFAULT_EXTRA_TOPPINGS.map(extra => {
-                  const isSel = selectedExtras.includes(extra);
+                {group.options.map(option => {
+                  const isSel = (selected[group.id] || []).includes(option.id);
                   return (
                     <button
-                      key={extra}
+                      key={option.id}
                       type="button"
-                      onClick={() => toggleExtra(extra)}
+                      onClick={() => toggleOption(group, option.id)}
                       className={`px-3 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all flex items-center gap-1.5 ${
                         isSel
                           ? 'bg-brand-primary text-white border-brand-primaryHover shadow-md scale-[1.02]'
@@ -147,16 +147,18 @@ export default function IngredientsModal({ product, onClose }: IngredientsModalP
                       }`}
                     >
                       <span className="font-black">{isSel ? '✓' : '+'}</span>
-                      <span>{tDynamic(extra)}</span>
-                      <span className={`text-[10px] px-1 rounded font-black ${isSel ? 'bg-black/20 text-white' : 'text-brand-primaryHover'}`}>
-                        +1€
-                      </span>
+                      <span>{tDynamic(option.name)}</span>
+                      {option.price > 0 && (
+                        <span className={`text-[10px] px-1 rounded font-black ${isSel ? 'bg-black/20 text-white' : 'text-brand-primaryHover'}`}>
+                          +{option.price.toFixed(2).replace('.', ',')}€
+                        </span>
+                      )}
                     </button>
                   );
                 })}
               </div>
             </div>
-          )}
+          ))}
 
           {/* Sección de Notas para Cocina */}
           <div className="space-y-2 pt-3 border-t border-gray-100">
@@ -203,7 +205,9 @@ export default function IngredientsModal({ product, onClose }: IngredientsModalP
           <button
             type="button"
             onClick={handleAddToCart}
-            className="flex-1 bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:brightness-110 text-white font-display font-black py-3.5 px-5 rounded-2xl text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-between shadow-[0_4px_20px_rgba(245,158,11,0.35)] active:scale-95"
+            disabled={!!missingGroup}
+            title={missingGroup ? `Elige una opción en «${missingGroup.name}»` : undefined}
+            className="flex-1 disabled:opacity-50 disabled:cursor-not-allowed bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:brightness-110 text-white font-display font-black py-3.5 px-5 rounded-2xl text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-between shadow-[0_4px_20px_rgba(245,158,11,0.35)] active:scale-95"
           >
             <span>{t('add_to_order') || 'Añadir al pedido'}</span>
             <span className="bg-black/20 px-2.5 py-1 rounded-xl font-mono text-sm sm:text-base whitespace-nowrap">

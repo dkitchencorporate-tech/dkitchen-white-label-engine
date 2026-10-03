@@ -4,9 +4,14 @@
   "description": "Plantilla Matriz White-Label PWA para Restauración y Gastronomía por D-Kitchen Corporate Tech",
   "scripts": {
     "dev": "vite",
+    "dev:api": "tsx scripts/servidor-api.ts",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "node test_urls.js"
+    "typecheck:api": "tsc -p tsconfig.api.json",
+    "test": "vitest run",
+    "db:migrar": "tsx scripts/db-migrar.ts",
+    "db:semilla": "tsx scripts/db-semilla.ts",
+    "crear-admin": "tsx scripts/crear-admin.ts"
   },
   "repository": {
     "type": "git",
@@ -25,9 +30,9 @@
   "license": "Proprietary",
   "homepage": "https://github.com/dkitchencorporate-tech/dkitchen-white-label-engine#readme",
   "dependencies": {
-    "@vercel/blob": "^2.8.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
+    "@vercel/blob": "^2.8.0",
     "@vitejs/plugin-react": "^6.0.5",
     "autoprefixer": "^10.5.4",
     "bcryptjs": "^2.4.3",
@@ -42,11 +47,19 @@
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
     "vite": "^8.2.1",
+    "zod": "^4.6.5",
     "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
-    "@types/dompurify": "^3.0.5"
+    "@types/bcryptjs": "^2.4.6",
+    "@types/dompurify": "^3.0.5",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^26.6.4",
+    "@types/nodemailer": "^8.0.2",
+    "@types/pg": "^8.23.1",
+    "tsx": "^4.23.15",
+    "vitest": "^5.0.3"
   },
   "type": "module",
   "engines": {

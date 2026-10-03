@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DEFAULT_EXTRA_TOPPINGS, Product, getProductImageUrl, LOCAL_IMAGE_MAP } from '../data/products';
+import { Product, getProductImageUrl, LOCAL_IMAGE_MAP, getOptionGroups, type OptionGroup } from '../data/products';
 import { CartItem } from '../store/cartStore';
 import { useHardwareBack } from '../utils/useHardwareBack';
 import { useI18nStore } from '../store/i18nStore';
@@ -16,25 +16,35 @@ interface IngredientsModalProps {
 export default function KioskIngredientsModal({ product, onClose, onAdd }: IngredientsModalProps) {
   useHardwareBack(true, onClose);
   const { t, tDynamic } = useI18nStore() as any;
-  const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
+  const groups: OptionGroup[] = getOptionGroups(product);
+  const [selected, setSelected] = useState<Record<string, string[]>>({});
   const [itemNotes, setItemNotes] = useState('');
 
+  const chosen = groups.flatMap(g => g.options.filter(o => (selected[g.id] || []).includes(o.id)));
+  const missingGroup = groups.find(g => (selected[g.id] || []).length < (g.min || 0));
   const BASE_PRICE = product.price;
-  const extrasCost = selectedExtras.length * 1.00;
-  const finalPrice = BASE_PRICE + extrasCost;
+  const finalPrice = BASE_PRICE + chosen.reduce((sum, o) => sum + (o.price || 0), 0);
 
-  const toggleExtra = (extra: string) => {
-    setSelectedExtras(prev => prev.includes(extra) ? prev.filter(i => i !== extra) : [...prev, extra]);
+  const toggleOption = (group: OptionGroup, optionId: string) => {
+    setSelected(prev => {
+      const current = prev[group.id] || [];
+      if (current.includes(optionId)) return { ...prev, [group.id]: current.filter(id => id !== optionId) };
+      if (group.max === 1) return { ...prev, [group.id]: [optionId] };
+      if (group.max && current.length >= group.max) return prev;
+      return { ...prev, [group.id]: [...current, optionId] };
+    });
   };
 
   const handleAddToCart = () => {
-    const extrasText = selectedExtras.length > 0 ? ` + ${selectedExtras.join(', ')}` : '';
+    if (missingGroup) return;
+    const extrasText = chosen.length > 0 ? ` + ${chosen.map(o => o.name).join(', ')}` : '';
     onAdd({
       productId: product.id,
       name: `${product.name}${extrasText}`,
       price: finalPrice,
       quantity: 1,
-      extras: selectedExtras,
+      extras: chosen.map(o => o.name),
+      options: chosen.map(o => o.id),
       notes: itemNotes,
       size: 'normal'
     });
@@ -86,12 +96,12 @@ export default function KioskIngredientsModal({ product, onClose, onAdd }: Ingre
         </div>
 
         <div className="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-6">
-          {selectedExtras.length > 0 && (
+          {chosen.length > 0 && (
             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
               <h4 className="text-zinc-400 text-xs font-bold uppercase mb-3">{t('add_extra_ingredients')}</h4>
               <div className="flex flex-wrap gap-2">
-                {selectedExtras.map(i => (
-                  <span key={i} className="text-xs bg-brand-primary/20 text-brand-primary px-2 py-1 rounded-md border border-brand-primary/30">{tDynamic(i)}</span>
+                {chosen.map(o => (
+                  <span key={o.id} className="text-xs bg-brand-primary/20 text-brand-primary px-2 py-1 rounded-md border border-brand-primary/30">{tDynamic(o.name)}</span>
                 ))}
               </div>
             </div>
@@ -118,32 +128,33 @@ export default function KioskIngredientsModal({ product, onClose, onAdd }: Ingre
             </p>
           </div>
 
-          <section>
-            <h3 className="text-white font-bold mb-4 uppercase tracking-wider text-sm flex items-center gap-2">
-              <span className="bg-brand-primary w-2 h-2 rounded-full inline-block"></span>
-              {t('add_extra_ingredients')}
-            </h3>
-
-            <div className="flex flex-wrap gap-2">
-              {DEFAULT_EXTRA_TOPPINGS.map(extra => {
-                const isSel = selectedExtras.includes(extra);
-                return (
-                  <button
-                    key={extra}
-                    onClick={() => toggleExtra(extra)}
-                    className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
-                      isSel
-                        ? 'bg-brand-primary text-white border-brand-accent shadow-[0_0_15px_rgba(245,158,11,0.4)]'
-                        : 'bg-zinc-900 text-gray-300 border-zinc-800 hover:border-brand-primary/50 hover:bg-zinc-800'
-                    }`}
-                  >
-                    {tDynamic(extra)}
-                    {isSel && <span className="ml-2 bg-black/20 px-1.5 rounded text-xs">+1€</span>}
-                  </button>
-                );
-              })}
-            </div>
-          </section>
+          {groups.map(group => (
+            <section key={group.id}>
+              <h3 className="text-white font-bold mb-4 uppercase tracking-wider text-sm flex items-center gap-2">
+                <span className="bg-brand-primary w-2 h-2 rounded-full inline-block"></span>
+                {group.name}{group.min > 0 ? ' *' : ''}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {group.options.map(option => {
+                  const isSel = (selected[group.id] || []).includes(option.id);
+                  return (
+                    <button
+                      key={option.id}
+                      onClick={() => toggleOption(group, option.id)}
+                      className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+                        isSel
+                          ? 'bg-brand-primary text-white border-brand-accent'
+                          : 'bg-zinc-900 text-gray-300 border-zinc-800 hover:border-brand-primary/50 hover:bg-zinc-800'
+                      }`}
+                    >
+                      {tDynamic(option.name)}
+                      {option.price > 0 && <span className="ml-2 bg-black/20 px-1.5 rounded text-xs">+{option.price.toFixed(2).replace('.', ',')}€</span>}
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+          ))}
         </div>
 
         <div className="p-6 border-t border-zinc-800 bg-[#0A0A0E] flex items-center justify-between gap-4 shrink-0">
