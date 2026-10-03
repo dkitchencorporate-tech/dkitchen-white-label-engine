@@ -37,6 +37,8 @@ Variables de entorno: ver [`.env.example`](.env.example). Solo lleva nombres, nu
 
 ## Documentación
 
+**Para crear una marca nueva, sigue el manual paso a paso: [`docs/manual/00_INDICE.md`](docs/manual/00_INDICE.md)** (alta, identidad y diseño, carta, fotos, pruebas, base de datos y despliegue, actualizaciones, entrega y problemas conocidos).
+
 - `docs/AUDITORIA_MOTOR.md`: auditoría inicial del motor.
 - `docs/AUDITORIA_VERSIONES_PREVIAS.md`: lo aprendido de Wing Boss, Bokadipan, Seven Food Fries y Néstor.
 - `docs/ANALISIS_PRODUCTO.md`: visión, decisiones y plan de fases.

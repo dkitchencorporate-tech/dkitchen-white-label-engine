@@ -6,7 +6,7 @@ Dark store de tapeo, ibéricos y vinos gourmet a domicilio en Madrid. Para el co
 
 - **PWA del cliente:**
   - zona por código postal, con precios, envío, mínimo y tiempo de esa zona;
-  - carta de 88 productos en 13 categorías;
+  - carta de 88 productos en 12 categorías, con «Combos» arriba y el resto como productos sueltos;
   - existencias en vivo («¡Últimas N!», «Agotado»);
   - venta de alcohol con declaración de mayoría de edad y franja legal;
   - regalo con mensaje para la tarjeta (sin precios en el paquete);
@@ -27,7 +27,7 @@ Dark store de tapeo, ibéricos y vinos gourmet a domicilio en Madrid. Para el co
 
 | Categoría | Productos | Desde | Ejemplos |
 |---|---|---|---|
-| Packs y tablas | 6 | 21,90 € | Tabla ibérica para dos, pack reunión exprés (4–6 pers.), pack fiesta 10–12 pers. |
+| Combos | 10 | 21,90 € | Tabla ibérica para dos, pack reunión exprés (4–6 pers.), pack fiesta 10–12 pers., cesta premium ibérica (139 €) |
 | Ibéricos y embutidos | 8 | 5,90 € | Jamón de bellota 100 % (100 g, 14,90 €), lomo, chorizo, cecina IGP |
 | Quesos | 6 | 6,90 € | Manchego DOP, Idiazabal, Torta del Casar, Payoyo, Cabrales |
 | Conservas gourmet | 7 | 5,90 € | Anchoas 00, ventresca, berberechos 30/40, piquillos de Lodosa |
@@ -38,8 +38,7 @@ Dark store de tapeo, ibéricos y vinos gourmet a domicilio en Madrid. Para el co
 | Licores y destilados | 7 | 14,50 € | Ginebra premium, whisky de malta 12 años, vermut, pacharán |
 | Refrescos, aguas y hielo | 9 | 1,20 € | Cola, tónica premium, zumo natural, hielo 2 kg |
 | Postres y dulces | 7 | 4,50 € | Tarta de queso entera (con velas), torrijas, turrón de Jijona |
-| Regalos | 5 | 3,50 € | Cesta clásica (64 €), cesta premium ibérica (139 €), estuches |
-| Fiesta y menaje | 4 | 2,50 € | Vasos y platos compostables, servilletas, sacacorchos |
+| Fiesta y menaje | 5 | 2,50 € | Envoltorio de regalo, vasos y platos compostables, servilletas, sacacorchos |
 
 Opciones con precio que valida el servidor: envoltorio de regalo (+3,50 €), hielo, vasos y servilletas en los packs, y velas y tarjeta en la tarta.
 
@@ -73,4 +72,4 @@ Opciones con precio que valida el servidor: envoltorio de regalo (+3,50 €), hi
   - el pedido no se puede confirmar hasta declarar la mayoría de edad;
   - mensaje de regalo;
   - en el panel aparecen el aviso de DNI y el mensaje.
-- 18 pruebas de tienda y seguridad, y una prueba de estrés: más de 10 700 pedidos sin vender de más y sin descuadres. Detalle en `docs/PRUEBAS_SEGURIDAD_Y_ESTRES.md`.
+- 18 pruebas de tienda y seguridad, y una prueba de estrés: más de 10 700 pedidos sin vender de más y sin descuadres. Informe completo: [`INFORME_PRUEBAS.md`](INFORME_PRUEBAS.md); detalle técnico en `docs/PRUEBAS_SEGURIDAD_Y_ESTRES.md`.

@@ -60,6 +60,8 @@
 
 *(La más reciente arriba; 1–3 líneas por tarea.)*
 
+- **03-oct-2026 · Manual del motor.** `docs/manual/`: once guías paso a paso para cada marca nueva (requisitos, alta, identidad y diseño, carta, fotos, pruebas con criterios de aceptación, Neon y Vercel, actualizaciones, entrega, problemas conocidos) y plantillas de informe de pruebas y dossier. Primer informe real: `brands/alacena-expres/INFORME_PRUEBAS.md`. **Siguiente:** terminar las fotos y desplegar Alacena cuando karc0 cree el proyecto en Vercel.
+- **03-oct-2026 · Alacena: diseño propio y fotos realistas.** Portada con parallax y escaparate 3D (three.js en diferido), preloader y pie propios, efectos en `estilos.css`, carta con «Combos» arriba. Fotos fotorrealistas con Juggernaut XL vía AI Horde (gratis); el despliegue se hará desde el repo del motor con `BRAND=alacena-expres` (decisión de karc0). Neon de DKitchen está gestionado por Vercel: la base se crea desde Vercel.
 - **03-oct-2026 · Fase 3 «prueba de fuego».** Módulo de tienda (zonas con precio, existencias, alcohol, regalos), marca `alacena-expres` con 88 productos y 4 zonas de Madrid, pruebas de seguridad (18) y estrés documentadas, e2e de la tienda, `npm audit` a 0. El Flux gratuito sin cuenta ya no existe (solo «sana», de calidad baja), así que las fotos quedan pendientes del token (`scripts/imagenes-marca.ts`). **Siguiente:** fotos y fusión del PR #6.
 - **03-oct-2026 · Fase 2.** Prototipo de las dos vías de sincronización. (a) copia + PR implementada (`scripts/motor.ts`, `motor.json`, huellas, flujos de CI) y probada con repos simulados; (b) paquete npm probado con `npm pack` (compila con 3 apaños; quedan abiertas la API en Vercel, las migraciones y las pruebas). Informe y recomendación (a) en `docs/INFORME_SINCRONIZACION.md`. Motor v1.0.0. **Siguiente:** decisión de karc0 y prueba con repos reales de GitHub.
 - **03-oct-2026 · Fase 1C.** TS estricto en el frontend, oxlint (TypeScript 7 no tiene API JS para typescript-eslint), pruebas del frontend, Playwright de punta a punta y CI (`.github/workflows/ci.yml`). Corregidos el total invisible en panel/seguimiento y la barra del carrito sin rol de botón. **Siguiente:** Fase 2.
@@ -81,6 +83,8 @@
 
 ## 3. Decisiones
 
+- **03-oct-2026 · Todo procedimiento y toda prueba se documentan en `docs/manual/` y cada marca lleva su `INFORME_PRUEBAS.md`.** *Porqué:* petición expresa de karc0; el resultado no puede depender de quien lo ejecutó.
+- **03-oct-2026 · Alacena se despliega desde el repo del motor (`BRAND=alacena-expres`) y lleva diseño de autor con 3D.** *Porqué:* decisión de karc0 para la prueba de fuego; los clientes reales siguen la regla A1 de un repo por cliente.
 - **03-oct-2026 · El precio de zona se aplica solo a domicilio y se redondea por unidad a céntimos, igual en SQL que en el navegador.** *Porqué:* el cliente ve exactamente lo que pagará; el servidor sigue siendo quien decide.
 - **03-oct-2026 · Las fotos de producto se generan con FLUX mediante token (Together AI o Pollinations), nunca con el modelo anónimo.** *Porqué:* el nivel sin cuenta ya no sirve Flux y su calidad no es de entrega (decisión de karc0).
 - **03-oct-2026 · El motor se versiona por su cuenta desde la v1.0.0** (`motor.json`, sincronizado con `package.json`). *Porqué:* la API reescrita rompe la compatibilidad con las versiones 2.x/3.x anteriores, y los clientes necesitan un número claro con el que pedir actualizaciones.
