@@ -2,6 +2,8 @@
 
 > **Importante:** la organización de Neon de DKitchen **la gestiona Vercel**. Los proyectos de Neon nuevos **no se pueden crear desde la API de Neon** (responde «organization is managed by Vercel»). Se crean desde Vercel → Storage, y así quedan enlazados al proyecto de Vercel. Cada marca tiene **su propio proyecto de Neon**: nunca se comparte base de datos entre marcas.
 
+> Para que lo preparen agentes locales o personas sin acceso al repo, existe un mensaje listo para entregar con todos los pasos: `docs/entregas/INSTRUCCIONES_AGENTES_LOCALES_ALACENA.md` (adáptalo a cada marca).
+
 ## Paso 1 · Proyecto en Vercel (lo hace karc0 o quien tenga acceso)
 
 1. Vercel → **Add New → Project** → importa el repo:
@@ -32,7 +34,7 @@ Rol restringido de la API (sin privilegios de dueño; RLS siempre activa):
 ```sql
 CREATE ROLE motor_api LOGIN PASSWORD '<aleatoria, 32+ caracteres>' IN ROLE motor_app;
 ```
-- En Neon también puede crearse en la consola, en **Roles → New role** (`motor_api`), y añadirse a `motor_app` con `GRANT motor_app TO motor_api;`.
+- ⚠ **No** se crea desde la pantalla *Roles* de Neon: los roles creados ahí entran en `neon_superuser`, que tiene privilegios de más. Se crea siempre por SQL (en el *SQL Editor* de Neon) y se comprueba que solo es miembro de `motor_app`.
 
 Si se aplican las migraciones con el conector de Neon (SQL a mano) en vez de con `db:migrar`, hay que registrar cada archivo en `schema_migrations` con su checksum SHA-256. Si no, la próxima ejecución de `db:migrar` intentará reaplicarlas:
 ```bash
@@ -53,7 +55,7 @@ SELECT rolname FROM pg_roles WHERE rolname IN ('motor_app', 'motor_api');
 
 | Variable | Valor | Cómo se obtiene |
 |---|---|---|
-| `APP_DATABASE_URL` | Conexión con el rol **motor_api** | Consola de Neon → *Connect* → rol `motor_api` (con *pooled connection*). Nunca la del dueño |
+| `APP_DATABASE_URL` | `postgresql://motor_api:<contraseña>@<host-pooler>/<base>?sslmode=require` | Host *pooler* y base de la consola de Neon → *Connect*; usuario `motor_api` y la contraseña generada al crear el rol. Nunca la del dueño |
 | `APP_JWT_SECRET` | 64 caracteres aleatorios | `openssl rand -hex 32` |
 | `APP_URL` | `https://<dominio>` | El dominio final o el de Vercel |
 | `SMTP_*` | Correo saliente (opcional) | Proveedor de correo del cliente |

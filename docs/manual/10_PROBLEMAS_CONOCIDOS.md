@@ -23,3 +23,4 @@ Todo lo que ya ha fallado alguna vez mientras se pulía el motor, para no volver
 | `refs/motor/vX` es ambiguo en la sincronización | La referencia traída coincidía con el nombre de la rama | Resuelto: se usa el espacio `refs/motor-origen/` |
 | TypeScript 7 no funciona con typescript-eslint | TypeScript 7 (nativo) no tiene API de JavaScript | Se usa oxlint |
 | Rutas `.ts` dentro de `node_modules` no se ejecutan | Node no quita tipos dentro de `node_modules` | Por eso el motor no se distribuye como paquete npm (informe de sincronización) |
+| Un rol creado en la pantalla *Roles* de Neon tiene privilegios de más | Neon lo añade a `neon_superuser` | Crea los roles de la API por SQL (`CREATE ROLE … IN ROLE motor_app`) y comprueba su pertenencia |
