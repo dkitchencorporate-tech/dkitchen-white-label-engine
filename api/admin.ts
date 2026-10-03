@@ -5,7 +5,7 @@ import { exigirAdmin } from './_lib/auth.js';
 import { crearManejador, HttpError, param, parsear, type Ctx } from './_lib/http.js';
 import {
   ajustesSchema, catalogoAltaSchema, catalogoBorradoSchema, catalogoEdicionSchema, clienteKioskoSchema,
-  pedidoAdminSchema, telefono, upsellSchema, uuid
+  pedidoAdminSchema, telefono, upsellSchema, uuid, zonaAltaSchema, zonaBorradoSchema, zonaEdicionSchema
 } from './_lib/esquemas.js';
 import { env } from './_lib/env.js';
 
@@ -26,7 +26,7 @@ const COLUMNAS = {
   category: ['name', 'subtitle', 'description', 'sort_order', 'is_active'],
   subcategory: ['category_id', 'name', 'sort_order', 'is_active'],
   product: ['category_id', 'subcategory_id', 'name', 'description', 'price', 'image_url', 'is_available', 'is_upsell',
-            'badge', 'allergens', 'customization_schema', 'sort_order']
+            'badge', 'allergens', 'customization_schema', 'sort_order', 'stock', 'is_alcohol', 'unit_label']
 } as const;
 
 function valoresColumnas(tipo: keyof typeof COLUMNAS, datos: Record<string, unknown>) {
@@ -100,6 +100,45 @@ export default crearManejador({
       const d = parsear(catalogoBorradoSchema, ctx.req.body);
       return comoAdmin(ctx, async (db) => {
         await db.query(`DELETE FROM ${TABLAS[d.type]} WHERE id = $1`, [d.id]);
+        return { success: true };
+      });
+    }
+  },
+
+  zones: {
+    GET: (ctx) => comoAdmin(ctx, async (db) => ({
+      zones: (await db.query('SELECT * FROM delivery_zones ORDER BY sort_order, name')).rows
+    })),
+    POST: (ctx) => {
+      const d = parsear(zonaAltaSchema, ctx.req.body);
+      return comoAdmin(ctx, async (db) => {
+        const r = await db.query(
+          `INSERT INTO delivery_zones (name, postal_codes, delivery_fee, min_order, free_delivery_over, eta_minutes,
+                                       price_adjust_pct, is_active, sort_order)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, COALESCE($8, true), COALESCE($9, 0)) RETURNING *`,
+          [d.name, d.postal_codes, d.delivery_fee, d.min_order, d.free_delivery_over ?? null, d.eta_minutes,
+           d.price_adjust_pct, d.is_active ?? null, d.sort_order ?? null]
+        );
+        return { zone: r.rows[0] };
+      });
+    },
+    PUT: (ctx) => {
+      const { id, ...d } = parsear(zonaEdicionSchema, ctx.req.body);
+      return comoAdmin(ctx, async (db) => {
+        const cols = Object.keys(d).filter((c) => (d as Record<string, unknown>)[c] !== undefined);
+        if (cols.length === 0) throw new HttpError(400, 'No hay cambios que guardar.');
+        const r = await db.query(
+          `UPDATE delivery_zones SET ${cols.map((c, i) => `${c} = $${i + 2}`).join(', ')} WHERE id = $1 RETURNING *`,
+          [id, ...cols.map((c) => (d as Record<string, unknown>)[c])]
+        );
+        if (!r.rows[0]) throw new HttpError(404, 'No encontrado.');
+        return { zone: r.rows[0] };
+      });
+    },
+    DELETE: (ctx) => {
+      const { id } = parsear(zonaBorradoSchema, ctx.req.body);
+      return comoAdmin(ctx, async (db) => {
+        await db.query('DELETE FROM delivery_zones WHERE id = $1', [id]);
         return { success: true };
       });
     }

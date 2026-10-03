@@ -1,5 +1,6 @@
 ﻿import React, { useState } from 'react';
 import { useCartStore } from '../store/cartStore';
+import { formatoEuros, precioZona } from '../store/zonaStore';
 import { useHardwareBack } from '../utils/useHardwareBack';
 import { useI18nStore } from '../store/i18nStore';
 
@@ -107,7 +108,7 @@ export default function CartDrawer({ isOpen, onClose, onCheckout }: CartDrawerPr
                         +
                       </button>
                     </div>
-                    <span className="font-bold text-brand-primaryHover text-lg">{(item.price * item.quantity).toFixed(2)}€</span>
+                    <span className="font-bold text-brand-primaryHover text-lg">{formatoEuros(precioZona(item.price) * item.quantity)}</span>
                   </div>
                 </div>
               </div>

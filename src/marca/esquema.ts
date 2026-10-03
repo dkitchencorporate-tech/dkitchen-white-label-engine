@@ -37,7 +37,11 @@ export const modulosSchema = z.object({
   comandero: z.boolean(),
   fidelizacion: z.boolean(),
   inventario: z.boolean(),
-  marcasVirtuales: z.boolean()
+  marcasVirtuales: z.boolean(),
+  /** Zonas de reparto por código postal con precio, envío y tiempo propios. */
+  zonas: z.boolean(),
+  /** Pedido como regalo con mensaje. */
+  regalos: z.boolean()
 });
 export type Modulos = z.infer<typeof modulosSchema>;
 

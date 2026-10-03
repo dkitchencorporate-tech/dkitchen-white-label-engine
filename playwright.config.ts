@@ -5,6 +5,11 @@ import { defineConfig, devices } from '@playwright/test';
 const API_PORT = 3102;
 const WEB_PORT = 5174;
 const API_DB = process.env.E2E_API_DATABASE_URL || 'postgres://motor_api:motor_api_local@localhost:5432/motor_e2e';
+// Segunda marca (dark store) con su propia API y base de datos.
+const TIENDA_API_PORT = 3103;
+const TIENDA_WEB_PORT = 5175;
+const TIENDA_API_DB = process.env.E2E_TIENDA_API_DATABASE_URL || 'postgres://motor_api:motor_api_local@localhost:5432/motor_e2e_tienda';
+const navegador = process.env.PW_CHROMIUM_PATH ? { executablePath: process.env.PW_CHROMIUM_PATH } : {};
 
 export default defineConfig({
   testDir: 'e2e',
@@ -20,12 +25,11 @@ export default defineConfig({
     serviceWorkers: 'block'
   },
   projects: [
+    { name: 'movil', testMatch: /flujo-compra/, use: { ...devices['Pixel 7'], launchOptions: navegador } },
     {
-      name: 'movil',
-      use: {
-        ...devices['Pixel 7'],
-        launchOptions: process.env.PW_CHROMIUM_PATH ? { executablePath: process.env.PW_CHROMIUM_PATH } : {}
-      }
+      name: 'tienda',
+      testMatch: /tienda/,
+      use: { ...devices['Pixel 7'], launchOptions: navegador, baseURL: `http://localhost:${TIENDA_WEB_PORT}` }
     }
   ],
   webServer: [
@@ -40,6 +44,18 @@ export default defineConfig({
       port: WEB_PORT,
       reuseExistingServer: false,
       env: { API_PORT: String(API_PORT), BRAND: 'demo' }
+    },
+    {
+      command: 'npx tsx scripts/servidor-api.ts',
+      port: TIENDA_API_PORT,
+      reuseExistingServer: false,
+      env: { API_PORT: String(TIENDA_API_PORT), APP_DATABASE_URL: TIENDA_API_DB, APP_JWT_SECRET: 'e2e-tienda-'.repeat(6) }
+    },
+    {
+      command: `npx vite --port ${TIENDA_WEB_PORT} --strictPort`,
+      port: TIENDA_WEB_PORT,
+      reuseExistingServer: false,
+      env: { API_PORT: String(TIENDA_API_PORT), BRAND: 'alacena-expres' }
     }
   ]
 });

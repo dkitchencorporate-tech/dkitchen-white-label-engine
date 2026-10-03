@@ -1,6 +1,7 @@
 import { generateSafeUUID } from '../utils/uuid';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { precioZona } from './zonaStore';
 
 export interface CartItem {
   id: string;
@@ -14,6 +15,8 @@ export interface CartItem {
   /** Ids de las opciones elegidas (el servidor las valida y les pone precio). */
   options?: string[];
   size?: string;
+  /** Producto con alcohol (exige declarar la mayoría de edad al pedir). */
+  isAlcohol?: boolean;
 }
 
 interface CartState {
@@ -24,7 +27,8 @@ interface CartState {
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
-  getTotal: () => number;
+  /** Total con el ajuste de precio de la zona elegida (pct = 0 para precios base). */
+  getTotal: (pct?: number) => number;
   lastUpdated: number;
 }
 
@@ -49,9 +53,9 @@ export const useCartStore = create<CartState>()(
         lastUpdated: Date.now()
       })),
       clearCart: () => set({ items: [], kioskClientInfo: undefined, lastUpdated: Date.now() }),
-      getTotal: () => {
+      getTotal: (pct) => {
         const items = get().items;
-        return items.reduce((total, item) => total + (item.price * item.quantity), 0);
+        return Math.round(items.reduce((total, item) => total + precioZona(item.price, pct) * item.quantity, 0) * 100) / 100;
       }
     }),
     {

@@ -685,7 +685,7 @@ export default function AdminHistory() {
                           <p className="text-sm text-zinc-900 font-bold mb-1">Teléfono: {order.client_phone || 'Sin teléfono'}</p>
                           {order.delivery_address && (
                             <p className="text-xs text-zinc-600 mt-1 leading-relaxed">
-                              Dirección: {formatAddress(order.delivery_address as any)}
+                              Dirección: {formatAddress(order.delivery_address)}
                             </p>
                           )}
                           {order.notes && (
@@ -889,7 +889,7 @@ export default function AdminHistory() {
                     <td className="py-1 px-1.5 font-mono text-[8px]">#{order.id.slice(0, 8)}</td>
                     <td className="py-1 px-1.5 text-slate-600">{new Date(order.created_at).toLocaleDateString('es-ES')} {new Date(order.created_at).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}</td>
                     <td className="py-1 px-1.5 font-bold text-slate-900">{order.client_name || 'Sin Nombre'} {order.client_phone ? `(${order.client_phone})` : ''}</td>
-                    <td className="py-1 px-1.5 text-slate-600 max-w-[170px] truncate">{order.delivery_address ? formatAddress(order.delivery_address as any) : '-'}</td>
+                    <td className="py-1 px-1.5 text-slate-600 max-w-[170px] truncate">{order.delivery_address ? formatAddress(order.delivery_address) : '-'}</td>
                     <td className="py-1 px-1.5 font-medium">{formatPayMethod(order.payment_method)}</td>
                     <td className="py-1 px-1.5 text-right font-black text-slate-900">{Number(order.total || 0).toFixed(2)} €</td>
                   </tr>

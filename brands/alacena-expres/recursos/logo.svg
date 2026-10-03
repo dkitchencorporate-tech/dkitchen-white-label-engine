@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" role="img" aria-label="Alacena Exprés">
+  <g transform="translate(4 8) scale(0.156)">
+    <rect width="512" height="512" rx="112" fill="#7A1E2C"/>
+    <path d="M136 400V232c0-66 54-120 120-120s120 54 120 120v168" fill="none" stroke="#F6ECE4" stroke-width="22" stroke-linecap="round"/>
+    <path d="M166 290h180M166 350h180" stroke="#B8892F" stroke-width="16" stroke-linecap="round"/>
+    <path d="M214 282v-46c0-8 6-12 6-22v-18h16v18c0 10 6 14 6 22v46z" fill="#F6ECE4"/>
+    <rect x="270" y="246" width="44" height="36" rx="8" fill="#F6ECE4"/>
+    <rect x="266" y="238" width="52" height="12" rx="4" fill="#B8892F"/>
+    <path d="M262 312l-24 34h20l-10 30 32-42h-20l12-22z" fill="#B8892F"/>
+  </g>
+  <text x="96" y="52" font-family="'Playfair Display', Georgia, serif" font-size="38" font-weight="800" fill="#2A1A14">Alacena</text>
+  <text x="98" y="78" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="5" fill="#B8892F">EXPRÉS · MADRID</text>
+</svg>

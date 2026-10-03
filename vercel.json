@@ -96,6 +96,10 @@
       "dest": "/api/admin?action=catalog"
     },
     {
+      "src": "/api/admin/zones$",
+      "dest": "/api/admin?action=zones"
+    },
+    {
       "src": "/api/admin/upload-image$",
       "dest": "/api/admin?action=upload-image"
     },

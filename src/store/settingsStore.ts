@@ -1,9 +1,15 @@
 import { create } from 'zustand';
 import { api } from '../lib/apiClient';
+import { useZonaStore } from './zonaStore';
 
 interface SettingsState {
   deliveryFee: number;
   minOrderDelivery: number;
+  freeDeliveryThreshold: number | null;
+  /** Franja legal de venta de alcohol («HH:MM»), o null si no hay. */
+  alcoholSaleStart: string | null;
+  alcoholSaleEnd: string | null;
+  alcoholMinAge: number;
   isStoreOpenFlag: boolean;
   estimatedPrepTime: number;
   // Identidad del negocio — nulos hasta que el admin los rellena desde la
@@ -29,6 +35,10 @@ interface SettingsState {
 export const useSettingsStore = create<SettingsState>((set) => ({
   deliveryFee: 2.50,
   minOrderDelivery: 15.00,
+  freeDeliveryThreshold: null,
+  alcoholSaleStart: null,
+  alcoholSaleEnd: null,
+  alcoholMinAge: 18,
   isStoreOpenFlag: true,
   estimatedPrepTime: 20,
   businessName: null,
@@ -44,8 +54,13 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   fetchSettings: async () => {
     try {
       const data = await api.get('/catalog');
+      useZonaStore.getState().setZonas(Array.isArray(data?.zones) ? data.zones : []);
       if (data?.settings) {
         set({
+          freeDeliveryThreshold: data.settings.free_delivery_threshold == null ? null : Number(data.settings.free_delivery_threshold),
+          alcoholSaleStart: data.settings.alcohol_sale_start || null,
+          alcoholSaleEnd: data.settings.alcohol_sale_end || null,
+          alcoholMinAge: Number(data.settings.alcohol_min_age || 18),
           deliveryFee: Number(data.settings.delivery_fee),
           minOrderDelivery: Number(data.settings.min_order_delivery),
           isStoreOpenFlag: !!data.settings.is_store_open,

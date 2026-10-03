@@ -79,6 +79,8 @@ export default crearManejador({
           points_redeemed: d.points_redeemed,
           idempotency_key: d.idempotency_key ?? null,
           source: d.source,
+          age_confirmed: d.age_confirmed,
+          gift_message: d.gift_message ?? null,
           items: d.items.map((i) => ({
             product_id: i.product_id,
             quantity: i.quantity,

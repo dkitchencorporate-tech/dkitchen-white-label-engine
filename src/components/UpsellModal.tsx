@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { api } from '../lib/apiClient';
 import { useHardwareBack } from '../utils/useHardwareBack';
 import { useCartStore } from '../store/cartStore';
+import { formatoEuros, precioZona } from '../store/zonaStore';
 import { useI18nStore } from '../store/i18nStore';
 
 interface UpsellModalProps {
@@ -55,7 +56,8 @@ export default function UpsellModal({ onClose, onProceedToCheckout }: UpsellModa
       name: prod.name,
       price: prod.price,
       quantity: 1,
-      notes: ''
+      notes: '',
+      isAlcohol: !!prod.is_alcohol
     });
     setAddedItems(prev => [...prev, prod.id]);
   };
@@ -107,7 +109,7 @@ export default function UpsellModal({ onClose, onProceedToCheckout }: UpsellModa
                           {prod.description && <span className="text-[10px] sm:text-[11px] text-gray-500 block mt-0.5 line-clamp-2">{tDynamic(prod.description)}</span>}
                         </div>
                         <div className="flex items-center justify-between mt-3">
-                          <span className="font-bold text-brand-primaryHover text-sm">{prod.price.toFixed(2).replace('.', ',')} €</span>
+                          <span className="font-bold text-brand-primaryHover text-sm">{formatoEuros(precioZona(Number(prod.price)))}</span>
                           <button 
                             onClick={() => handleAdd(item)}
                             disabled={isAdded}

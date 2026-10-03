@@ -7,22 +7,22 @@ export const PREAJUSTES = {
   restaurante: {
     domicilio: true, recogida: true, pedidoEnMesa: true, kiosko: true,
     reservas: true, editorSala: true, comandero: true, fidelizacion: true,
-    inventario: false, marcasVirtuales: false
+    inventario: false, marcasVirtuales: false, zonas: false, regalos: false
   },
   bar: {
     domicilio: false, recogida: true, pedidoEnMesa: true, kiosko: true,
     reservas: false, editorSala: true, comandero: true, fidelizacion: true,
-    inventario: false, marcasVirtuales: false
+    inventario: false, marcasVirtuales: false, zonas: false, regalos: false
   },
   dark_kitchen: {
     domicilio: true, recogida: true, pedidoEnMesa: false, kiosko: true,
     reservas: false, editorSala: false, comandero: false, fidelizacion: true,
-    inventario: false, marcasVirtuales: true
+    inventario: false, marcasVirtuales: true, zonas: true, regalos: false
   },
   dark_store: {
     domicilio: true, recogida: true, pedidoEnMesa: false, kiosko: false,
     reservas: false, editorSala: false, comandero: false, fidelizacion: true,
-    inventario: true, marcasVirtuales: false
+    inventario: true, marcasVirtuales: false, zonas: true, regalos: true
   }
 } as const;
 

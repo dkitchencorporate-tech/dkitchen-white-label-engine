@@ -8,6 +8,8 @@ import { generateSafeUUID } from '../utils/uuid';
 import { useI18nStore } from '../store/i18nStore';
 import { useSettingsStore } from '../store/settingsStore';
 import { BRAND_CONFIG } from '../config/brandConfig';
+import { moduloActivo } from '../marca';
+import { formatoEuros, precioZona, useZonaStore, zonaDe } from '../store/zonaStore';
 
 interface CheckoutModalProps {
   onClose: () => void;
@@ -30,7 +32,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
   const profileAddress = profile?.address || {};
   const initStreet = profileAddress.street || '';
   const initNumber = profileAddress.number || '';
-  const initCP = profileAddress.cp || '';
+  const initCP = profileAddress.cp || useZonaStore.getState().codigoPostal || '';
   const initNotes = kioskClientInfo ? 'Local / Mesa' : (profileAddress.notes || '');
 
   const [addressStreet, setAddressStreet] = useState(initStreet);
@@ -43,8 +45,9 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
   const [isProcessing, setIsProcessing] = useState(false);
   const [geofenceError, setGeofenceError] = useState<string | null>(null);
   const [paymentError, setPaymentError] = useState<string | null>(null);
-  const [minimumOrderError, setMinimumOrderError] = useState(false);
-  const [acceptSmallOrderFee, setAcceptSmallOrderFee] = useState(false);
+  const [ageConfirmed, setAgeConfirmed] = useState(false);
+  const [esRegalo, setEsRegalo] = useState(false);
+  const [giftMessage, setGiftMessage] = useState('');
   const [paymentMethod, setPaymentMethod] = useState<'cash' | 'card_delivery'>('cash');
 
   const storeStatus = getStoreStatus();
@@ -58,8 +61,14 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
   const [isPickupSuccess, setIsPickupSuccess] = useState(false);
   const [pickupOrderId, setPickupOrderId] = useState<string | null>(null);
 
-  const { deliveryFee, minOrderDelivery } = useSettingsStore();
-  const subtotal = getTotal();
+  const { deliveryFee, minOrderDelivery, freeDeliveryThreshold, alcoholSaleStart, alcoholSaleEnd, alcoholMinAge } = useSettingsStore();
+  // Zona por el código postal de la dirección (el servidor hace lo mismo y es quien decide).
+  const zonas = useZonaStore(s => s.zonas);
+  const hayZonas = moduloActivo('zonas') && zonas.length > 0;
+  const zonaCheckout = deliveryMethod === 'delivery' && hayZonas ? zonaDe(zonas, addressCP.trim()) : null;
+  const pct = zonaCheckout?.price_adjust_pct ?? 0;
+  const subtotal = getTotal(pct);
+  const hasAlcohol = items.some(i => i.isAlcohol);
 
   // Todos los productos de la carta son elegibles para el
   // descuento VIP — el cliente elige a cuál lo aplica, con el más económico
@@ -67,13 +76,18 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
   const eligibleItems = items;
   const selectedRedeemItem = eligibleItems.find(i => i.id === redeemItemId)
     || (eligibleItems.length > 0 ? eligibleItems.reduce((cheapest, i) => i.price < cheapest.price ? i : cheapest) : null);
-  const eligibleDiscount = selectedRedeemItem ? selectedRedeemItem.price : 0;
+  const eligibleDiscount = selectedRedeemItem ? precioZona(selectedRedeemItem.price, pct) : 0;
 
   const discount = pointsRedeemed && eligibleDiscount > 0 ? eligibleDiscount : 0;
 
-  const needsSmallOrderFee = deliveryMethod === 'delivery' && (subtotal - discount) < minOrderDelivery;
-  const smallOrderFee = needsSmallOrderFee && acceptSmallOrderFee ? deliveryFee : 0;
-  const finalTotal = Math.max(0, subtotal - discount) + smallOrderFee;
+  // Mismas reglas que el servidor: pedido mínimo obligatorio y envío gratis desde un umbral.
+  const minimo = Number(zonaCheckout ? zonaCheckout.min_order : minOrderDelivery);
+  const umbralGratis = zonaCheckout ? zonaCheckout.free_delivery_over : freeDeliveryThreshold;
+  const tarifa = Number(zonaCheckout ? zonaCheckout.delivery_fee : deliveryFee);
+  const neto = Math.max(0, subtotal - discount);
+  const bajoMinimo = deliveryMethod === 'delivery' && neto < minimo;
+  const gastosEnvio = deliveryMethod !== 'delivery' ? 0 : (umbralGratis != null && neto >= Number(umbralGratis) ? 0 : tarifa);
+  const finalTotal = Math.round((neto + gastosEnvio) * 100) / 100;
 
   const userPoints = profile?.points || 0;
   const canRedeem = userPoints >= 25 && eligibleDiscount > 0;
@@ -87,6 +101,11 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
         setGeofenceError('Introduce un código postal español válido (5 dígitos) para el reparto a domicilio.');
         return false;
       }
+      if (hayZonas && !zonaDe(zonas, cleanCP)) {
+        setGeofenceError(`Todavía no repartimos en el ${cleanCP}.`);
+        return false;
+      }
+      setGeofenceError(null);
     }
 
     // La zona de reparto la valida el servidor (códigos postales de la marca).
@@ -96,7 +115,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
 
   const handleCheckoutClick = async () => {
     setPaymentError(null);
-    if (needsSmallOrderFee && !acceptSmallOrderFee) {
+    if (bajoMinimo || (hasAlcohol && !ageConfirmed)) {
       return;
     }
 
@@ -144,7 +163,9 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
       const { orderId, order: fullOrder } = await api.post('/checkout', {
         client_name: clientName,
         client_phone: clientPhone,
-        delivery_address: finalDeliveryAddress,
+        delivery_address: deliveryMethod === 'delivery'
+          ? { text: finalDeliveryAddress, postal_code: addressCP.trim() }
+          : finalDeliveryAddress,
         delivery_method: deliveryMethod,
         items: orderItems,
         points_redeemed: pointsRedeemed,
@@ -152,8 +173,11 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
         // Los huecos llegan como «12:30», «Hoy 12:30» o «Mañana 12:30»: el servidor recibe HH:MM.
         scheduled_time: scheduledTime !== 'asap' ? scheduledTime.slice(-5) : null,
         idempotency_key: idempotencyKey,
-        payment_method: paymentMethod
+        payment_method: paymentMethod,
+        age_confirmed: hasAlcohol ? ageConfirmed : false,
+        gift_message: esRegalo && giftMessage.trim() ? giftMessage.trim() : null
       });
+      if (deliveryMethod === 'delivery' && hayZonas) useZonaStore.getState().setCodigoPostal(addressCP.trim());
 
       if (user && profile) {
         try {
@@ -324,7 +348,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
                     )}
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
-                    <span className="font-black text-brand-ink whitespace-nowrap">{(item.price * item.quantity).toFixed(2)}&nbsp;€</span>
+                    <span className="font-black text-brand-ink whitespace-nowrap">{formatoEuros(precioZona(item.price, pct) * item.quantity)}</span>
                     <button
                       onClick={(e) => { e.stopPropagation(); removeItem(item.id); }}
                       className="w-7 h-7 rounded-lg bg-gray-50 hover:bg-red-500/80 text-gray-500 hover:text-white flex items-center justify-center transition-all shrink-0"
@@ -379,7 +403,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
                           : 'bg-white text-gray-600 border-gray-200 hover:border-zinc-500'
                       }`}
                     >
-                      <span className="whitespace-nowrap">{item.name} · {item.price.toFixed(2)}&nbsp;€</span>
+                      <span className="whitespace-nowrap">{item.name} · {formatoEuros(precioZona(item.price, pct))}</span>
                     </button>
                   ))}
                 </div>
@@ -603,36 +627,58 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
           </div>
         </div>
 
-        <div className="p-6 bg-gray-50 text-brand-ink border-t border-gray-200">
-          {needsSmallOrderFee && (
-            <div className="bg-orange-500/10 border border-orange-500/30 rounded-2xl p-4 space-y-3 mb-6">
-              <div className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-                <p className="text-sm text-orange-400/90 leading-relaxed">
-                  El pedido mínimo para envíos a domicilio gratuitos es de <strong className="text-orange-400 whitespace-nowrap">{minOrderDelivery.toFixed(2).replace('.', ',')}&nbsp;€</strong>.
-                </p>
-              </div>
-              <label className="flex items-center gap-3 p-3 bg-white/70 rounded-xl cursor-pointer hover:bg-white transition-colors border border-orange-200">
-                <input
-                  type="checkbox"
-                  checked={acceptSmallOrderFee}
-                  onChange={(e) => setAcceptSmallOrderFee(e.target.checked)}
-                  className="w-5 h-5 rounded bg-white border-gray-200 text-orange-500 focus:ring-orange-500/50 focus:ring-offset-0 transition-all"
-                />
-                <span className="text-sm text-gray-700">Aceptar recargo de <span className="font-bold whitespace-nowrap">{deliveryFee.toFixed(2).replace('.', ',')}&nbsp;€</span> por pedido pequeño</span>
+        <div className="p-6 bg-gray-50 text-brand-ink border-t border-gray-200 space-y-3">
+          {moduloActivo('regalos') && (
+            <div className="bg-white border border-gray-200 rounded-2xl p-4">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input type="checkbox" checked={esRegalo} onChange={e => setEsRegalo(e.target.checked)} className="w-5 h-5 accent-[rgb(var(--brand-primary-rgb))]" />
+                <span className="text-sm font-bold">🎁 Es un regalo</span>
               </label>
+              {esRegalo && (
+                <textarea
+                  value={giftMessage}
+                  onChange={e => setGiftMessage(e.target.value.slice(0, 250))}
+                  rows={3}
+                  placeholder="Mensaje para la tarjeta (opcional). No incluimos precios en el paquete."
+                  className="mt-3 w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-brand-primary"
+                  aria-label="Mensaje de regalo"
+                />
+              )}
+            </div>
+          )}
+
+          {hasAlcohol && (
+            <label className="flex items-start gap-3 bg-white border-2 border-zinc-900/80 rounded-2xl p-4 cursor-pointer">
+              <input type="checkbox" checked={ageConfirmed} onChange={e => setAgeConfirmed(e.target.checked)} className="w-5 h-5 mt-0.5 shrink-0" />
+              <span className="text-sm">
+                <strong>Tengo {alcoholMinAge} años o más.</strong> Tu pedido lleva alcohol: el repartidor pedirá el DNI y no lo entregará a menores.
+                {alcoholSaleStart && alcoholSaleEnd && (
+                  <span className="block text-xs text-gray-500 mt-1">Por normativa solo vendemos alcohol de {alcoholSaleStart} a {alcoholSaleEnd}.</span>
+                )}
+              </span>
+            </label>
+          )}
+
+          {bajoMinimo && (
+            <p className="text-sm font-semibold text-orange-700 bg-orange-50 border border-orange-200 rounded-2xl p-3" role="status">
+              Te faltan {formatoEuros(minimo - neto)} para el pedido mínimo de {formatoEuros(minimo)}{zonaCheckout ? ` en ${zonaCheckout.name}` : ''}.
+            </p>
+          )}
+
+          {deliveryMethod === 'delivery' && (
+            <div className="text-xs text-gray-600 flex justify-between">
+              <span>Envío{zonaCheckout ? ` · ${zonaCheckout.name} · ~${zonaCheckout.eta_minutes} min` : ''}</span>
+              <span className="font-bold">{gastosEnvio === 0 ? 'Gratis' : formatoEuros(gastosEnvio)}</span>
             </div>
           )}
 
           <div className="flex items-center justify-between gap-4">
             <div>
               <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest block">{t('total_to_pay')}</span>
-              <span className="font-display font-black text-2xl sm:text-3xl text-brand-ink whitespace-nowrap">{finalTotal.toFixed(2)}&nbsp;€</span>
+              <span className="font-display font-black text-2xl sm:text-3xl text-brand-ink whitespace-nowrap">{formatoEuros(finalTotal)}</span>
             </div>
             <button
-              disabled={isProcessing || !clientName || !clientPhone || (deliveryMethod === 'delivery' && (!addressStreet || !addressNumber || !addressCP)) || (needsSmallOrderFee && !acceptSmallOrderFee) || (!isOpen && (!scheduledTime || scheduledTime === 'asap'))}
+              disabled={isProcessing || !clientName || !clientPhone || (deliveryMethod === 'delivery' && (!addressStreet || !addressNumber || !addressCP)) || bajoMinimo || (hasAlcohol && !ageConfirmed) || (!isOpen && (!scheduledTime || scheduledTime === 'asap'))}
               onClick={handleCheckoutClick}
               className="bg-gradient-to-r from-brand-primaryHover to-brand-primaryHover hover:from-orange-600 hover:to-orange-700 text-white font-display font-bold px-8 py-4 rounded-2xl shadow-[0_15px_30px_-5px_rgb(var(--brand-primary-rgb)/0.4)] uppercase tracking-wider text-sm sm:text-sm transition-all hover:scale-105 shrink-0 disabled:opacity-50"
             >
