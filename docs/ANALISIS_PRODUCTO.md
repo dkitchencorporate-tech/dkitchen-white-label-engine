@@ -116,8 +116,18 @@ Cada módulo declara sus tablas/migraciones, rutas de app y admin, permisos y aj
 
 **El plan completo no cabe en los 100 €** (≈ 6 € ya gastados en esta conversación). Opción que cabe: **1A + 1B + 1C + 2 + 3 + 5 ≈ 76 €**, con margen de ≈ 18 €. El resto (sala, pagos, verticales, IA) iría con más crédito o priorizando módulos sueltos.
 
-## 5. Siguientes pasos
+## 5. Alcance aprobado y siguientes pasos
 
-1. karc0 elige qué entra en el presupuesto (pregunta interactiva).
-2. Se fusiona el PR #1 con este análisis.
-3. Empieza la Fase 1A en la rama `nube/fase-1a-reparar-plantilla`.
+**A9 (karc0):** con este crédito se hace **solo la base, pulida al máximo**: 1A + 1B + 1C + 2 (≈ 43 €). Todo lo demás queda documentado como hoja de ruta para terminar el producto.
+
+**Visión precisada por karc0:** el objetivo no es una carta, sino una **PWA hiperoptimizada y funcional** con:
+- **Personalización absoluta** (siguiendo los patrones ya desarrollados en otras versiones);
+- **Pasarela de pago del propio cliente** (capa `PaymentProvider` con adaptadores);
+- **Conexión con el hardware que el negocio ya tenga o compre**: impresoras térmicas, datáfonos/TPV, pantallas de cocina, cajón portamonedas, básculas… (capa `HardwareAdapter`, a diseñar en la Fase 1B como punto de extensión).
+
+**Antes de la Fase 1A:** karc0 dará acceso a los repositorios de las versiones anteriores. Se auditarán uno a uno, en **solo lectura**, para extraer los patrones ya resueltos (pagos, hardware, personalización) y llevarlos al motor. Es una excepción autorizada por karc0 a la regla «solo este repo» de `ARRANQUE_AGENTE_NUBE.md`, solo para leer.
+
+Orden:
+1. Fusionar el PR #1.
+2. Auditoría de los repos anteriores → `docs/AUDITORIA_VERSIONES_PREVIAS.md` (patrones reutilizables y diferencias).
+3. Fase 1A en `nube/fase-1a-reparar-plantilla`.
