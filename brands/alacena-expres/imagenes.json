@@ -1,354 +1,618 @@
 [
  {
   "slug": "tabla-iberica-para-dos",
-  "prompt": "spanish iberian charcuterie board with jamon, lomo, chorizo and salchichon slices and breadsticks on a wooden board, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional overhead food photograph of spanish iberian charcuterie board with jamon, lomo, chorizo and salchichon slices and breadsticks on a wooden board, arranged on a large dark walnut table with a cream linen cloth, soft diffused natural light from the left, gentle realistic shadows, shot on Canon EOS R5, 35mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "combo",
+  "sujeto": "spanish iberian charcuterie board with jamon, lomo, chorizo and salchichon slices and breadsticks on a wooden board",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "tabla-de-quesos-espanoles",
-  "prompt": "spanish cheese board with manchego wedges, creamy torta del casar, quince paste and walnuts on slate, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional overhead food photograph of a spanish cheese board with a wedge of manchego with its zigzag rind, a creamy torta del casar opened on top, a wedge of goat cheese, a block of quince paste and a handful of walnuts, on a wooden board, arranged on a large dark walnut table with a cream linen cloth, soft diffused natural light from the left, gentle realistic shadows, shot on Canon EOS R5, 35mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "combo",
+  "sujeto": "a spanish cheese board with a wedge of manchego with its zigzag rind, a creamy torta del casar opened on top, a wedge of goat cheese, a block of quince paste and a handful of walnuts, on a wooden board",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "pack-reunion-expres",
-  "prompt": "generous spanish tapas spread for friends with cured ham, cheese, olives, gildas, chips and two bottles of wine on a table, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional overhead food photograph of a generous spanish tapas spread for six people: a board of sliced iberico ham and chorizo, manchego cheese wedges, a bowl of green olives, gilda skewers, a bowl of potato chips, crusty bread, and two bottles of wine with completely blank labels with no writing, arranged on a large dark walnut table with a cream linen cloth, soft diffused natural light from the left, gentle realistic shadows, shot on Canon EOS R5, 35mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "combo",
+  "sujeto": "a generous spanish tapas spread for six people: a board of sliced iberico ham and chorizo, manchego cheese wedges, a bowl of green olives, gilda skewers, a bowl of potato chips, crusty bread, and two bottles of wine with completely blank labels with no writing",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "pack-fiesta-1012-personas",
-  "prompt": "big spanish party table with many tapas platters, tortilla, croquetas, cured meats, cheese and many beer cans with ice, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional overhead food photograph of a big party table with several platters of spanish tapas: sliced iberico ham, cheese boards, a whole spanish potato omelette, golden croquetas, open tins of seafood, and a metal tub full of ice with many plain silver beer cans, arranged on a large dark walnut table with a cream linen cloth, soft diffused natural light from the left, gentle realistic shadows, shot on Canon EOS R5, 35mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "combo",
+  "sujeto": "a big party table with several platters of spanish tapas: sliced iberico ham, cheese boards, a whole spanish potato omelette, golden croquetas, open tins of seafood, and a metal tub full of ice with many plain silver beer cans",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "pack-vermut-del-domingo",
-  "prompt": "spanish vermouth aperitivo with glass of red vermouth with orange slice, gildas skewers, olives, mussels and potato chips, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional overhead food photograph of a spanish vermouth aperitivo: a tumbler of red vermouth with ice and an orange slice, a bottle with a completely blank label with no writing, gilda skewers, a small bowl of green olives, an open tin of mussels and a bowl of potato chips, arranged on a large dark walnut table with a cream linen cloth, soft diffused natural light from the left, gentle realistic shadows, shot on Canon EOS R5, 35mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "combo",
+  "sujeto": "a spanish vermouth aperitivo: a tumbler of red vermouth with ice and an orange slice, a bottle with a completely blank label with no writing, gilda skewers, a small bowl of green olives, an open tin of mussels and a bowl of potato chips",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "pack-after-work",
-  "prompt": "six cold beer cans with condensation, sliced chorizo, olives and potato chips on a wooden table, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional overhead food photograph of six cold plain brushed aluminium beer cans with no print, no logo and no text, with condensation drops, next to a plate of sliced chorizo, a bowl of green olives and a bowl of potato chips, arranged on a large dark walnut table with a cream linen cloth, soft diffused natural light from the left, gentle realistic shadows, shot on Canon EOS R5, 35mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "combo",
+  "sujeto": "six cold plain brushed aluminium beer cans with no print, no logo and no text, with condensation drops, next to a plate of sliced chorizo, a bowl of green olives and a bowl of potato chips",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "jamon-iberico-de-bellota-100",
-  "prompt": "thinly hand sliced iberico bellota ham fanned on a white plate, translucent fat, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of thinly hand sliced iberico bellota ham fanned on a white plate, translucent fat, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "thinly hand sliced iberico bellota ham fanned on a white plate, translucent fat",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "jamon-iberico-de-cebo-de-campo",
-  "prompt": "sliced spanish cured ham on parchment paper, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of sliced spanish cured ham on parchment paper, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "sliced spanish cured ham on parchment paper",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "paleta-iberica-de-bellota",
-  "prompt": "hand cut iberian paleta ham slices on wooden board, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of hand cut iberian paleta ham slices on wooden board, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "hand cut iberian paleta ham slices on wooden board",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "lomo-iberico-de-bellota",
-  "prompt": "thin slices of iberian cured pork loin lomo with paprika rim on a plate, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of thin slices of iberian cured pork loin lomo with paprika rim on a plate, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "thin slices of iberian cured pork loin lomo with paprika rim on a plate",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "chorizo-iberico-de-bellota",
-  "prompt": "sliced spanish chorizo iberico on a rustic wooden board, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of sliced spanish chorizo iberico on a rustic wooden board, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "sliced spanish chorizo iberico on a rustic wooden board",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "salchichon-iberico-de-bellota",
-  "prompt": "sliced spanish salchichon with black peppercorns on a board, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of thin round slices of spanish salchichon sausage with visible black peppercorns and white fat marbling, fanned on a wooden board next to the cut sausage, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "thin round slices of spanish salchichon sausage with visible black peppercorns and white fat marbling, fanned on a wooden board next to the cut sausage",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "cecina-de-leon-igp",
-  "prompt": "thin slices of cecina de leon cured beef with olive oil drizzle, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of thin slices of cecina de leon cured beef with olive oil drizzle, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "thin slices of cecina de leon cured beef with olive oil drizzle",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "sobrasada-de-mallorca-igp",
-  "prompt": "sobrasada spread on toasted bread with honey drizzle, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of bright orange-red soft sobrasada spread generously on a slice of toasted rustic bread, with a small ceramic dish of honey beside it, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "bright orange-red soft sobrasada spread generously on a slice of toasted rustic bread, with a small ceramic dish of honey beside it",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "queso-manchego-curado-dop",
-  "prompt": "wedge of cured manchego cheese with zigzag rind and a few slices, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of wedge of cured manchego cheese with zigzag rind and a few slices, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "wedge of cured manchego cheese with zigzag rind and a few slices",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "queso-idiazabal-ahumado-dop",
-  "prompt": "smoked idiazabal sheep cheese wedge with golden rind, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of smoked idiazabal sheep cheese wedge with golden rind, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "smoked idiazabal sheep cheese wedge with golden rind",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "torta-del-casar-dop",
-  "prompt": "creamy torta del casar cheese opened on top with a spoon and breadsticks, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of creamy torta del casar cheese opened on top with a spoon and breadsticks, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "creamy torta del casar cheese opened on top with a spoon and breadsticks",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "queso-payoyo-de-cabra",
-  "prompt": "aged goat cheese wedge with dark rind on rustic board, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of aged goat cheese wedge with dark rind on rustic board, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "aged goat cheese wedge with dark rind on rustic board",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "queso-cabrales-dop",
-  "prompt": "crumbly cabrales blue cheese with blue veins on slate, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of crumbly cabrales blue cheese with blue veins on slate, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "crumbly cabrales blue cheese with blue veins on slate",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "queso-mahon-menorca-dop",
-  "prompt": "mahon menorca cheese wedge with orange rind, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of mahon menorca cheese wedge with orange rind, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "mahon menorca cheese wedge with orange rind",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "anchoas-del-cantabrico-00",
-  "prompt": "premium cantabrian anchovy fillets in olive oil in an open tin, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of premium cantabrian anchovy fillets in olive oil in an open tin, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "premium cantabrian anchovy fillets in olive oil in an open tin",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "ventresca-de-bonito-del-norte",
-  "prompt": "tender white tuna belly ventresca pieces in olive oil in a tin, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of tender white tuna belly ventresca pieces in olive oil in a tin, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "tender white tuna belly ventresca pieces in olive oil in a tin",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "mejillones-en-escabeche-gallegos",
-  "prompt": "spanish mussels in red escabeche sauce in an open tin with toothpicks, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of spanish mussels in red escabeche sauce in an open tin with toothpicks, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "spanish mussels in red escabeche sauce in an open tin with toothpicks",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "berberechos-de-las-rias-30-40",
-  "prompt": "small cockles berberechos in an open tin with lemon wedge, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of small cockles berberechos in an open tin with lemon wedge, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "small cockles berberechos in an open tin with lemon wedge",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "pulpo-en-aceite-de-oliva",
-  "prompt": "octopus pieces in olive oil with paprika in an open tin, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of octopus pieces in olive oil with paprika in an open tin, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "octopus pieces in olive oil with paprika in an open tin",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "pimientos-del-piquillo-de-lodosa-dop",
-  "prompt": "roasted red piquillo peppers in a glass jar and on a plate, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of roasted red piquillo peppers in a glass jar and on a plate, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "roasted red piquillo peppers in a glass jar and on a plate",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "bonito-del-norte-en-aceite-de-oliva",
-  "prompt": "chunks of white tuna bonito in olive oil, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of chunks of white tuna bonito in olive oil, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "chunks of white tuna bonito in olive oil",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "aceitunas-gordal-alinadas",
-  "prompt": "big green gordal olives with herbs and garlic in a ceramic bowl, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of big green gordal olives with herbs and garlic in a ceramic bowl, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "big green gordal olives with herbs and garlic in a ceramic bowl",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "patatas-fritas-en-aceite-de-oliva",
-  "prompt": "crispy artisan potato chips in a bowl, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of crispy artisan potato chips in a bowl, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "crispy artisan potato chips in a bowl",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "almendras-marcona-fritas",
-  "prompt": "fried salted marcona almonds in a small bowl, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of fried salted marcona almonds in a small bowl, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "fried salted marcona almonds in a small bowl",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "picos-camperos",
-  "prompt": "small crunchy spanish breadsticks picos in a basket, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of small crunchy spanish breadsticks picos in a basket, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "small crunchy spanish breadsticks picos in a basket",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "croquetas-de-jamon-iberico",
-  "prompt": "golden spanish ham croquetas on a plate, one broken showing creamy inside, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of golden spanish ham croquetas on a plate, one broken showing creamy inside, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "golden spanish ham croquetas on a plate, one broken showing creamy inside",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "tortilla-de-patata-jugosa",
-  "prompt": "whole juicy spanish potato omelette tortilla with a slice cut showing runny center, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of whole juicy spanish potato omelette tortilla with a slice cut showing runny center, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "whole juicy spanish potato omelette tortilla with a slice cut showing runny center",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "ensaladilla-rusa",
-  "prompt": "spanish ensaladilla rusa potato salad with tuna topped with olives in a bowl, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of spanish ensaladilla rusa potato salad with tuna topped with olives in a bowl, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "spanish ensaladilla rusa potato salad with tuna topped with olives in a bowl",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "gildas-clasicas",
-  "prompt": "four gilda pintxos skewers with anchovy, green pepper and olive, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of four gilda pintxos skewers with anchovy, green pepper and olive, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "four gilda pintxos skewers with anchovy, green pepper and olive",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "pan-de-cristal",
-  "prompt": "crispy spanish pan de cristal bread with tomato and olive oil, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of crispy spanish pan de cristal bread with tomato and olive oil, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "crispy spanish pan de cristal bread with tomato and olive oil",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "rioja-crianza-doca",
-  "prompt": "red wine bottle and a glass of red wine, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of red wine bottle with a completely blank plain cream label with no writing at all and a glass of red wine, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "red wine bottle with a completely blank plain cream label with no writing at all and a glass of red wine",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "ribera-del-duero-roble",
-  "prompt": "dark red wine bottle next to grapes, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of dark red wine bottle with a completely blank plain cream label with no writing at all next to grapes, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "dark red wine bottle with a completely blank plain cream label with no writing at all next to grapes",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "ribera-del-duero-reserva",
-  "prompt": "premium red wine bottle with a decanter, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of premium red wine bottle with a completely blank plain cream label with no writing at all with a decanter, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "premium red wine bottle with a completely blank plain cream label with no writing at all with a decanter",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "albarino-rias-baixas",
-  "prompt": "chilled white wine bottle in an ice bucket with a glass, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of chilled white wine bottle with a completely blank plain cream label with no writing at all in an ice bucket with a glass, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "chilled white wine bottle with a completely blank plain cream label with no writing at all in an ice bucket with a glass",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "verdejo-rueda",
-  "prompt": "white wine bottle with condensation and a glass of white wine, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of white wine bottle with a completely blank plain cream label with no writing at all with condensation and a glass of white wine, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "white wine bottle with a completely blank plain cream label with no writing at all with condensation and a glass of white wine",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "priorat-doq",
-  "prompt": "dark red wine bottle on slate stones, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of dark red wine bottle with a completely blank plain cream label with no writing at all on slate stones, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "dark red wine bottle with a completely blank plain cream label with no writing at all on slate stones",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "godello-valdeorras",
-  "prompt": "golden white wine bottle and glass, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of golden white wine bottle with a completely blank plain cream label with no writing at all and glass, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "golden white wine bottle with a completely blank plain cream label with no writing at all and glass",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "rosado-de-navarra",
-  "prompt": "pink rose wine bottle and glass, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of pink rose wine bottle with a completely blank plain cream label with no writing at all and glass, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "pink rose wine bottle with a completely blank plain cream label with no writing at all and glass",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "fino-de-jerez",
-  "prompt": "pale fino sherry in a small copita glass next to a bottle, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of pale fino sherry in a small copita glass next to a bottle with a completely blank plain cream label with no writing at all, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "pale fino sherry in a small copita glass next to a bottle with a completely blank plain cream label with no writing at all",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "cava-brut-nature-reserva",
-  "prompt": "sparkling wine bottle with champagne flutes, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of sparkling wine bottle with a completely blank plain cream label with no writing at all with champagne flutes, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "sparkling wine bottle with a completely blank plain cream label with no writing at all with champagne flutes",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "cava-rose-brut",
-  "prompt": "pink sparkling rose wine bottle with two flutes, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of pink sparkling rose wine bottle with a completely blank plain cream label with no writing at all with two flutes, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "pink sparkling rose wine bottle with a completely blank plain cream label with no writing at all with two flutes",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "espumoso-gran-reserva",
-  "prompt": "premium sparkling wine bottle in ice bucket, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of premium sparkling wine bottle with a completely blank plain cream label with no writing at all in ice bucket, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "premium sparkling wine bottle with a completely blank plain cream label with no writing at all in ice bucket",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "champagne-brut-aoc",
-  "prompt": "champagne bottle with gold foil and pouring flute, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of champagne bottle with a completely blank plain cream label with no writing at all with gold foil and pouring flute, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "champagne bottle with a completely blank plain cream label with no writing at all with gold foil and pouring flute",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "champagne-rose-aoc",
-  "prompt": "luxury rose champagne bottle with pink flutes, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of luxury rose champagne bottle with a completely blank plain cream label with no writing at all with pink flutes, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "luxury rose champagne bottle with a completely blank plain cream label with no writing at all with pink flutes",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "cerveza-lager-especial-pack-6",
-  "prompt": "six pack of cold unbranded beer cans with condensation, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of six pack of cold plain matte silver beer cans without any print with condensation, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "six pack of cold plain matte silver beer cans without any print with condensation",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "cerveza-tostada-pack-6",
-  "prompt": "six amber beer bottles without labels, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of six amber beer bottles with completely blank labels with no writing, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "six amber beer bottles with completely blank labels with no writing",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "ipa-artesana-de-madrid",
-  "prompt": "craft ipa beer poured in a glass next to an unbranded can, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of craft ipa beer poured in a glass next to an plain matte can without any print, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "craft ipa beer poured in a glass next to an plain matte can without any print",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "cerveza-de-trigo",
-  "prompt": "hazy wheat beer in a tall glass, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of hazy wheat beer in a tall glass, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "hazy wheat beer in a tall glass",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "pack-fiesta-24-latas",
-  "prompt": "large pile of cold beer cans in a tub with ice, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of large pile of cold beer cans in a tub with ice, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "large pile of cold beer cans in a tub with ice",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "cerveza-sin-alcohol-0-0-pack-6",
-  "prompt": "six alcohol free beer cans with condensation, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of six alcohol free beer cans with condensation, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "six alcohol free beer cans with condensation",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "ginebra-premium",
-  "prompt": "gin tonic in a balloon glass with lime and juniper next to a clear bottle, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of gin tonic in a balloon glass with lime and juniper next to a clear bottle with a completely blank plain cream label with no writing at all, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "gin tonic in a balloon glass with lime and juniper next to a clear bottle with a completely blank plain cream label with no writing at all",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "ron-anejo",
-  "prompt": "aged dark rum in a tumbler glass with a bottle, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of aged dark rum in a tumbler glass with a bottle with a completely blank plain cream label with no writing at all, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "aged dark rum in a tumbler glass with a bottle with a completely blank plain cream label with no writing at all",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "whisky-de-malta-12-anos",
-  "prompt": "single malt whisky in a crystal glass with a bottle, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of single malt whisky in a crystal glass with a bottle with a completely blank plain cream label with no writing at all, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "single malt whisky in a crystal glass with a bottle with a completely blank plain cream label with no writing at all",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "vermut-rojo-de-reserva",
-  "prompt": "glass of red vermouth with ice, orange slice and olive, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of glass of red vermouth with ice, orange slice and olive, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "glass of red vermouth with ice, orange slice and olive",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "pacharan-navarro",
-  "prompt": "pacharan sloe liqueur red in a small glass with sloe berries, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of pacharan sloe liqueur red in a small glass with sloe berries, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "pacharan sloe liqueur red in a small glass with sloe berries",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "orujo-de-hierbas",
-  "prompt": "yellow herbal liqueur in a shot glass, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of yellow herbal liqueur in a shot glass, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "yellow herbal liqueur in a shot glass",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "vodka-premium",
-  "prompt": "frosted clear vodka bottle with shot glasses, unlabeled bottle, elegant product photography on dark wood table, soft light, no text, no labels, no logos"
+  "prompt": "professional e-commerce product photograph of frosted clear vodka bottle with a completely blank plain cream label with no writing at all with shot glasses, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "frosted clear vodka bottle with a completely blank plain cream label with no writing at all with shot glasses",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "refresco-de-cola",
-  "prompt": "cold cola in a glass with ice and an unbranded red can, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of cold cola in a glass with ice and an plain red can, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "cold cola in a glass with ice and an plain red can",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "refresco-de-cola-zero",
-  "prompt": "cola zero glass with ice and a black unbranded can, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of cola zero glass with ice and a black plain matte can without any print, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "cola zero glass with ice and a black plain matte can without any print",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "tonica-premium-pack-4",
-  "prompt": "four small tonic water bottles without labels, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of four small tonic water bottles with completely blank labels with no writing, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "four small tonic water bottles with completely blank labels with no writing",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "refresco-de-limon",
-  "prompt": "lemon soda in a glass with ice and lemon slice, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of lemon soda in a glass with ice and lemon slice, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "lemon soda in a glass with ice and lemon slice",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "agua-mineral-natural",
-  "prompt": "large plastic water bottle without label and a glass of water, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of large plastic water bottle without label and a glass of water, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "large plastic water bottle without label and a glass of water",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "agua-con-gas",
-  "prompt": "sparkling water glass bottle without label with bubbles, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of sparkling water glass bottle without label with bubbles, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "sparkling water glass bottle without label with bubbles",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "zumo-de-naranja-natural",
-  "prompt": "fresh orange juice in a glass bottle with oranges, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of fresh orange juice in a glass bottle with a completely blank plain cream label with no writing at all with oranges, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "fresh orange juice in a glass bottle with a completely blank plain cream label with no writing at all with oranges",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "hielo-en-cubitos",
-  "prompt": "bag of crystal clear ice cubes, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of bag of crystal clear ice cubes, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "bag of crystal clear ice cubes",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "ginger-beer",
-  "prompt": "ginger beer in a copper mug with lime, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of ginger beer in a copper mug with lime, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "ginger beer in a copper mug with lime",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "tarta-de-queso-cremosa",
-  "prompt": "whole basque burnt cheesecake with a creamy slice cut, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of whole basque burnt cheesecake with a creamy slice cut, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "whole basque burnt cheesecake with a creamy slice cut",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "torrijas-caseras",
-  "prompt": "spanish torrijas caramelized french toast with cinnamon, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of spanish torrijas caramelized french toast with cinnamon, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "spanish torrijas caramelized french toast with cinnamon",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "turron-de-jijona",
-  "prompt": "soft turron de jijona almond nougat slices, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of soft turron de jijona almond nougat slices, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "soft turron de jijona almond nougat slices",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "chocolate-negro-70-con-almendras",
-  "prompt": "dark chocolate bar with almonds broken into pieces, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of dark chocolate bar with almonds broken into pieces, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "dark chocolate bar with almonds broken into pieces",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "trufas-de-chocolate",
-  "prompt": "cocoa dusted chocolate truffles in a box, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of cocoa dusted chocolate truffles in a box, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "cocoa dusted chocolate truffles in a box",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "arroz-con-leche-asturiano",
-  "prompt": "creamy spanish rice pudding with cinnamon in clay bowls, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of creamy spanish rice pudding with cinnamon in clay bowls, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "creamy spanish rice pudding with cinnamon in clay bowls",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "tocino-de-cielo",
-  "prompt": "tocino de cielo egg yolk custard flan with caramel, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of tocino de cielo egg yolk custard flan with caramel, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "tocino de cielo egg yolk custard flan with caramel",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "cesta-gourmet-clasica",
-  "prompt": "spanish gourmet gift basket with wine, cheese, cured meats and tins in a wicker basket, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional overhead food photograph of a wicker gift basket with straw filling containing a red wine bottle with a completely blank label with no writing, a wedge of manchego cheese, a pack of sliced cured loin, a tin of anchovies, breadsticks and a bar of turron, arranged on a large dark walnut table with a cream linen cloth, soft diffused natural light from the left, gentle realistic shadows, shot on Canon EOS R5, 35mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "combo",
+  "sujeto": "a wicker gift basket with straw filling containing a red wine bottle with a completely blank label with no writing, a wedge of manchego cheese, a pack of sliced cured loin, a tin of anchovies, breadsticks and a bar of turron",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "cesta-premium-iberica",
-  "prompt": "luxury wooden gift box with iberian ham, champagne, cheese and chocolates, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional overhead food photograph of an open luxury wooden gift box lined with cream paper containing sliced iberico ham, a champagne bottle with plain gold foil and blank label, a creamy torta del casar cheese, a tin of tuna belly and chocolate truffles, arranged on a large dark walnut table with a cream linen cloth, soft diffused natural light from the left, gentle realistic shadows, shot on Canon EOS R5, 35mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "combo",
+  "sujeto": "an open luxury wooden gift box lined with cream paper containing sliced iberico ham, a champagne bottle with plain gold foil and blank label, a creamy torta del casar cheese, a tin of tuna belly and chocolate truffles",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "estuche-vino-y-queso",
-  "prompt": "gift box with a red wine bottle and a wedge of manchego cheese, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional overhead food photograph of an open kraft cardboard gift box containing a red wine bottle with a completely blank label with no writing and a wedge of manchego cheese, arranged on a large dark walnut table with a cream linen cloth, soft diffused natural light from the left, gentle realistic shadows, shot on Canon EOS R5, 35mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "combo",
+  "sujeto": "an open kraft cardboard gift box containing a red wine bottle with a completely blank label with no writing and a wedge of manchego cheese",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "estuche-aperitivo",
-  "prompt": "elegant aperitivo gift set with vermouth bottle, anchovy tin and almonds, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional overhead food photograph of an open kraft gift box containing a vermouth bottle with a completely blank label with no writing, an open tin of anchovies, gilda skewers and a small bag of marcona almonds, arranged on a large dark walnut table with a cream linen cloth, soft diffused natural light from the left, gentle realistic shadows, shot on Canon EOS R5, 35mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "combo",
+  "sujeto": "an open kraft gift box containing a vermouth bottle with a completely blank label with no writing, an open tin of anchovies, gilda skewers and a small bag of marcona almonds",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "envoltorio-de-regalo",
-  "prompt": "kraft paper wrapped gift with red ribbon bow and small card, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of kraft paper wrapped gift with red ribbon bow and small card, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "kraft paper wrapped gift with red ribbon bow and small card",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "vasos-compostables",
-  "prompt": "stack of white compostable paper cups on a party table, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of stack of white compostable paper cups on a party table, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "stack of white compostable paper cups on a party table",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "platos-compostables",
-  "prompt": "stack of eco friendly bagasse plates, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of stack of eco friendly bagasse plates, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "stack of eco friendly bagasse plates",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "servilletas-de-papel",
-  "prompt": "folded white paper napkins stack, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of folded white paper napkins stack, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "folded white paper napkins stack",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  },
  {
   "slug": "sacacorchos-de-camarero",
-  "prompt": "waiters corkscrew on wooden table next to a cork, professional food photography, soft studio lighting, shallow depth of field, appetizing, high detail, no text, no labels, no logos, no watermark"
+  "prompt": "professional e-commerce product photograph of waiters corkscrew on wooden table next to a cork, single product centered, on a dark walnut wooden table with a cream linen napkin, plain warm beige background, soft diffused studio light from the left, realistic soft shadow, 45 degree angle, shot on Canon EOS R5, 100mm lens, f/5.6, natural colors, photorealistic, highly detailed",
+  "tipo": "suelto",
+  "sujeto": "waiters corkscrew on wooden table next to a cork",
+  "negativo": "illustration, painting, drawing, cartoon, anime, 3d render, cgi, plastic look, text, letters, words, writing on label, fake text, gibberish text, typography, watermark, logo, brand name, signature, blurry, lowres, jpeg artifacts, deformed, distorted, duplicated objects, oversaturated, hdr, people, hands, frame, border"
  }
 ]

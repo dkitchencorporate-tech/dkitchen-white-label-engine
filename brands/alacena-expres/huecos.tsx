@@ -1,7 +1,11 @@
 import type { Huecos } from '../../src/marca/huecos';
+import Portada from './huecos/Portada';
+import Preloader from './huecos/Preloader';
+import Pie from './huecos/Pie';
+import './estilos.css';
 
-// Componentes propios de la marca que sustituyen a los del motor.
-// La marca demo usa todos los del motor. Ejemplo de uso en docs/NUEVA_MARCA.md.
-const huecos: Huecos = {};
+// Diseño de autor de Alacena: portada con escaparate 3D, preloader animado,
+// pie de marca y efectos propios (estilos.css). El motor no cambia.
+const huecos: Huecos = { Hero: Portada, Preloader, Pie };
 
 export default huecos;

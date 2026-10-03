@@ -110,7 +110,7 @@ export default function ProductCard({ product, onCustomize }: ProductCardProps) 
 
   return (
     <>
-      <div className={`group relative bg-white rounded-3xl border-2 overflow-hidden shadow-xl transition-all duration-300 flex flex-col ${
+      <div data-motor="tarjeta-producto" className={`group relative bg-white rounded-3xl border-2 overflow-hidden shadow-xl transition-all duration-300 flex flex-col ${
         !isAvailable 
           ? 'opacity-60 grayscale-[35%] border-gray-300' 
           : 'border-gray-200 hover:border-brand-primary/60 hover:shadow-[0_0_30px_rgb(var(--brand-primary-rgb)/0.2)]'
