@@ -24,7 +24,7 @@
 - **Contexto:** el motor no está desplegado; los fallos de la auditoría son defectos de plantilla que heredaría cada clon.
 - **Repos de DKitchen parcheados** (sin datos reales, escaparate): PR de seguridad abiertos en bokadipan-pwa#1, seven-food-fries-pwa#2, wing-boss-pwa#1. Pendiente de revisión y fusión por karc0.
 - **Néstor Pizzas** (cliente real, en producción, Supabase, repo público): **no se toca** sin una fase de análisis y plan aprobada por karc0. El cliente pide un aviso de «actualizaciones / próximo lanzamiento» en la web pública y en el registro.
-- **Pendiente de karc0:** fusionar el PR #1 y los 3 PR de seguridad; decidir cuándo empezar el análisis de Néstor.
+- **Pendiente de karc0:** fusionar el PR #1 y los 3 PR de seguridad; abrir sesión aparte para el análisis de Néstor (solo lectura, plan a aprobar). La Fase 1A arranca en cuanto se fusione el PR #1 (rama `nube/fase-1a-reparar-plantilla`).
 
 ---
 
