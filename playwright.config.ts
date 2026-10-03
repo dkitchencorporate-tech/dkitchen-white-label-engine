@@ -40,9 +40,11 @@ export default defineConfig({
       env: { API_PORT: String(API_PORT), APP_DATABASE_URL: API_DB, APP_JWT_SECRET: 'e2e-'.repeat(12) }
     },
     {
-      command: `npx vite --port ${WEB_PORT} --strictPort`,
+      // Se prueba la compilación de producción (sin optimizador ni recargas del modo desarrollo).
+      command: `npx vite build --outDir node_modules/.e2e-demo --emptyOutDir && npx vite preview --outDir node_modules/.e2e-demo --port ${WEB_PORT} --strictPort`,
       port: WEB_PORT,
       reuseExistingServer: false,
+      timeout: 180_000,
       env: { API_PORT: String(API_PORT), BRAND: 'demo' }
     },
     {
@@ -52,9 +54,10 @@ export default defineConfig({
       env: { API_PORT: String(TIENDA_API_PORT), APP_DATABASE_URL: TIENDA_API_DB, APP_JWT_SECRET: 'e2e-tienda-'.repeat(6) }
     },
     {
-      command: `npx vite --port ${TIENDA_WEB_PORT} --strictPort`,
+      command: `npx vite build --outDir node_modules/.e2e-tienda --emptyOutDir && npx vite preview --outDir node_modules/.e2e-tienda --port ${TIENDA_WEB_PORT} --strictPort`,
       port: TIENDA_WEB_PORT,
       reuseExistingServer: false,
+      timeout: 180_000,
       env: { API_PORT: String(TIENDA_API_PORT), BRAND: 'alacena-expres' }
     }
   ]
