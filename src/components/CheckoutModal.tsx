@@ -19,7 +19,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
   const { t, tDynamic } = useI18nStore();
   const { items, getTotal, removeItem, kioskClientInfo, setKioskClientInfo } = useCartStore();
   const { user, profile, updateProfile } = useAuthStore();
-  const [deliveryMethod, setDeliveryMethod] = useState<'delivery' | 'pickup'>('delivery');
+  const [deliveryMethod, setDeliveryMethod] = useState<'delivery' | 'pickup'>(BRAND_CONFIG.modulosActivos.domicilio ? 'delivery' : 'pickup');
   // Misma clave en los reintentos de este pedido: el servidor nunca crea dos pedidos iguales.
   const [idempotencyKey] = useState(() => generateSafeUUID());
   const [clientName, setClientName] = useState(kioskClientInfo?.name || profile?.full_name || '');
@@ -61,7 +61,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
   const { deliveryFee, minOrderDelivery } = useSettingsStore();
   const subtotal = getTotal();
 
-  // Todos los productos de la carta (patatas gourmet) son elegibles para el
+  // Todos los productos de la carta son elegibles para el
   // descuento VIP — el cliente elige a cuál lo aplica, con el más económico
   // preseleccionado por defecto.
   const eligibleItems = items;
@@ -89,39 +89,9 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
       }
     }
 
-    // 2. Si el dispositivo tiene geolocalización activa, verificar radio respecto al punto base configurado
-    return new Promise<boolean>((resolve) => {
-      if (!navigator.geolocation) {
-        resolve(true);
-        return;
-      }
-
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat1 = position.coords.latitude;
-          const lon1 = position.coords.longitude;
-          const lat2 = 40.4168; // Punto base configurado (Puerta del Sol, Madrid — ubicación virtual de demo)
-          const lon2 = -3.7038;
-
-          const R = 6371; // Earth radius km
-          const dLat = (lat2 - lat1) * (Math.PI / 180);
-          const dLon = (lon2 - lon1) * (Math.PI / 180);
-          const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-          const distance = R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
-
-          if (distance > 12) {
-            setGeofenceError(`Te encuentras a ${distance.toFixed(1)} km del punto de reparto configurado. ${BRAND_CONFIG.name} opera de forma exclusiva en su zona de reparto.`);
-            resolve(false);
-          } else {
-            resolve(true);
-          }
-        },
-        () => {
-          resolve(true);
-        },
-        { enableHighAccuracy: false, timeout: 4000, maximumAge: 60000 }
-      );
-    });
+    // La zona de reparto la valida el servidor (códigos postales de la marca).
+    // No se pide la ubicación del dispositivo.
+    return true;
   };
 
   const handleCheckoutClick = async () => {
@@ -149,7 +119,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
 
     const finalDeliveryAddress = deliveryMethod === 'delivery'
       ? `${addressStreet}, Nº ${addressNumber}, CP ${addressCP}${addressNotes ? '. Notas: ' + addressNotes : ''}`
-      : addressNotes ? `Recogida en punto de encuentro (España · ubicación virtual). Notas: ${addressNotes}` : 'Recogida en punto de encuentro (España · ubicación virtual)';
+      : addressNotes ? `Recogida en el local. Notas: ${addressNotes}` : 'Recogida en el local';
 
     try {
       const orderItems = items.map(item => ({
@@ -255,7 +225,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
             </div>
             <button
               onClick={() => { setIsPickupSuccess(false); onSuccess({ id: pickupOrderId, total_amount: finalTotal, clientName: clientName }, !user); }}
-              className="w-full bg-brand-primaryHover hover:bg-brand-primary text-white font-bold py-4 rounded-2xl uppercase tracking-wider text-sm transition-all shadow-[0_0_25px_rgba(245, 158, 11,0.3)] hover:scale-105"
+              className="w-full bg-brand-primaryHover hover:bg-brand-primary text-white font-bold py-4 rounded-2xl uppercase tracking-wider text-sm transition-all shadow-[0_0_25px_rgb(var(--brand-primary-rgb)/0.3)] hover:scale-105"
             >
               Perfecto, ¡gracias!
             </button>
@@ -275,7 +245,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
               {geofenceError}
             </p>
             <div className="space-y-3">
-              <button onClick={() => setGeofenceError(null)} className="block w-full bg-brand-primaryHover hover:bg-brand-primary text-white font-bold py-3.5 rounded-xl uppercase tracking-wider text-sm transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)]">
+              <button onClick={() => setGeofenceError(null)} className="block w-full bg-brand-primaryHover hover:bg-brand-primary text-white font-bold py-3.5 rounded-xl uppercase tracking-wider text-sm transition-all shadow-[0_0_20px_rgb(var(--brand-primary-rgb)/0.3)]">
                 {t('understood')}
               </button>
             </div>
@@ -296,16 +266,16 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
         <div className="p-4 sm:p-6 overflow-y-auto space-y-5 sm:space-y-6 flex-1 text-sm sm:text-sm text-gray-600 no-scrollbar">
 
           {!isOpen && (
-            <div className="bg-amber-50 border border-amber-200/90 rounded-2xl p-4 flex items-start gap-3.5 shadow-sm animate-fade-in">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0 text-amber-700">
+            <div className="bg-brand-primaryLight border border-amber-200/90 rounded-2xl p-4 flex items-start gap-3.5 shadow-sm animate-fade-in">
+              <div className="w-10 h-10 rounded-xl bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center shrink-0 text-brand-primaryHover">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2 flex-wrap">
-                  <span className="text-xs font-display font-black text-amber-900 uppercase tracking-wider">{storeStatus.badgeText}</span>
-                  <span className="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Programar Pedido</span>
+                  <span className="text-xs font-display font-black text-brand-ink uppercase tracking-wider">{storeStatus.badgeText}</span>
+                  <span className="text-[10px] bg-brand-primaryLight text-brand-ink font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Programar Pedido</span>
                 </div>
                 <p className="text-xs text-amber-900/80 mt-1 leading-relaxed font-medium">
                   En este momento la cocina no está despachando en vivo ({storeStatus.detailText}). <strong>Puedes dejar tu pedido programado a continuación</strong> y te lo prepararemos con total puntualidad.
@@ -447,6 +417,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
           <div className="space-y-2.5 sm:space-y-3">
             <span className="font-display font-bold text-brand-ink text-sm uppercase tracking-wider block">{t('delivery_mode')}</span>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 font-medium">
+              {BRAND_CONFIG.modulosActivos.domicilio && (
               <label onClick={() => setDeliveryMethod('delivery')} className={`flex items-center justify-between p-3.5 sm:p-4 rounded-2xl cursor-pointer shadow transition-all ${deliveryMethod === 'delivery' ? 'border-2 border-brand-primary bg-brand-primary/15' : 'border border-gray-200 bg-gray-50 hover:border-brand-primary'}`}>
                 <div className="flex items-center gap-3">
                   <input type="radio" checked={deliveryMethod === 'delivery'} readOnly className="text-brand-primaryHover w-4 h-4 shrink-0" />
@@ -456,15 +427,18 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
                   </div>
                 </div>
               </label>
+              )}
+              {BRAND_CONFIG.modulosActivos.recogida && (
               <label onClick={() => setDeliveryMethod('pickup')} className={`flex items-center justify-between p-3.5 sm:p-4 rounded-2xl cursor-pointer transition-all ${deliveryMethod === 'pickup' ? 'border-2 border-brand-primary bg-brand-primary/15' : 'border border-gray-200 bg-gray-50 hover:border-brand-primary'}`}>
                 <div className="flex items-center gap-3">
                   <input type="radio" checked={deliveryMethod === 'pickup'} readOnly className="text-brand-primaryHover w-4 h-4 shrink-0" />
                   <div>
                     <span className="font-bold text-brand-ink block text-sm sm:text-sm">Para Recoger</span>
-                    <span className="text-[10px] sm:text-[11px] text-gray-500">España · Red de Dark Kitchens (ubicación virtual)</span>
+                    <span className="text-[10px] sm:text-[11px] text-gray-500">{BRAND_CONFIG.address || BRAND_CONFIG.city}</span>
                   </div>
                 </div>
               </label>
+              )}
             </div>
           </div>
 
@@ -529,7 +503,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
             <div className="flex items-center justify-between">
               <span className="font-display font-bold text-brand-ink text-sm uppercase tracking-wider block">{t('when_want')}</span>
               {!isOpen && (
-                <span className="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                <span className="text-[10px] bg-brand-primaryLight text-brand-ink font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
                   Programación requerida
                 </span>
               )}
@@ -565,7 +539,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
                 }} 
                 className={`flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all ${
                   scheduledTime !== 'asap' 
-                    ? 'bg-amber-500/10 border-2 border-amber-500' 
+                    ? 'bg-brand-primary/10 border-2 border-brand-primary' 
                     : 'bg-gray-50 border border-gray-200 hover:border-gray-300'
                 } ${availableSlots.length === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
@@ -574,7 +548,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
                   checked={scheduledTime !== 'asap'} 
                   readOnly 
                   disabled={availableSlots.length === 0} 
-                  className="text-amber-600 w-4 h-4 shrink-0" 
+                  className="text-brand-primary w-4 h-4 shrink-0" 
                 />
                 <div className="w-full pr-2">
                   <span className="font-bold text-brand-ink text-sm block">{t('schedule')}</span>
@@ -582,7 +556,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
                     <select 
                       value={scheduledTime !== 'asap' ? scheduledTime : availableSlots[0]} 
                       onChange={(e) => setScheduledTime(e.target.value)} 
-                      className="mt-1.5 block w-full bg-white border border-gray-300 text-brand-ink rounded-lg px-2.5 py-1.5 text-xs outline-none focus:border-amber-500 font-bold"
+                      className="mt-1.5 block w-full bg-white border border-gray-300 text-brand-ink rounded-lg px-2.5 py-1.5 text-xs outline-none focus:border-brand-primary font-bold"
                     >
                       {availableSlots.map(slot => (
                         <option key={slot} value={slot}>{slot}</option>
@@ -595,7 +569,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
               </label>
             </div>
             {!isOpen && availableSlots.length === 0 && (
-              <p className="text-[11px] text-amber-700 bg-amber-50 p-2.5 rounded-lg border border-amber-200 font-medium">
+              <p className="text-[11px] text-brand-primaryHover bg-brand-primaryLight p-2.5 rounded-lg border border-brand-border font-medium">
                 No hay franjas horarias configuradas para programar en este momento.
               </p>
             )}
@@ -660,7 +634,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
             <button
               disabled={isProcessing || !clientName || !clientPhone || (deliveryMethod === 'delivery' && (!addressStreet || !addressNumber || !addressCP)) || (needsSmallOrderFee && !acceptSmallOrderFee) || (!isOpen && (!scheduledTime || scheduledTime === 'asap'))}
               onClick={handleCheckoutClick}
-              className="bg-gradient-to-r from-brand-primaryHover to-brand-primaryHover hover:from-orange-600 hover:to-orange-700 text-white font-display font-bold px-8 py-4 rounded-2xl shadow-[0_15px_30px_-5px_rgba(245,158,11,0.4)] uppercase tracking-wider text-sm sm:text-sm transition-all hover:scale-105 shrink-0 disabled:opacity-50"
+              className="bg-gradient-to-r from-brand-primaryHover to-brand-primaryHover hover:from-orange-600 hover:to-orange-700 text-white font-display font-bold px-8 py-4 rounded-2xl shadow-[0_15px_30px_-5px_rgb(var(--brand-primary-rgb)/0.4)] uppercase tracking-wider text-sm sm:text-sm transition-all hover:scale-105 shrink-0 disabled:opacity-50"
             >
               {isProcessing ? t('processing') : t('confirm_order_btn')}
             </button>

@@ -352,7 +352,7 @@ export default function AdminKiosk() {
       {kioskNotification && (
         <div className={`fixed top-4 right-4 z-[9999] px-5 py-3 rounded-xl shadow-lg font-bold text-xs uppercase tracking-wider animate-fade-in flex items-center gap-2.5 ${
           kioskNotification.type === 'success' 
-            ? 'bg-amber-600 text-white' 
+            ? 'bg-brand-primary text-white' 
             : 'bg-red-600 text-white'
         }`}>
           <span>{kioskNotification.msg}</span>
@@ -395,9 +395,9 @@ export default function AdminKiosk() {
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
                     placeholder="Teléfono, Nombre o Dirección..."
-                    className="flex-1 bg-white border border-zinc-300 rounded-xl px-3.5 py-2.5 text-zinc-900 text-sm focus:outline-none focus:border-amber-500 transition-colors"
+                    className="flex-1 bg-white border border-zinc-300 rounded-xl px-3.5 py-2.5 text-zinc-900 text-sm focus:outline-none focus:border-brand-primary transition-colors"
                   />
-                  <button type="submit" disabled={isSearching} className="bg-amber-600 hover:bg-amber-700 text-white px-5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all">
+                  <button type="submit" disabled={isSearching} className="bg-brand-primary hover:bg-brand-primaryHover text-white px-5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all">
                     Buscar
                   </button>
                 </form>
@@ -426,7 +426,7 @@ export default function AdminKiosk() {
                 {searchQuery && searchResults.length === 0 && !isSearching && (
                   <div className="mt-3 text-center p-4 bg-white rounded-xl border border-dashed border-zinc-300">
                     <p className="text-zinc-500 mb-3 text-xs">No se encontró cliente con "{searchQuery}"</p>
-                    <button onClick={handleOpenCreateModal} className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-xs">
+                    <button onClick={handleOpenCreateModal} className="bg-brand-primary hover:bg-brand-primaryHover text-white px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-xs">
                       + Crear Cliente Nuevo
                     </button>
                   </div>
@@ -453,7 +453,7 @@ export default function AdminKiosk() {
                     placeholder="Ej: Mesa 1, Terraza 3, Barra (Opcional)" 
                     value={tableName}
                     onChange={(e) => setTableName(e.target.value)}
-                    className="w-full bg-white text-zinc-900 p-3 rounded-xl border border-zinc-300 outline-none focus:border-amber-500 transition-colors text-sm"
+                    className="w-full bg-white text-zinc-900 p-3 rounded-xl border border-zinc-300 outline-none focus:border-brand-primary transition-colors text-sm"
                   />
                 </div>
 
@@ -483,9 +483,9 @@ export default function AdminKiosk() {
                         value={searchQuery}
                         onChange={e => setSearchQuery(e.target.value)}
                         placeholder="Teléfono para acumular puntos VIP..."
-                        className="flex-1 bg-white border border-zinc-300 rounded-xl px-3 py-2 text-zinc-900 text-xs focus:outline-none focus:border-amber-500"
+                        className="flex-1 bg-white border border-zinc-300 rounded-xl px-3 py-2 text-zinc-900 text-xs focus:outline-none focus:border-brand-primary"
                       />
-                      <button type="submit" disabled={isSearching} className="bg-amber-600 hover:bg-amber-700 text-white px-3.5 rounded-xl font-bold text-xs uppercase">
+                      <button type="submit" disabled={isSearching} className="bg-brand-primary hover:bg-brand-primaryHover text-white px-3.5 rounded-xl font-bold text-xs uppercase">
                         Buscar
                       </button>
                     </form>
@@ -540,7 +540,7 @@ export default function AdminKiosk() {
                 className={`flex-[2] py-3 font-display font-extrabold tracking-wider text-xs uppercase transition-all rounded-xl shadow-sm ${
                   isProcessing || (deliveryMethod !== 'local' && !clientInfo) 
                     ? 'bg-zinc-200 text-zinc-400 cursor-not-allowed' 
-                    : 'bg-amber-600 hover:bg-amber-700 text-white'
+                    : 'bg-brand-primary hover:bg-brand-primaryHover text-white'
                 }`}
               >
                 {isProcessing ? 'Enviando...' : (editingOrder ? 'ACTUALIZAR PEDIDO' : 'ENVIAR A COCINA ➔')}
@@ -600,13 +600,13 @@ export default function AdminKiosk() {
                   <button 
                     onClick={() => setMobileKioskTab('ticket')}
                     className={`px-3 py-1 rounded-lg text-xs font-bold uppercase transition-all flex items-center gap-1 ${
-                      mobileKioskTab === 'ticket' ? 'bg-amber-600 text-white shadow-xs' : 'text-zinc-600'
+                      mobileKioskTab === 'ticket' ? 'bg-brand-primary text-white shadow-xs' : 'text-zinc-600'
                     }`}
                   >
                     <span>Ticket</span>
                     {items.length > 0 && (
                       <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-black ${
-                        mobileKioskTab === 'ticket' ? 'bg-white text-amber-800' : 'bg-amber-600 text-white'
+                        mobileKioskTab === 'ticket' ? 'bg-white text-amber-800' : 'bg-brand-primary text-white'
                       }`}>
                         {items.reduce((s, i) => s + i.quantity, 0)}
                       </span>
@@ -669,7 +669,7 @@ export default function AdminKiosk() {
               >
                 <button
                   onClick={() => setMobileKioskTab('ticket')}
-                  className="w-full bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:brightness-105 active:scale-[0.99] text-white font-display font-black py-3 px-4 rounded-2xl shadow-2xl flex items-center justify-between text-xs uppercase tracking-wider border border-amber-300 transition-transform"
+                  className="w-full bg-gradient-to-r from-brand-primary via-brand-primary to-brand-primaryHover hover:brightness-105 active:scale-[0.99] text-white font-display font-black py-3 px-4 rounded-2xl shadow-2xl flex items-center justify-between text-xs uppercase tracking-wider border border-amber-300 transition-transform"
                 >
                   <div className="flex items-center gap-2">
                     <span className="bg-white text-amber-900 px-2.5 py-0.5 rounded-full text-xs font-black shadow-xs">
@@ -823,7 +823,7 @@ export default function AdminKiosk() {
                   className={`w-full py-3.5 rounded-xl font-display font-extrabold uppercase tracking-wider text-xs transition-all shadow-sm ${
                     items.length === 0 
                       ? 'bg-zinc-200 text-zinc-400 cursor-not-allowed' 
-                      : 'bg-amber-600 hover:bg-amber-700 text-white'
+                      : 'bg-brand-primary hover:bg-brand-primaryHover text-white'
                   }`}
                 >
                   {editingOrder && deliveryMethod === 'local' ? 'GUARDAR MESA' : 'ASIGNAR Y FINALIZAR ➔'}
@@ -847,11 +847,11 @@ export default function AdminKiosk() {
             <form onSubmit={handleCreateClient} className="space-y-3.5">
               <div>
                 <label className="text-xs font-bold text-zinc-600 uppercase tracking-wider">Nombre Completo</label>
-                <input type="text" required value={newClientName} onChange={e => setNewClientName(e.target.value)} className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2.5 text-zinc-900 text-sm mt-1 focus:border-amber-500 outline-none" />
+                <input type="text" required value={newClientName} onChange={e => setNewClientName(e.target.value)} className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2.5 text-zinc-900 text-sm mt-1 focus:border-brand-primary outline-none" />
               </div>
               <div>
                 <label className="text-xs font-bold text-zinc-600 uppercase tracking-wider">Teléfono</label>
-                <input type="tel" required value={newClientPhone} onChange={e => setNewClientPhone(e.target.value)} className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2.5 text-zinc-900 text-sm mt-1 focus:border-amber-500 outline-none" />
+                <input type="tel" required value={newClientPhone} onChange={e => setNewClientPhone(e.target.value)} className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2.5 text-zinc-900 text-sm mt-1 focus:border-brand-primary outline-none" />
               </div>
               {deliveryMethod !== 'delivery' && (
                 <p className="text-[11px] text-zinc-500 bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2">
@@ -861,18 +861,18 @@ export default function AdminKiosk() {
               <div className="grid grid-cols-2 gap-3">
                 <div className="col-span-2">
                   <label className="text-xs font-bold text-zinc-600 uppercase tracking-wider">Calle {deliveryMethod === 'delivery' ? '*' : '(Opcional)'}</label>
-                  <input type="text" required={deliveryMethod === 'delivery'} value={addressStreet} onChange={e => setAddressStreet(e.target.value)} className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm mt-1 focus:border-amber-500 outline-none" />
+                  <input type="text" required={deliveryMethod === 'delivery'} value={addressStreet} onChange={e => setAddressStreet(e.target.value)} className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm mt-1 focus:border-brand-primary outline-none" />
                 </div>
                 <div>
                   <label className="text-xs font-bold text-zinc-600 uppercase tracking-wider">Número {deliveryMethod === 'delivery' ? '*' : '(Opcional)'}</label>
-                  <input type="text" required={deliveryMethod === 'delivery'} value={addressNumber} onChange={e => setAddressNumber(e.target.value)} className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm mt-1 focus:border-amber-500 outline-none" />
+                  <input type="text" required={deliveryMethod === 'delivery'} value={addressNumber} onChange={e => setAddressNumber(e.target.value)} className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm mt-1 focus:border-brand-primary outline-none" />
                 </div>
                 <div>
                   <label className="text-xs font-bold text-zinc-600 uppercase tracking-wider">CP {deliveryMethod === 'delivery' ? '*' : '(Opcional)'}</label>
-                  <input type="text" required={deliveryMethod === 'delivery'} value={addressCP} onChange={e => setAddressCP(e.target.value)} className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm mt-1 focus:border-amber-500 outline-none" />
+                  <input type="text" required={deliveryMethod === 'delivery'} value={addressCP} onChange={e => setAddressCP(e.target.value)} className="w-full bg-white border border-zinc-300 rounded-xl px-3.5 py-2 text-zinc-900 text-sm mt-1 focus:border-brand-primary outline-none" />
                 </div>
               </div>
-              <button type="submit" disabled={isCreatingClient} className="w-full bg-amber-600 hover:bg-amber-700 text-white font-display font-extrabold py-3.5 rounded-xl mt-3 transition-all uppercase tracking-wider text-xs shadow-sm">
+              <button type="submit" disabled={isCreatingClient} className="w-full bg-brand-primary hover:bg-brand-primaryHover text-white font-display font-extrabold py-3.5 rounded-xl mt-3 transition-all uppercase tracking-wider text-xs shadow-sm">
                 {isCreatingClient ? 'Guardando...' : 'Guardar y Continuar'}
               </button>
             </form>
@@ -939,7 +939,7 @@ export default function AdminKiosk() {
                 className={`flex-1 text-white font-display font-black rounded-xl py-3 text-xs uppercase tracking-wider transition-all shadow-sm ${
                   confirmModal.confirmColor === 'rose'
                     ? 'bg-rose-600 hover:bg-rose-700'
-                    : 'bg-amber-600 hover:bg-amber-700'
+                    : 'bg-brand-primary hover:bg-brand-primaryHover'
                 }`}
               >
                 {confirmModal.confirmText || 'Confirmar'}

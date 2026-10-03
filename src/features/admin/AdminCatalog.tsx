@@ -353,7 +353,7 @@ export default function AdminCatalog() {
             </button>
             <button 
               onClick={() => setProductModal({ isOpen: true })}
-              className="flex-1 sm:flex-none px-4 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-sm text-center"
+              className="flex-1 sm:flex-none px-4 py-2.5 bg-brand-primary hover:bg-brand-primaryHover text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-sm text-center"
             >
               + Nuevo Producto
             </button>

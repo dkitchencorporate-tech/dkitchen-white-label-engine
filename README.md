@@ -2,13 +2,14 @@
 
 Motor de replicación de PWAs para hostelería (restaurante, bar, dark kitchen, dark store): carta, pedidos a domicilio y recogida, kiosko/TPV de mostrador, panel de gestión y fidelización. El código se reutiliza; la identidad visual de cada marca es única.
 
-> Estado: en pleno pulido (Fase 1A completada: API y base de datos nuevas). Plan y decisiones en `docs/ANALISIS_PRODUCTO.md`; estado vivo en `ESTADO_PROYECTO.md`.
+> Estado: en pleno pulido (Fases 1A y 1B completadas: API y base de datos nuevas; motor separado de la marca). Plan y decisiones en `docs/ANALISIS_PRODUCTO.md`; estado vivo en `ESTADO_PROYECTO.md`.
 
 ## Arquitectura
 
 | Capa | Tecnología |
 |---|---|
-| PWA y panel | React 19 + Vite, Zustand |
+| PWA y panel | React 19 + Vite, Zustand, Tailwind compilado |
+| Marcas | `brands/<slug>/` (configuración validada con zod, tema, huecos, recursos, semilla); `BRAND=<slug>` al compilar |
 | API | Funciones de Vercel en TypeScript estricto (`api/*.ts`), validación con zod |
 | Datos | PostgreSQL (Neon) con migraciones numeradas (`db/migraciones/`), RLS en todas las tablas y lógica de negocio en funciones `SECURITY DEFINER` |
 | Pruebas | Vitest contra Postgres real (`tests/`) |
@@ -41,3 +42,5 @@ Variables de entorno: ver [`.env.example`](.env.example). Solo lleva nombres, nu
 - `docs/ANALISIS_PRODUCTO.md`: visión, decisiones y plan de fases.
 - `docs/ACTUALIZACIONES_MARCAS.md`: qué hay que hacer en cada marca al terminar el pulido.
 - `docs/DESARROLLO_LOCAL.md`: desarrollo, pruebas y despliegue.
+- `docs/NUEVA_MARCA.md`: alta de una marca nueva con `npm run nueva-marca`.
+- `docs/PAGOS_Y_HARDWARE.md`: capas de pagos y hardware (adaptadores).

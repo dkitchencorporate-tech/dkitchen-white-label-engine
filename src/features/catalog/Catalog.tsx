@@ -7,6 +7,7 @@ import { Product, getProductImageUrl, LOCAL_IMAGE_MAP } from '../../data/product
 import { api } from '../../lib/apiClient';
 import NotificationManager from '../../components/NotificationManager';
 import Footer from '../../components/Footer';
+import { Hueco } from '../../marca/huecos';
 import { useI18nStore } from '../../store/i18nStore';
 import { generateSafeUUID } from '../../utils/uuid';
 import { preloadCatalogData, getCachedCatalogData, invalidateCatalogCache } from '../../lib/catalogPreload';
@@ -133,7 +134,7 @@ export default function Catalog() {
     return (
       <div className="min-h-screen bg-[#FFFFFF]">
         <Header />
-        <Hero />
+        <Hueco nombre="Hero" props={{}} porDefecto={<Hero />} />
         <div className="max-w-7xl mx-auto px-4 sm:px-8 py-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -159,7 +160,7 @@ export default function Catalog() {
   return (
     <>
       <Header />
-      <Hero />
+      <Hueco nombre="Hero" props={{}} porDefecto={<Hero />} />
       
       {isSaturationMode && (
         <div className="bg-red-600 text-white font-bold text-center py-2 px-4 animate-pulse uppercase tracking-wider text-sm sticky top-[52px] sm:top-[60px] z-[45]">
@@ -279,7 +280,7 @@ export default function Catalog() {
         })}
       </main>
 
-      <Footer />
+      <Hueco nombre="Pie" props={{}} porDefecto={<Footer />} />
 
       {ingredientsProduct && (
         <IngredientsModal product={ingredientsProduct} onClose={() => setIngredientsProduct(null)} />

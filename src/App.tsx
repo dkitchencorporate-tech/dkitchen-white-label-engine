@@ -16,6 +16,7 @@ import ReviewModal from './components/ReviewModal';
 import GuestRegistrationModal from './components/GuestRegistrationModal';
 import { BRAND_CONFIG } from './config/brandConfig';
 import { useI18nStore } from './store/i18nStore';
+import { Hueco } from './marca/huecos';
 import { isAnyModalOpen, wasModalPoppedRecently } from './utils/useHardwareBack';
 
 // Cada despliegue publica los "trozos" de código (Catálogo, Admin, etc.) con nombre de
@@ -273,8 +274,12 @@ function App() {
   return (
     <div className="selection:bg-brand-primary selection:text-white">
       <NotificationManager />
-      {/* Preloader Agnóstico Tokenizado: Logotipo oficial de la marca + pulso minimalista */}
+      {/* Preloader: hueco «Preloader» de la marca o el del motor */}
       {currentView === 'splash' && (
+        <Hueco
+          nombre="Preloader"
+          props={{ saliendo: isPreloaderFading }}
+          porDefecto={
         <div className={`fixed inset-0 z-[999] bg-white flex flex-col items-center justify-center overflow-hidden transition-opacity duration-700 ${isPreloaderFading ? 'opacity-0' : 'opacity-100'}`}>
           <div className="relative z-10 flex flex-col items-center px-6 text-center animate-fade-in">
             {BRAND_CONFIG.assets.logoUrl ? (
@@ -298,6 +303,8 @@ function App() {
             </div>
           </div>
         </div>
+          }
+        />
       )}
 
       {/* Main Catalog View */}
@@ -385,7 +392,7 @@ function App() {
             setCurrentView('tracking');
             window.history.pushState({ appView: 'tracking' }, '');
           }}
-          className="fixed bottom-24 right-4 sm:right-6 z-[900] w-14 h-14 sm:w-16 sm:h-16 bg-brand-primary text-white rounded-full shadow-[0_8px_25px_rgba(245,158,11,0.45)] flex items-center justify-center animate-bounce transition-transform hover:scale-110"
+          className="fixed bottom-24 right-4 sm:right-6 z-[900] w-14 h-14 sm:w-16 sm:h-16 bg-brand-primary text-white rounded-full shadow-[0_8px_25px_rgb(var(--brand-primary-rgb)/0.45)] flex items-center justify-center animate-bounce transition-transform hover:scale-110"
         >
           <span className="text-2xl sm:text-3xl">🛵</span>
           {activeOrdersCount > 1 ? (

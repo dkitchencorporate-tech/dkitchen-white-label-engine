@@ -25,7 +25,7 @@ export default function TicketPrinter({ order }: TicketPrinterProps) {
   const isCash = order.payment_method === 'cash' || !order.payment_method;
   const isTpv = order.payment_method === 'tpv' || order.payment_method === 'physical' || order.payment_method === 'card_delivery';
 
-  const brandName = (BRAND_CONFIG.name || 'D-KITCHEN').toUpperCase();
+  const brandName = BRAND_CONFIG.name.toUpperCase();
   const brandSlogan = BRAND_CONFIG.slogan || 'Gastronomía de Autor';
   const ticketPrefix = BRAND_CONFIG.orderDefaults?.ticketPrefix || 'ORD';
 

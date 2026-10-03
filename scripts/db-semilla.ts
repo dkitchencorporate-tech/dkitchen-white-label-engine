@@ -1,4 +1,4 @@
-// Carga una semilla de db/semilla/<nombre>.sql (por defecto «demo»).
+// Carga la semilla de una marca: brands/<slug>/semilla.sql (por defecto «demo»).
 // Uso: MIGRATIONS_DATABASE_URL=... npm run db:semilla -- demo
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -6,7 +6,7 @@ import pg from 'pg';
 
 export async function sembrar(connectionString: string, nombre = 'demo'): Promise<void> {
   if (!/^[a-z0-9-]+$/.test(nombre)) throw new Error('Nombre de semilla no válido.');
-  const sql = readFileSync(join(process.cwd(), 'db', 'semilla', `${nombre}.sql`), 'utf8');
+  const sql = readFileSync(join(process.cwd(), 'brands', nombre, 'semilla.sql'), 'utf8');
   const client = new pg.Client({ connectionString });
   await client.connect();
   try {

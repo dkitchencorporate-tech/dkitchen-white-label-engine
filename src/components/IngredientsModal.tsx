@@ -58,7 +58,7 @@ export default function IngredientsModal({ product, onClose }: IngredientsModalP
     onClose();
   };
 
-  const fallback = `data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='540' viewBox='0 0 800 540'><rect width='800' height='540' fill='%23FAFAFA'/><text x='400' y='260' font-size='28' font-family='sans-serif' font-weight='800' fill='%23F59E0B' text-anchor='middle' dominant-baseline='middle'>${encodeURIComponent(product.name)}</text></svg>`;
+  const fallback = `data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='540' viewBox='0 0 800 540'><rect width='800' height='540' fill='%23FAFAFA'/><text x='400' y='260' font-size='28' font-family='sans-serif' font-weight='800' fill='%2371717A' text-anchor='middle' dominant-baseline='middle'>${encodeURIComponent(product.name)}</text></svg>`;
   const imageSrc = getProductImageUrl(product) || LOCAL_IMAGE_MAP[product.name] || fallback;
 
   return (
@@ -168,7 +168,7 @@ export default function IngredientsModal({ product, onClose }: IngredientsModalP
             </label>
             <input
               type="text"
-              placeholder="Ej. salsa aparte, poco picante, bien crujientes..."
+              placeholder="Ej.: sin cebolla, salsa aparte…"
               value={itemNotes}
               onChange={(e) => setItemNotes(e.target.value)}
               className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-brand-ink placeholder-gray-400 focus:border-brand-primary focus:bg-white outline-none transition-all font-medium"
@@ -207,7 +207,7 @@ export default function IngredientsModal({ product, onClose }: IngredientsModalP
             onClick={handleAddToCart}
             disabled={!!missingGroup}
             title={missingGroup ? `Elige una opción en «${missingGroup.name}»` : undefined}
-            className="flex-1 disabled:opacity-50 disabled:cursor-not-allowed bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:brightness-110 text-white font-display font-black py-3.5 px-5 rounded-2xl text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-between shadow-[0_4px_20px_rgba(245,158,11,0.35)] active:scale-95"
+            className="flex-1 disabled:opacity-50 disabled:cursor-not-allowed bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:brightness-110 text-white font-display font-black py-3.5 px-5 rounded-2xl text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-between shadow-[0_4px_20px_rgb(var(--brand-primary-rgb)/0.35)] active:scale-95"
           >
             <span>{t('add_to_order') || 'Añadir al pedido'}</span>
             <span className="bg-black/20 px-2.5 py-1 rounded-xl font-mono text-sm sm:text-base whitespace-nowrap">

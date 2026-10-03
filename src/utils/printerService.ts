@@ -5,7 +5,7 @@ import { BRAND_CONFIG } from '../config/brandConfig';
 
 export const sendToNetworkPrinter = async (order: any): Promise<boolean> => {
   try {
-    const configRaw = localStorage.getItem('brand_printer_config') || localStorage.getItem('sff_printer_config');
+    const configRaw = localStorage.getItem('brand_printer_config');
     if (!configRaw) return false;
     
     const config = JSON.parse(configRaw);
@@ -17,7 +17,7 @@ export const sendToNetworkPrinter = async (order: any): Promise<boolean> => {
     const timeStr = orderDate.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
 
     // Generar formato de texto tipo ESC/POS de alta legibilidad
-    const brandName = (BRAND_CONFIG.name || 'D-KITCHEN').toUpperCase();
+    const brandName = BRAND_CONFIG.name.toUpperCase();
     const brandSlogan = BRAND_CONFIG.slogan || 'Especialidades Gastronómicas';
     const ticketPrefix = BRAND_CONFIG.orderDefaults?.ticketPrefix || 'ORD';
 

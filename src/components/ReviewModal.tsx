@@ -53,7 +53,7 @@ export default function ReviewModal({ isOpen, onClose, order }: ReviewModalProps
 
   return (
     <div className="fixed inset-0 z-[1300] flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white border border-gray-200 rounded-3xl w-full max-w-md overflow-hidden shadow-[0_0_50px_rgba(245, 158, 11,0.15)] relative">
+      <div className="bg-white border border-gray-200 rounded-3xl w-full max-w-md overflow-hidden shadow-[0_0_50px_rgb(var(--brand-primary-rgb)/0.15)] relative">
         <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-brand-accent to-brand-primaryHover"></div>
         
         {submitted ? (
@@ -115,7 +115,7 @@ export default function ReviewModal({ isOpen, onClose, order }: ReviewModalProps
                       onClick={() => setRating(star)}
                     >
                       <svg 
-                        className={`w-10 h-10 ${star <= (hoverRating || rating) ? 'text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]' : 'text-zinc-800'}`} 
+                        className={`w-10 h-10 ${star <= (hoverRating || rating) ? 'text-yellow-400 drop-shadow-[0_0_8px_rgb(var(--brand-primary-rgb)/0.5)]' : 'text-zinc-800'}`} 
                         fill="currentColor" 
                         viewBox="0 0 24 24"
                       >
@@ -141,7 +141,7 @@ export default function ReviewModal({ isOpen, onClose, order }: ReviewModalProps
                 <button
                   onClick={handleSubmit}
                   disabled={rating === 0 || isSaving}
-                  className="w-full bg-brand-primaryHover hover:bg-brand-primary text-white font-bold py-3.5 rounded-xl uppercase tracking-wider text-sm transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-brand-primaryHover hover:bg-brand-primary text-white font-bold py-3.5 rounded-xl uppercase tracking-wider text-sm transition-all shadow-[0_0_20px_rgb(var(--brand-primary-rgb)/0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {t('submit_rating')}
                 </button>

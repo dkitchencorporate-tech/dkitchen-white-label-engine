@@ -116,7 +116,7 @@ export default function AdminSubcategoryForm({ subcategory, categoryId, onClose,
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex-1 py-3 rounded-xl font-extrabold bg-gradient-to-r from-amber-600 to-amber-500 text-white hover:brightness-105 transition-all disabled:opacity-50 text-xs uppercase shadow-sm"
+              className="flex-1 py-3 rounded-xl font-extrabold bg-gradient-to-r from-brand-primary to-brand-primaryHover text-white hover:brightness-105 transition-all disabled:opacity-50 text-xs uppercase shadow-sm"
             >
               {isSubmitting ? 'Guardando...' : 'Guardar Subcategoría'}
             </button>

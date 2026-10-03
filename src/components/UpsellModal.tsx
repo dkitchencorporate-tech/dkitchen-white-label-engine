@@ -114,7 +114,7 @@ export default function UpsellModal({ onClose, onProceedToCheckout }: UpsellModa
                             className={`px-3 py-1.5 rounded-xl font-display font-bold text-[10px] sm:text-[11px] uppercase tracking-wider transition-all shadow-sm ${
                               isAdded 
                                 ? 'bg-gray-50 text-brand-primaryHover border border-gray-200 cursor-not-allowed' 
-                                : 'bg-brand-primary hover:bg-brand-accent text-white shadow-[0_0_10px_rgba(245, 158, 11,0.3)]'
+                                : 'bg-brand-primary hover:bg-brand-accent text-white shadow-[0_0_10px_rgb(var(--brand-primary-rgb)/0.3)]'
                             }`}
                           >
                             {isAdded ? t('added') : t('add_item')}
@@ -139,7 +139,7 @@ export default function UpsellModal({ onClose, onProceedToCheckout }: UpsellModa
               <span>{t('view_recommendations')}</span>
             </button>
           )}
-          <button onClick={() => { onClose(); onProceedToCheckout(); }} className="w-full lg:w-auto bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:from-brand-accent hover:to-brand-primary text-white font-display font-bold px-5 py-3 sm:py-3.5 rounded-2xl shadow-[0_15px_30px_-5px_rgba(245,158,11,0.4)] uppercase tracking-wider text-[11px] sm:text-sm transition-all flex items-center justify-center gap-2">
+          <button onClick={() => { onClose(); onProceedToCheckout(); }} className="w-full lg:w-auto bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:from-brand-accent hover:to-brand-primary text-white font-display font-bold px-5 py-3 sm:py-3.5 rounded-2xl shadow-[0_15px_30px_-5px_rgb(var(--brand-primary-rgb)/0.4)] uppercase tracking-wider text-[11px] sm:text-sm transition-all flex items-center justify-center gap-2">
             <span>{t('payment_gateway')}</span>
           </button>
         </div>

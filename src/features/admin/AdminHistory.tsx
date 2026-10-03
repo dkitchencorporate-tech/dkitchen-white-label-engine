@@ -327,7 +327,7 @@ export default function AdminHistory() {
         <div className="flex items-center gap-2 w-full sm:w-auto">
           <button 
             onClick={handlePrintClick}
-            className="flex-1 sm:flex-initial px-3.5 sm:px-5 py-2.5 bg-gradient-to-r from-amber-600 to-amber-500 hover:brightness-105 text-white rounded-xl text-xs font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-sm"
+            className="flex-1 sm:flex-initial px-3.5 sm:px-5 py-2.5 bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:brightness-105 text-white rounded-xl text-xs font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-sm"
           >
             <svg className="w-4 h-4 text-white shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -354,7 +354,7 @@ export default function AdminHistory() {
           onClick={() => setDateFilter('today')}
           className={`shrink-0 px-3.5 py-2 rounded-xl font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 ${
             dateFilter === 'today' 
-              ? 'bg-amber-600 text-white shadow-xs font-black' 
+              ? 'bg-brand-primary text-white shadow-xs font-black' 
               : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 hover:text-zinc-900 border border-zinc-200/80'
           }`}
         >
@@ -366,7 +366,7 @@ export default function AdminHistory() {
           onClick={() => setDateFilter('yesterday')}
           className={`shrink-0 px-3.5 py-2 rounded-xl font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 ${
             dateFilter === 'yesterday' 
-              ? 'bg-amber-600 text-white shadow-xs font-black' 
+              ? 'bg-brand-primary text-white shadow-xs font-black' 
               : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 hover:text-zinc-900 border border-zinc-200/80'
           }`}
         >
@@ -378,7 +378,7 @@ export default function AdminHistory() {
           onClick={() => setDateFilter('7days')}
           className={`shrink-0 px-3.5 py-2 rounded-xl font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 ${
             dateFilter === '7days' 
-              ? 'bg-amber-600 text-white shadow-xs font-black' 
+              ? 'bg-brand-primary text-white shadow-xs font-black' 
               : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 hover:text-zinc-900 border border-zinc-200/80'
           }`}
         >
@@ -390,7 +390,7 @@ export default function AdminHistory() {
           onClick={() => setDateFilter('30days')}
           className={`shrink-0 px-3.5 py-2 rounded-xl font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 ${
             dateFilter === '30days' 
-              ? 'bg-amber-600 text-white shadow-xs font-black' 
+              ? 'bg-brand-primary text-white shadow-xs font-black' 
               : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 hover:text-zinc-900 border border-zinc-200/80'
           }`}
         >
@@ -402,7 +402,7 @@ export default function AdminHistory() {
           onClick={() => setDateFilter('custom')}
           className={`shrink-0 px-3.5 py-2 rounded-xl font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 ${
             dateFilter === 'custom' 
-              ? 'bg-amber-600 text-white shadow-xs font-black' 
+              ? 'bg-brand-primary text-white shadow-xs font-black' 
               : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 hover:text-zinc-900 border border-zinc-200/80'
           }`}
         >
@@ -421,7 +421,7 @@ export default function AdminHistory() {
               type="date" 
               value={customStartDate} 
               onChange={e => setCustomStartDate(e.target.value)}
-              className="bg-white border border-zinc-300 text-zinc-900 text-xs px-2 py-1 rounded-lg focus:outline-none focus:border-amber-500 shadow-2xs"
+              className="bg-white border border-zinc-300 text-zinc-900 text-xs px-2 py-1 rounded-lg focus:outline-none focus:border-brand-primary shadow-2xs"
             />
           </div>
           <div className="flex items-center gap-1.5">
@@ -430,7 +430,7 @@ export default function AdminHistory() {
               type="date" 
               value={customEndDate} 
               onChange={e => setCustomEndDate(e.target.value)}
-              className="bg-white border border-zinc-300 text-zinc-900 text-xs px-2 py-1 rounded-lg focus:outline-none focus:border-amber-500 shadow-2xs"
+              className="bg-white border border-zinc-300 text-zinc-900 text-xs px-2 py-1 rounded-lg focus:outline-none focus:border-brand-primary shadow-2xs"
             />
           </div>
           <span className="text-[10px] text-amber-700 italic">(máx. 90 días)</span>
@@ -455,7 +455,7 @@ export default function AdminHistory() {
             <button
               key={st}
               onClick={() => setServiceFilter(st)}
-              className={`px-2.5 py-1 text-xs font-bold rounded-lg transition-all capitalize ${serviceFilter === st ? 'bg-amber-600 text-white shadow-xs' : 'text-zinc-600 hover:text-zinc-900'}`}
+              className={`px-2.5 py-1 text-xs font-bold rounded-lg transition-all capitalize ${serviceFilter === st ? 'bg-brand-primary text-white shadow-xs' : 'text-zinc-600 hover:text-zinc-900'}`}
             >
               {st === 'all' ? 'Todos' : (st === 'delivery' ? 'Domicilio' : (st === 'pickup' ? 'Recogida' : 'Mesas'))}
             </button>
@@ -538,7 +538,7 @@ export default function AdminHistory() {
           </div>
 
           {/* Card 5: FACTURACIÓN TOTAL */}
-          <div className="bg-gradient-to-br from-amber-600 to-amber-500 text-white rounded-2xl p-4 flex flex-col justify-between col-span-2 sm:col-span-1 shadow-md">
+          <div className="bg-gradient-to-br from-brand-primary to-brand-primaryHover text-white rounded-2xl p-4 flex flex-col justify-between col-span-2 sm:col-span-1 shadow-md">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-black uppercase tracking-wider text-amber-100">Facturación Total</span>
               <span className="text-[10px] bg-white/20 text-white font-bold px-1.5 py-0.5 rounded">{stats.deliveredCount} ped.</span>
@@ -773,7 +773,7 @@ export default function AdminHistory() {
               <button
                 onClick={handlePerformDailyClose}
                 disabled={isClosingShift}
-                className="w-full py-3.5 bg-gradient-to-r from-red-600 to-amber-600 hover:brightness-105 text-white rounded-2xl text-xs font-black uppercase transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full py-3.5 bg-gradient-to-r from-red-600 to-brand-primaryHover hover:brightness-105 text-white rounded-2xl text-xs font-black uppercase transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {isClosingShift ? 'Cerrando Jornada...' : 'Imprimir PDF y CERRAR JORNADA OPERATIVA'}
               </button>

@@ -1,3 +1,4 @@
+import { BRAND_CONFIG } from '../config/brandConfig';
 import React, { useState, useMemo } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { useGuestOrderStore } from '../store/guestOrderStore';
@@ -104,7 +105,7 @@ export default function OrderTracking({ onBack }: { onBack: () => void }) {
           </button>
           <div className="text-center">
             <h1 className="font-display font-black uppercase text-lg tracking-widest text-brand-ink">{t('my_orders')}</h1>
-            <p className="text-[10px] text-brand-muted font-mono tracking-widest uppercase">{t('brand_name')}</p>
+            <p className="text-[10px] text-brand-muted font-mono tracking-widest uppercase">{BRAND_CONFIG.name}</p>
           </div>
           <div className="w-10"></div> {/* Spacer */}
         </div>

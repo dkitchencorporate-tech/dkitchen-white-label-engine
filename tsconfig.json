@@ -21,10 +21,16 @@
     "noFallthroughCasesInSwitch": false,
     "types": [
       "vite/client"
-    ]
+    ],
+    "paths": {
+      "@marca/*": [
+        "./brands/demo/*"
+      ]
+    }
   },
   "include": [
-    "src"
+    "src",
+    "brands"
   ],
   "references": [
     {

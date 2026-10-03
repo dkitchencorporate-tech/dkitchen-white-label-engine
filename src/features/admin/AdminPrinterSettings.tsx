@@ -13,7 +13,7 @@ export default function AdminPrinterSettings({ onClose }: AdminPrinterSettingsPr
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    const config = localStorage.getItem('brand_printer_config') || localStorage.getItem('sff_printer_config');
+    const config = localStorage.getItem('brand_printer_config');
     if (config) {
       try {
         const parsed = JSON.parse(config);
@@ -81,7 +81,7 @@ export default function AdminPrinterSettings({ onClose }: AdminPrinterSettingsPr
 
       <div className="space-y-4">
         <div className="flex items-center gap-3 bg-zinc-50 p-4 rounded-2xl border border-zinc-200 cursor-pointer" onClick={() => setUseDirectPrint(!useDirectPrint)}>
-          <input type="checkbox" checked={useDirectPrint} onChange={() => {}} className="w-4 h-4 rounded text-amber-600 focus:ring-amber-500" />
+          <input type="checkbox" checked={useDirectPrint} onChange={() => {}} className="w-4 h-4 rounded text-amber-600 focus:ring-brand-primary" />
           <div>
             <p className="font-bold text-xs uppercase tracking-wider text-zinc-800">Modo de Red Independiente (LAN Directo)</p>
             <p className="text-[11px] text-zinc-500 mt-0.5">Envía comandos ESC/POS mediante proxy local sin interferir con otros sistemas de caja.</p>
@@ -97,7 +97,7 @@ export default function AdminPrinterSettings({ onClose }: AdminPrinterSettingsPr
                   type="text" 
                   value={ipAddress} 
                   onChange={e => setIpAddress(e.target.value)}
-                  className="w-full bg-white border border-zinc-300 rounded-xl p-2.5 text-xs text-zinc-900 focus:border-amber-500 outline-none"
+                  className="w-full bg-white border border-zinc-300 rounded-xl p-2.5 text-xs text-zinc-900 focus:border-brand-primary outline-none"
                   placeholder="192.168.1.100"
                 />
               </div>
@@ -107,7 +107,7 @@ export default function AdminPrinterSettings({ onClose }: AdminPrinterSettingsPr
                   type="text" 
                   value={port} 
                   onChange={e => setPort(e.target.value)}
-                  className="w-full bg-white border border-zinc-300 rounded-xl p-2.5 text-xs text-zinc-900 focus:border-amber-500 outline-none"
+                  className="w-full bg-white border border-zinc-300 rounded-xl p-2.5 text-xs text-zinc-900 focus:border-brand-primary outline-none"
                   placeholder="9100"
                 />
               </div>
@@ -119,7 +119,7 @@ export default function AdminPrinterSettings({ onClose }: AdminPrinterSettingsPr
                 type="text" 
                 value={relayUrl} 
                 onChange={e => setRelayUrl(e.target.value)}
-                className="w-full bg-white border border-zinc-300 rounded-xl p-2.5 text-xs text-zinc-900 focus:border-amber-500 outline-none"
+                className="w-full bg-white border border-zinc-300 rounded-xl p-2.5 text-xs text-zinc-900 focus:border-brand-primary outline-none"
                 placeholder="http://localhost:8080/print"
               />
             </div>
@@ -135,7 +135,7 @@ export default function AdminPrinterSettings({ onClose }: AdminPrinterSettingsPr
           </button>
           <button 
             onClick={handleSave}
-            className={`flex-1 font-bold py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-xs ${saved ? 'bg-emerald-600 text-white' : 'bg-amber-600 hover:bg-amber-700 text-white'}`}
+            className={`flex-1 font-bold py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-xs ${saved ? 'bg-emerald-600 text-white' : 'bg-brand-primary hover:bg-brand-primaryHover text-white'}`}
           >
             {saved ? '✓ Guardado' : 'Guardar Configuración'}
           </button>

@@ -1,8 +1,9 @@
-const CACHE_NAME = 'dkitchen-pwa-v1';
+// Caché propia de la PWA. Cambiar la versión invalida la caché anterior.
+const CACHE_NAME = 'motor-pwa-v2';
 const ASSETS_TO_CACHE = [
   '/',
-  '/manifest.json',
-  '/assets/brand/logo.svg'
+  '/manifest.webmanifest',
+  '/iconos/icono-192.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -36,6 +37,10 @@ self.addEventListener('activate', (event) => {
 // Network-first con prioridad absoluta a red para navegación
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+  // La API nunca se cachea: sus respuestas pueden contener datos personales
+  // (pedidos, clientes del panel) y siempre deben llegar frescas.
+  const url = new URL(event.request.url);
+  if (url.origin === self.location.origin && url.pathname.startsWith('/api/')) return;
 
   if (event.request.mode === 'navigate') {
     event.respondWith(

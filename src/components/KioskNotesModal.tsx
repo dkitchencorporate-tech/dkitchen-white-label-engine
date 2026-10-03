@@ -101,7 +101,7 @@ export default function KioskNotesModal({ product, onClose, onAdd }: KioskNotesM
           </div>
           <button
             onClick={handleAddToCart}
-            className="px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-display font-black text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center gap-2 bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:from-brand-accent hover:to-brand-primary text-white shadow-[0_0_20px_rgba(245, 158, 11,0.3)] hover:shadow-[0_0_30px_rgba(245, 158, 11,0.5)] shrink-0"
+            className="px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-display font-black text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center gap-2 bg-gradient-to-r from-brand-primary to-brand-primaryHover hover:from-brand-accent hover:to-brand-primary text-white shadow-[0_0_20px_rgb(var(--brand-primary-rgb)/0.3)] hover:shadow-[0_0_30px_rgb(var(--brand-primary-rgb)/0.5)] shrink-0"
           >
             {t('add_to_order')}
           </button>

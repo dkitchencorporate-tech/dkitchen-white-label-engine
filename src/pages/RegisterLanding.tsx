@@ -1,3 +1,5 @@
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { api } from '../lib/apiClient';
 import { useAuthStore } from '../store/authStore';
@@ -120,9 +122,7 @@ export default function RegisterLanding() {
   // enhancement puro — si GSAP no cargó (CDN caído, bloqueado, etc.) la página sigue 100%
   // funcional y legible, solo sin el movimiento extra.
   useEffect(() => {
-    const gsap = window.gsap;
-    const ScrollTrigger = window.ScrollTrigger;
-    if (!gsap || !ScrollTrigger || !rootRef.current) return;
+    if (!rootRef.current) return;
 
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
