@@ -14,5 +14,6 @@
     "noEmit": true,
     "resolveJsonModule": true
   },
-  "include": ["api/**/*.ts", "scripts/**/*.ts", "tests/**/*.ts"]
+  "include": ["api/**/*.ts", "scripts/**/*.ts", "tests/**/*.ts", "e2e/**/*.ts", "playwright.config.ts"],
+  "exclude": ["tests/frontend.test.ts"]
 }

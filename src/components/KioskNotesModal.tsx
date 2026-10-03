@@ -21,7 +21,7 @@ export default function KioskNotesModal({ product, onClose, onAdd }: KioskNotesM
 
   const handleAddToCart = () => {
     onAdd({
-      productId: typeof product.id === 'number' ? product.id : 0,
+      productId: String(product.id),
       name: product.name,
       price: product.price,
       quantity,

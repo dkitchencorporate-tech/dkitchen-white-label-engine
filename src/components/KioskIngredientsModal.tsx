@@ -39,7 +39,7 @@ export default function KioskIngredientsModal({ product, onClose, onAdd }: Ingre
     if (missingGroup) return;
     const extrasText = chosen.length > 0 ? ` + ${chosen.map(o => o.name).join(', ')}` : '';
     onAdd({
-      productId: product.id,
+      productId: String(product.id),
       name: `${product.name}${extrasText}`,
       price: finalPrice,
       quantity: 1,

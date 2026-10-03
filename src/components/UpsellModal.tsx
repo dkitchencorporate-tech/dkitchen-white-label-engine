@@ -97,7 +97,7 @@ export default function UpsellModal({ onClose, onProceedToCheckout }: UpsellModa
                   {tDynamic(category.category)}
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {category.items.map(item => {
+                  {category.items.map((item: any) => {
                     const prod = item.products;
                     const isAdded = addedItems.includes(prod.id);
                     return (

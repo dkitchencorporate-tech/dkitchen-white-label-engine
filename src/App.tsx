@@ -32,7 +32,7 @@ import { isAnyModalOpen, wasModalPoppedRecently } from './utils/useHardwareBack'
 // no recargar dos veces en menos de 10 segundos — así, si el fallo fuera real y no un
 // simple desfase de despliegue, se deja de reintentar y se muestra el error de verdad
 // en vez de entrar en un bucle de recargas.
-function lazyWithReload<T extends { default: any }>(importer: () => Promise<T>) {
+function lazyWithReload<T extends { default: React.ComponentType<any> }>(importer: () => Promise<T>) {
   return lazy(() =>
     importer().catch((error) => {
       const key = 'app-chunk-reload-at';

@@ -34,14 +34,22 @@ npm run dev         # PWA en http://localhost:5173 (redirige /api a la API local
 BRAND=otra npm run dev   # la misma PWA con la identidad de brands/otra
 ```
 
-## 3. Pruebas
+## 3. Calidad y pruebas
 
 ```bash
-npm run typecheck:api   # TypeScript estricto de la API, scripts y pruebas
-npm test                # Integración contra Postgres real (recrea motor_test desde cero)
+npm run lint        # oxlint (errores bloquean; avisos se van reduciendo)
+npm run typecheck   # TypeScript estricto del frontend y de la API
+npm test            # Vitest: lógica del frontend + integración de la API contra Postgres real
+npm run build       # compilación de la marca indicada en BRAND (demo por defecto)
+npm run verificar   # todo lo anterior seguido
+npm run test:e2e    # Playwright: carta → carrito → pedido → panel, en móvil
 ```
 
-Las pruebas usan `TEST_DATABASE_URL` (dueño) y `TEST_API_DATABASE_URL` (rol `motor_api`). Si no se definen, usan el Postgres local de arriba.
+- Las pruebas de API usan `TEST_DATABASE_URL` (dueño) y `TEST_API_DATABASE_URL` (rol `motor_api`) y recrean `motor_test` desde cero.
+- Las de punta a punta usan `E2E_DATABASE_URL` y `E2E_API_DATABASE_URL` (base `motor_e2e`). Arrancan solas la API (puerto 3102) y Vite (5174), siembran la marca demo y crean un administrador con contraseña aleatoria que solo vive en `test-results/` (ignorado por git).
+- Si no se definen, todas usan el Postgres local de arriba (`CREATE DATABASE motor_test; CREATE DATABASE motor_e2e;`).
+- En este contenedor, Chromium ya está instalado: `PW_CHROMIUM_PATH=/opt/pw-browsers/chromium npm run test:e2e`. En otra máquina: `npx playwright install chromium`.
+- **CI** (`.github/workflows/ci.yml`): cada PR ejecuta lint, tipos, pruebas, compilación y punta a punta contra un Postgres 16 efímero. La contraseña del rol de la API se genera al azar en cada ejecución.
 
 ## 4. Producción (Neon + Vercel)
 

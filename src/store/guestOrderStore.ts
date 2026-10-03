@@ -4,7 +4,7 @@ import { api } from '../lib/apiClient';
 
 export interface GuestOrder {
   id: string;
-  total_amount: number;
+  total: number;
   status: string;
   delivery_method: string;
   estimated_ready_at?: string;

@@ -389,7 +389,7 @@ export default function AdminOrders() {
                         </span>
                         <span className="text-zinc-400">•</span>
                         <span className="text-zinc-500 font-mono">{new Date(order.created_at).toLocaleTimeString('es-ES', {hour:'2-digit', minute:'2-digit'})}</span>
-                        {order.discount_applied > 0 && <span className="text-amber-700 font-bold ml-1">🎫 -{order.discount_applied}€ VIP</span>}
+                        {order.discount > 0 && <span className="text-amber-700 font-bold ml-1">🎫 -{order.discount}€ VIP</span>}
                         {order.status === 'cancelled' && <span className="text-red-500 font-bold ml-1">{t('cancelled')}</span>}
                       </div>
                     </div>
@@ -397,7 +397,7 @@ export default function AdminOrders() {
 
                   <div className="flex items-center justify-between sm:justify-end gap-5 sm:w-auto w-full">
                     <div className="text-right">
-                      <span className="block text-xl font-display font-black text-amber-600 leading-none">{order.total_amount}€</span>
+                      <span className="block text-xl font-display font-black text-amber-600 leading-none">{Number(order.total || 0).toFixed(2).replace(".", ",")} €</span>
                       <span className="text-[10px] text-zinc-400 uppercase tracking-widest font-bold">Total</span>
                     </div>
                     <svg className={`w-5 h-5 text-zinc-400 transition-transform duration-200 ${isExpanded ? 'rotate-180 text-zinc-700' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -440,10 +440,10 @@ export default function AdminOrders() {
                             );
                           })}
                           
-                          {order.discount_applied > 0 && (
+                          {order.discount > 0 && (
                             <div className="flex justify-between text-xs font-bold border-t border-zinc-200 pt-2 text-amber-700">
                               <span>Descuento Club VIP aplicado:</span>
-                              <span>-{order.discount_applied}€</span>
+                              <span>-{order.discount}€</span>
                             </div>
                           )}
                         </div>

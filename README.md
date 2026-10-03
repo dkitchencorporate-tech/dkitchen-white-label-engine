@@ -2,7 +2,7 @@
 
 Motor de replicación de PWAs para hostelería (restaurante, bar, dark kitchen, dark store): carta, pedidos a domicilio y recogida, kiosko/TPV de mostrador, panel de gestión y fidelización. El código se reutiliza; la identidad visual de cada marca es única.
 
-> Estado: en pleno pulido (Fases 1A y 1B completadas: API y base de datos nuevas; motor separado de la marca). Plan y decisiones en `docs/ANALISIS_PRODUCTO.md`; estado vivo en `ESTADO_PROYECTO.md`.
+> Estado: en pleno pulido (Fases 1A, 1B y 1C completadas: API y base de datos nuevas, motor separado de la marca, calidad y CI). Plan y decisiones en `docs/ANALISIS_PRODUCTO.md`; estado vivo en `ESTADO_PROYECTO.md`.
 
 ## Arquitectura
 
@@ -12,7 +12,7 @@ Motor de replicación de PWAs para hostelería (restaurante, bar, dark kitchen, 
 | Marcas | `brands/<slug>/` (configuración validada con zod, tema, huecos, recursos, semilla); `BRAND=<slug>` al compilar |
 | API | Funciones de Vercel en TypeScript estricto (`api/*.ts`), validación con zod |
 | Datos | PostgreSQL (Neon) con migraciones numeradas (`db/migraciones/`), RLS en todas las tablas y lógica de negocio en funciones `SECURITY DEFINER` |
-| Pruebas | Vitest contra Postgres real (`tests/`) |
+| Calidad | TypeScript estricto, oxlint, Vitest contra Postgres real (`tests/`), Playwright de punta a punta (`e2e/`) y CI en cada PR |
 
 **Principios:**
 - El precio lo calcula siempre el servidor.

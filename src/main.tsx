@@ -25,10 +25,7 @@ if (window.location.pathname.startsWith('/admin')) {
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
-      .then(reg => {
-        console.log('SW registered!', reg.scope);
-        reg.update().catch(() => {});
-      })
+      .then(reg => { reg?.update().catch(() => {}); })
       .catch(err => console.error('SW registration failed:', err));
   });
 }

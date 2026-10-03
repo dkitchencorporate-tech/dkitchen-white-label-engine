@@ -28,7 +28,7 @@ const OrderHistoryModal = ({ user, onClose, orders }: { user: any, onClose: () =
                   <p className="text-xs text-zinc-500 mt-1 uppercase tracking-wider font-semibold">{order.status} • {order.delivery_method}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xl font-black text-amber-600">{Number(order.total_amount).toFixed(2)}€</p>
+                  <p className="text-xl font-black text-amber-600">{Number(order.total).toFixed(2)}€</p>
                   <p className="text-[10px] text-zinc-400 mt-0.5 font-mono">#{order.id.slice(0, 8)}</p>
                 </div>
               </div>
@@ -216,13 +216,13 @@ export default function AdminAnalytics() {
   const peakBucket = hourBuckets.reduce((max, b) => (b.count > max.count ? b : max), hourBuckets[0]);
 
   const avgTicketAll = validOrders.length > 0
-    ? validOrders.reduce((sum, o) => sum + Number(o.total_amount || 0), 0) / validOrders.length
+    ? validOrders.reduce((sum, o) => sum + Number(o.total || 0), 0) / validOrders.length
     : 0;
   const sevenDaysAgo = new Date();
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
   const ordersLast7 = validOrders.filter(o => new Date(o.created_at) >= sevenDaysAgo);
   const avgTicketLast7 = ordersLast7.length > 0
-    ? ordersLast7.reduce((sum, o) => sum + Number(o.total_amount || 0), 0) / ordersLast7.length
+    ? ordersLast7.reduce((sum, o) => sum + Number(o.total || 0), 0) / ordersLast7.length
     : 0;
 
   const usersWithOrders = users.filter(u => (u.orderHistory?.length || 0) > 0);
@@ -261,7 +261,7 @@ export default function AdminAnalytics() {
     const rows = users.map(u => {
       const date = new Date(u.created_at).toLocaleDateString('es-ES');
       const orderCount = u.orderHistory?.length || 0;
-      const totalSpent = (u.orderHistory || []).reduce((sum: number, o: any) => sum + Number(o.total_amount || 0), 0);
+      const totalSpent = (u.orderHistory || []).reduce((sum: number, o: any) => sum + Number(o.total || 0), 0);
       return [
         u.id.slice(0, 8),
         u.full_name || '',

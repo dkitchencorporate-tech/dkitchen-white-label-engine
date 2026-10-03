@@ -221,7 +221,7 @@ export default function OrderTracking({ onBack }: { onBack: () => void }) {
                         )}
                       </div>
                       <div className="text-right">
-                        <span className="text-2xl font-black text-zinc-900">{activeOrder.total_amount}€</span>
+                        <span className="text-2xl font-black text-zinc-900">{Number(activeOrder.total || 0).toFixed(2).replace(".", ",")} €</span>
                         <p className="text-xs text-gray-500 font-medium uppercase mt-1">{activeOrder.delivery_method === 'delivery' ? t('delivery_method_home') : t('delivery_method_pickup')}</p>
                       </div>
                     </div>
@@ -317,7 +317,7 @@ export default function OrderTracking({ onBack }: { onBack: () => void }) {
                         <span className="text-[10px] font-mono text-gray-500 uppercase bg-zinc-50 border border-zinc-200 px-2 py-1 rounded">ID: {order.id.slice(0,8)}</span>
                       </div>
                     </div>
-                    <span className="text-lg font-bold text-zinc-900">{order.total_amount}€</span>
+                    <span className="text-lg font-bold text-zinc-900">{Number(order.total || 0).toFixed(2).replace(".", ",")} €</span>
                   </div>
                   
                   <div className="mt-4 space-y-1">

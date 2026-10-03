@@ -1,4 +1,4 @@
-﻿import { useCartStore } from '../store/cartStore';
+import { useCartStore } from '../store/cartStore';
 import { useI18nStore } from '../store/i18nStore';
 
 interface CartBarProps {
@@ -16,8 +16,10 @@ export default function CartBar({ onOpenUpsell }: CartBarProps) {
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <div 
-      className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-40 bg-zinc-950/95 backdrop-blur-xl border border-zinc-700/80 rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.6),0_0_25px_rgb(var(--brand-primary-rgb)/0.25)] flex items-center justify-between p-2 pl-3 sm:pl-4 cursor-pointer hover:scale-[1.02] active:scale-[0.99] transition-all w-[calc(100%-2rem)] max-w-[430px]"
+    <button
+      type="button"
+      aria-label={`${t('process_order') || 'Tramitar'} · ${totalItems} · ${total.toFixed(2).replace('.', ',')} €`}
+      className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-40 bg-zinc-950/95 backdrop-blur-xl border border-zinc-700/80 rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.6),0_0_25px_rgb(var(--brand-primary-rgb)/0.25)] flex items-center justify-between p-2 pl-3 sm:pl-4 cursor-pointer hover:scale-[1.02] active:scale-[0.99] transition-all w-[calc(100%-2rem)] max-w-[430px] text-left"
       onClick={onOpenUpsell}
     >
       {/* Left: Cart info & Price */}
@@ -52,6 +54,6 @@ export default function CartBar({ onOpenUpsell }: CartBarProps) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
         </svg>
       </div>
-    </div>
+    </button>
   );
 }

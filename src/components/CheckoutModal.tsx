@@ -224,7 +224,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
               <p className="text-gray-500 text-xs">{BRAND_CONFIG.slogan}</p>
             </div>
             <button
-              onClick={() => { setIsPickupSuccess(false); onSuccess({ id: pickupOrderId, total_amount: finalTotal, clientName: clientName }, !user); }}
+              onClick={() => { setIsPickupSuccess(false); onSuccess({ id: pickupOrderId, total: finalTotal, clientName: clientName }, !user); }}
               className="w-full bg-brand-primaryHover hover:bg-brand-primary text-white font-bold py-4 rounded-2xl uppercase tracking-wider text-sm transition-all shadow-[0_0_25px_rgb(var(--brand-primary-rgb)/0.3)] hover:scale-105"
             >
               Perfecto, ¡gracias!

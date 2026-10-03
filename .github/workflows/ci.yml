@@ -1,0 +1,89 @@
+# Integración continua: cada PR y cada push a main pasan lint, tipos,
+# pruebas (contra Postgres real), compilación y pruebas de punta a punta.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  calidad:
+    name: Lint, tipos, pruebas y compilación
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16
+        # Contenedor efímero de CI: la contraseña solo existe durante la ejecución.
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      BRAND: demo
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Preparar bases de datos y rol de la API
+        run: |
+          CLAVE_API="$(openssl rand -hex 24)"
+          echo "::add-mask::$CLAVE_API"
+          psql -v ON_ERROR_STOP=1 -c "CREATE ROLE motor_app NOLOGIN NOBYPASSRLS;"
+          psql -v ON_ERROR_STOP=1 -c "CREATE ROLE motor_api LOGIN PASSWORD '$CLAVE_API' IN ROLE motor_app;"
+          psql -v ON_ERROR_STOP=1 -c "CREATE DATABASE motor_test;"
+          psql -v ON_ERROR_STOP=1 -c "CREATE DATABASE motor_e2e;"
+          {
+            echo "TEST_DATABASE_URL=postgres://postgres:postgres@localhost:5432/motor_test"
+            echo "TEST_API_DATABASE_URL=postgres://motor_api:$CLAVE_API@localhost:5432/motor_test"
+            echo "E2E_DATABASE_URL=postgres://postgres:postgres@localhost:5432/motor_e2e"
+            echo "E2E_API_DATABASE_URL=postgres://motor_api:$CLAVE_API@localhost:5432/motor_e2e"
+          } >> "$GITHUB_ENV"
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Tipos (frontend y API)
+        run: npm run typecheck
+
+      - name: Pruebas unitarias y de API
+        run: npm test
+
+      - name: Compilación
+        run: npm run build
+
+      - name: Navegador para las pruebas de punta a punta
+        run: npx playwright install --with-deps chromium
+
+      - name: Pruebas de punta a punta
+        run: npm run test:e2e
+
+      - name: Informe de Playwright
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: informe-playwright
+          path: |
+            playwright-report/
+            test-results/
+            !test-results/.e2e-admin.json
+          retention-days: 7
