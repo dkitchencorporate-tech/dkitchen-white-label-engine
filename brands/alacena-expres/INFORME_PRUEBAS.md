@@ -59,8 +59,8 @@ Todos los ataques de la guía 06 están bloqueados:
 ## 5. Fotos
 
 - **Generador:** Juggernaut XL vía AI Horde, gratis.
-- **Estado:** generación en curso (17 aprobadas de 88 en el momento de este informe; 22 revisadas).
-- **Rechazadas y repetidas hasta ahora:** 5 de 22 revisadas (la ventresca parecía atún crudo; las otras 4, abajo):
+- **Estado:** generación en curso (30 aprobadas de 88; 42 revisadas).
+- **Rechazadas hasta ahora:** 15 de 42 revisadas. Los 8 vinos, por texto inventado en la etiqueta: los productos con etiqueta pasan a los agentes locales (`docs/entregas/FOTOS_PARA_AGENTES_LOCALES_ALACENA.md`). Mejillones y berberechos, por salir con concha. La ventresca, por parecer cruda. Y estas 4:
   - latas con una marca inventada;
   - un salchichón que parecía jamón;
   - una sobrasada glaseada;

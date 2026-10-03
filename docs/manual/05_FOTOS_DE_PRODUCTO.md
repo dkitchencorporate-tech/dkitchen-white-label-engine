@@ -67,9 +67,13 @@ El proveedor se elige según las variables del entorno; las claves nunca van al 
 4. Apunta en el PR cuántas se rechazaron y por qué (ejemplo de Alacena, primera tanda: 4 de 17, por latas con marca inventada, un salchichón que parecía jamón, una sobrasada glaseada y una tabla de quesos con carne).
 5. **Solo se suben al repo las fotos aprobadas.**
 
-## 5. Si el generador rechaza algún producto (por ejemplo, alcohol)
+## 5. Productos con etiqueta (botellas, latas) o que el generador rechace
 
-Juggernaut XL vía AI Horde no ha rechazado bebidas alcohólicas. Si algún proveedor lo hiciera, se copian esas entradas de `imagenes.json` (sujeto y prompt) a una lista en el PR para que karc0 genere o consiga esas fotos y las entregue. Se suben con el mismo nombre de archivo.
+Juggernaut XL vía AI Horde **escribe texto inventado en etiquetas de botellas y latas** aunque la indicación pida etiquetas lisas (comprobado en Alacena: los 8 vinos rechazados). Por eso:
+1. Se generan aquí solo los productos **sin etiqueta**.
+2. Los productos con etiqueta (botellas, latas, packs de bebidas y cestas con botellas) se entregan a los agentes locales de karc0 en un mensaje descargable, con el nombre, el archivo, el estilo y la indicación de cada foto. Modelo: `docs/entregas/FOTOS_PARA_AGENTES_LOCALES_ALACENA.md`.
+3. Ellos los generan con un modelo que haga etiquetas limpias (o consiguen fotos reales) y los entregan por GitHub o Drive con el mismo nombre de archivo.
+4. Se revisan con las mismas reglas antes de publicarlos.
 
 ## 6. Comprobación final
 
