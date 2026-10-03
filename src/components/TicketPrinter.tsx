@@ -148,20 +148,20 @@ export default function TicketPrinter({ order }: TicketPrinterProps) {
 
       {/* 6. TOTALES Y FORMA DE COBRO */}
       <div className="ticket-total text-right mb-3">
-        {order.discount_applied > 0 && (
+        {order.discount > 0 && (
           <>
             <p className="text-xs font-bold uppercase">
-              Subtotal: {(order.total_amount + order.discount_applied).toFixed(2)}€
+              Subtotal: {(order.total + order.discount).toFixed(2)}€
             </p>
             <p className="text-xs font-bold uppercase text-gray-700">
-              Descuento Club VIP: -{order.discount_applied.toFixed(2)}€
+              Descuento Club VIP: -{order.discount.toFixed(2)}€
             </p>
           </>
         )}
 
         <div className="border-t-2 border-black pt-1 mt-1">
           <p className="text-2xl font-black uppercase">
-            TOTAL: {order.total_amount?.toFixed(2)}€
+            TOTAL: {order.total?.toFixed(2)}€
           </p>
         </div>
 

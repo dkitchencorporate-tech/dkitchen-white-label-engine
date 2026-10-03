@@ -13,3 +13,5 @@ scratch/
 
 .claude/.coste-sesion.json
 !.env.example
+test-results/
+playwright-report/

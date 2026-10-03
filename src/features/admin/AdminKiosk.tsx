@@ -333,12 +333,10 @@ export default function AdminKiosk() {
     }
 
     addItem({
-      id: `${product.id}-${Date.now()}`,
-      productId: product.id,
+      productId: String(product.id),
       name: product.name,
       price: product.price,
       quantity: 1,
-      image: (product as any).image_url || null,
       extras: [],
       notes: '',
       size: 'normal'
