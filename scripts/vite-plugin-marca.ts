@@ -17,9 +17,9 @@ const TIPOS: Record<string, string> = {
 
 const escapar = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c] as string);
 
-export async function cargarMarca(slug: string): Promise<{ dir: string; brand: BrandConfig }> {
+export async function cargarMarca(slug: string, raiz = process.cwd()): Promise<{ dir: string; brand: BrandConfig }> {
   if (!/^[a-z0-9-]+$/.test(slug)) throw new Error(`BRAND no válido: ${slug}`);
-  const dir = resolve(process.cwd(), 'brands', slug);
+  const dir = resolve(raiz, 'brands', slug);
   const archivo = join(dir, 'brand.config.ts');
   if (!existsSync(archivo)) throw new Error(`No existe la marca «${slug}» (${archivo}).`);
   const mod = await tsImport(archivo, import.meta.url);
