@@ -65,7 +65,7 @@ El proveedor se elige según las variables del entorno; las claves nunca van al 
    - un estilo distinto al resto.
 3. Para cada rechazada: corrige su `sujeto` en `imagenes.json` (más concreto), apártala del repo y repítela con `--solo <slug> --forzar`.
 4. Apunta en el PR cuántas se rechazaron y por qué (ejemplo de Alacena, primera tanda: 4 de 17, por latas con marca inventada, un salchichón que parecía jamón, una sobrasada glaseada y una tabla de quesos con carne).
-5. **Solo se suben al repo las fotos aprobadas.**
+5. **Solo se suben al repo las fotos aprobadas**, añadiéndolas **una por una** (`git add <archivo>`). Nunca con `git add -A` mientras haya una generación en marcha: se colarían fotos sin revisar. En Alacena pasó con 3: el fino, el bonito y los piquillos, que se detectaron y retiraron.
 
 ## 5. Productos con etiqueta (botellas, latas) o que el generador rechace
 
