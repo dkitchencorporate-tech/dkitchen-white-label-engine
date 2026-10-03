@@ -1,0 +1,33 @@
+{
+  "$comentario": "Qué es del motor. Estas rutas solo las cambia el motor: en un repo de cliente se sustituyen enteras al actualizar y el CI rechaza ediciones locales. Todo lo demás (brands/<slug>/, cliente.json…) es del cliente y la sincronización nunca lo toca.",
+  "version": "1.0.0",
+  "rutas": [
+    ".env.example",
+    ".github",
+    ".gitignore",
+    ".oxlintrc.json",
+    "README.md",
+    "api",
+    "brands/demo",
+    "db",
+    "docs",
+    "e2e",
+    "index.html",
+    "motor.json",
+    "package-lock.json",
+    "package.json",
+    "playwright.config.ts",
+    "postcss.config.js",
+    "public",
+    "scripts",
+    "src",
+    "tailwind.config.js",
+    "tests",
+    "tsconfig.api.json",
+    "tsconfig.json",
+    "tsconfig.node.json",
+    "vercel.json",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ]
+}

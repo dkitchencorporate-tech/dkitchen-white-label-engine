@@ -44,6 +44,11 @@ jobs:
 
       - run: npm ci
 
+      # En los repos de cliente, los archivos del motor no se editan: se actualizan.
+      - name: Motor intacto (solo repos de cliente)
+        if: hashFiles('cliente.json') != ''
+        run: npm run motor -- verificar
+
       - name: Preparar bases de datos y rol de la API
         run: |
           CLAVE_API="$(openssl rand -hex 24)"

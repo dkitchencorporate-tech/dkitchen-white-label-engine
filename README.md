@@ -2,7 +2,7 @@
 
 Motor de replicación de PWAs para hostelería (restaurante, bar, dark kitchen, dark store): carta, pedidos a domicilio y recogida, kiosko/TPV de mostrador, panel de gestión y fidelización. El código se reutiliza; la identidad visual de cada marca es única.
 
-> Estado: en pleno pulido (Fases 1A, 1B y 1C completadas: API y base de datos nuevas, motor separado de la marca, calidad y CI). Plan y decisiones en `docs/ANALISIS_PRODUCTO.md`; estado vivo en `ESTADO_PROYECTO.md`.
+> Estado: en pleno pulido (motor v1.0.0: Fases 1A, 1B, 1C y 2 completadas; API y base de datos nuevas, motor separado de la marca, calidad y CI, sincronización con los clientes). Plan y decisiones en `docs/ANALISIS_PRODUCTO.md`; estado vivo en `ESTADO_PROYECTO.md`.
 
 ## Arquitectura
 
@@ -44,3 +44,4 @@ Variables de entorno: ver [`.env.example`](.env.example). Solo lleva nombres, nu
 - `docs/DESARROLLO_LOCAL.md`: desarrollo, pruebas y despliegue.
 - `docs/NUEVA_MARCA.md`: alta de una marca nueva con `npm run nueva-marca`.
 - `docs/PAGOS_Y_HARDWARE.md`: capas de pagos y hardware (adaptadores).
+- `docs/INFORME_SINCRONIZACION.md`: cómo llegan las versiones del motor a cada cliente (`npm run motor`).

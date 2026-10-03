@@ -10,9 +10,9 @@
 
 *Actualizado: 3 de octubre de 2026.*
 
-- **Fase en curso:** 1A y 1B fusionadas (PR #2 y #3). **Fase 1C terminada** en `nube/fase-1c-calidad` (PR #4 pendiente). Siguiente: Fase 2 (prototipo de sincronización motor → clientes).
+- **Fase en curso:** 1A, 1B y 1C fusionadas (PR #2, #3 y #4). **Fase 2 terminada** en `nube/fase-2-sincronizacion` (PR #5 pendiente): falta que karc0 elija la vía de sincronización (recomendada la (a)). Con ella se cierra la base aprobada.
 - **Alcance aprobado (A9–A11):** base pulida 1A + 1B + 1C + 2, con la API reescrita desde cero y solo la plantilla neutra (≈ 51 €).
-- **Presupuesto:** 100 € de crédito; ≈ 47 € gastados hasta ahora (estimación).
+- **Presupuesto:** 100 € de crédito; ≈ 53 € gastados hasta ahora (estimación).
 - **Motor tras la 1A:**
   - API en TypeScript estricto + zod (`api/*.ts`).
   - Migraciones numeradas (`db/migraciones/0001–0003`) con RLS en todas las tablas y precio, opciones, horarios, puntos e idempotencia calculados en SQL.
@@ -32,6 +32,12 @@
   - 29 pruebas Vitest (API + lógica del frontend) y 2 de punta a punta con Playwright en móvil (carta → extras → carrito → pedido → panel; credenciales erróneas);
   - CI en GitHub Actions en cada PR con Postgres 16 efímero;
   - las pruebas destaparon y se corrigieron: el total del pedido no se veía en el panel ni en el seguimiento (campos `total_amount`/`discount_applied` antiguos) y la barra del carrito no era un botón accesible.
+- **Motor tras la 2 (v1.0.0):**
+  - `motor.json` (rutas y versión del motor) y `motor.huellas.json` (SHA-256 por archivo en cada versión publicada);
+  - `npm run motor -- version | publicar | verificar | actualizar | crear-cliente`;
+  - flujo «Actualizar motor» para repos de cliente (rama `motor/vX.Y.Z` + PR) y comprobación «motor intacto» en su CI;
+  - 6 pruebas con repos simulados; medidas: alta de cliente 1,3 s, compilado en ~10 s;
+  - informe comparativo en `docs/INFORME_SINCRONIZACION.md`. El paquete npm compila solo con apaños y deja sin resolver la API en Vercel, las migraciones y las pruebas.
 - **Pendiente para fases siguientes:**
   - 2FA bien hecho con pantalla de código → futuro;
   - fuentes de Google autoalojadas (privacidad) y adaptadores reales de pago y hardware → fases siguientes.
@@ -48,6 +54,7 @@
 
 *(La más reciente arriba; 1–3 líneas por tarea.)*
 
+- **03-oct-2026 · Fase 2.** Prototipo de las dos vías de sincronización. (a) copia + PR implementada (`scripts/motor.ts`, `motor.json`, huellas, flujos de CI) y probada con repos simulados; (b) paquete npm probado con `npm pack` (compila con 3 apaños; quedan abiertas la API en Vercel, las migraciones y las pruebas). Informe y recomendación (a) en `docs/INFORME_SINCRONIZACION.md`. Motor v1.0.0. **Siguiente:** decisión de karc0 y prueba con repos reales de GitHub.
 - **03-oct-2026 · Fase 1C.** TS estricto en el frontend, oxlint (TypeScript 7 no tiene API JS para typescript-eslint), pruebas del frontend, Playwright de punta a punta y CI (`.github/workflows/ci.yml`). Corregidos el total invisible en panel/seguimiento y la barra del carrito sin rol de botón. **Siguiente:** Fase 2.
 - **03-oct-2026 · Fase 1B.** Separación motor/marca (`brands/demo`, esquema zod, huecos, preajustes), plugin de Vite de marca, Tailwind compilado + CSP, `nueva-marca`, capas de pagos y hardware, limpieza de restos (modales de salsas, geovalla fija en Madrid, claves `sff_`, colores ámbar, textos de otras marcas). Comparación de capturas antes/después sin regresiones (corrige el botón «Añadir» invisible y el diseño de escritorio). **Siguiente:** Fase 1C.
 - **03-oct-2026 · Fase 1A.** API reescrita (TS + zod), migraciones 0001–0003 con RLS y lógica en SQL, semilla demo, crear-admin, servidor local, 18 pruebas de integración en verde, frontend adaptado (opciones desde la carta, checkout con hora programada e idempotencia, kiosko marcado como tal). Corregido en revisión: el trigger de perfiles revertía el canje de puntos. **Siguiente:** Fase 1B.
@@ -67,6 +74,8 @@
 
 ## 3. Decisiones
 
+- **03-oct-2026 · El motor se versiona por su cuenta desde la v1.0.0** (`motor.json`, sincronizado con `package.json`). *Porqué:* la API reescrita rompe la compatibilidad con las versiones 2.x/3.x anteriores, y los clientes necesitan un número claro con el que pedir actualizaciones.
+- **03-oct-2026 · Lo que es del motor lo define una lista explícita de rutas; todo lo demás es del cliente.** *Porqué:* así los archivos internos del padre (estado, arranque del agente, `.claude/`) nunca llegan a un cliente, y lo que el cliente añada fuera del motor no se pisa jamás.
 - **03-oct-2026 · oxlint en lugar de ESLint + typescript-eslint.** *Porqué:* el proyecto usa TypeScript 7 (nativo), que no expone la API de JavaScript que necesita typescript-eslint; oxlint es nativo, rápido y no depende de ella. Las reglas de corrección bloquean; las de estilo y del compilador de React avisan.
 - **03-oct-2026 · El frontend usa los nombres de la API nueva** (`total`, `discount`) en lugar de adaptarlos en el servidor. *Porqué:* un único contrato de datos, sin alias que mantener.
 - **03-oct-2026 · Marcas en `brands/<slug>/`, y el código del motor sigue en `src/`, `api/`, `db/` y `scripts/`.** *Porqué:* cumple el «toda la identidad sale de brands/<slug>» del arranque sin reubicar todo el código. La separación física `motor/` se decidirá con el prototipo de sincronización (Fase 2).

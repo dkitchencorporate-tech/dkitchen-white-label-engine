@@ -1,0 +1,78 @@
+# Repos de cliente: trae una versión publicada del motor (rama motor/vX.Y.Z del
+# repo padre) a la rama motor/vX.Y.Z de este repo y abre un PR. El CI del PR
+# comprueba lint, tipos, pruebas, compilación y punta a punta antes de fusionar.
+#
+# Secretos (solo nombres; los valores se configuran en GitHub):
+#   MOTOR_REPO_TOKEN  Lectura del repo del motor (token de grano fino, solo «Contents: read»).
+#   MOTOR_PR_TOKEN    Recomendado: token de grano fino de este repo con «Contents», «Pull requests»
+#                     y «Workflows» en escritura. Con el GITHUB_TOKEN por defecto, GitHub no lanza
+#                     el CI en el PR creado y rechaza las versiones que cambian .github/workflows.
+name: Actualizar motor
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Versión del motor (x.y.z)'
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      VERSION: ${{ inputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.MOTOR_PR_TOKEN || github.token }}
+
+      - name: Comprobar que es un repo de cliente y la versión
+        run: |
+          test -f cliente.json || { echo "::error::Este flujo solo se usa en repos de cliente (falta cliente.json)."; exit 1; }
+          [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "::error::Versión no válida: usa x.y.z."; exit 1; }
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Traer el motor
+        env:
+          MOTOR_REPO_TOKEN: ${{ secrets.MOTOR_REPO_TOKEN }}
+        run: |
+          git config user.name "dkitchen-motor[bot]"
+          git config user.email "motor@users.noreply.github.com"
+          ORIGEN="$(node -p "require('./cliente.json').origen")"
+          if [ -n "$MOTOR_REPO_TOKEN" ]; then
+            echo "::add-mask::$MOTOR_REPO_TOKEN"
+            # La credencial solo se aplica a la URL exacta del motor, y se retira al terminar.
+            CON_TOKEN="${ORIGEN/https:\/\/github.com\//https://x-access-token:${MOTOR_REPO_TOKEN}@github.com/}"
+            git config --local "url.${CON_TOKEN}.insteadOf" "$ORIGEN"
+          fi
+          set -o pipefail
+          npm run -s motor -- actualizar "$VERSION" | tee resumen.txt
+          git config --local --remove-section "url.${CON_TOKEN:-none}" 2>/dev/null || true
+
+      - name: Subir la rama y abrir el PR
+        env:
+          GH_TOKEN: ${{ secrets.MOTOR_PR_TOKEN || github.token }}
+        run: |
+          git push -u origin "motor/v$VERSION"
+          {
+            echo "Actualización automática del motor a la **v$VERSION**."
+            echo
+            echo '```'
+            cat resumen.txt
+            echo '```'
+            echo
+            echo "Antes de fusionar: CI en verde y, si hay migraciones nuevas, \`npm run db:migrar\` en el despliegue."
+          } > cuerpo.md
+          gh pr create --base main --head "motor/v$VERSION" --title "Motor v$VERSION" --body-file cuerpo.md

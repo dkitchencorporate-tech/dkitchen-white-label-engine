@@ -1,6 +1,6 @@
 {
   "name": "dkitchen-white-label-engine",
-  "version": "3.0.0",
+  "version": "1.0.0",
   "description": "Plantilla Matriz White-Label PWA para Restauración y Gastronomía por D-Kitchen Corporate Tech",
   "scripts": {
     "dev": "vite",
@@ -16,7 +16,8 @@
     "db:migrar": "tsx scripts/db-migrar.ts",
     "db:semilla": "tsx scripts/db-semilla.ts",
     "crear-admin": "tsx scripts/crear-admin.ts",
-    "nueva-marca": "tsx scripts/nueva-marca.ts"
+    "nueva-marca": "tsx scripts/nueva-marca.ts",
+    "motor": "tsx scripts/motor.ts"
   },
   "repository": {
     "type": "git",

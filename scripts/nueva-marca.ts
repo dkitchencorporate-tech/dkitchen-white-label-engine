@@ -10,7 +10,6 @@ import { parseArgs } from 'node:util';
 import { cargarMarca } from './vite-plugin-marca.js';
 import { PREAJUSTES, type Preajuste } from '../src/marca/preajustes.js';
 
-const RAIZ = resolve(process.cwd(), 'brands');
 
 function mezclar(hex: string, con: string, peso: number): string {
   const a = parseInt(hex.slice(1), 16);
@@ -29,10 +28,13 @@ export interface OpcionesMarca {
   logo?: string;
   icono?: string;
   ciudad?: string;
+  /** Raíz del repo donde se crea la marca (por defecto, el directorio actual). */
+  raiz?: string;
 }
 
 export async function crearMarca(o: OpcionesMarca): Promise<string> {
   if (!/^[a-z0-9-]{2,40}$/.test(o.slug)) throw new Error('El slug debe tener 2–40 caracteres: minúsculas, números y guiones.');
+  const RAIZ = resolve(o.raiz ?? process.cwd(), 'brands');
   if (o.slug === 'demo') throw new Error('«demo» es la plantilla; elige otro slug.');
   const destino = join(RAIZ, o.slug);
   if (existsSync(destino)) throw new Error(`Ya existe brands/${o.slug}.`);
@@ -95,7 +97,7 @@ export async function crearMarca(o: OpcionesMarca): Promise<string> {
     writeFileSync(join(destino, 'semilla.sql'), semilla);
 
     // Validación completa: esquema de la marca e iconos generables.
-    await cargarMarca(o.slug);
+    await cargarMarca(o.slug, resolve(RAIZ, '..'));
 
     writeFileSync(join(destino, 'CHECKLIST.md'), checklist(o.slug, o.nombre));
     return destino;
