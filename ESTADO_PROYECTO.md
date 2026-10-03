@@ -1,44 +1,42 @@
-# 🏭 ESTADO DE PROYECTO: DKITCHEN WHITE-LABEL ENGINE v3.1 (MOTOR MATRIZ ENTERPRISE)
+# ESTADO DEL PROYECTO — DKitchen White-Label Engine
 
-> **⚠️ PROTOCOLO DE ARRANQUE Y GATEKEEPER DE TOKENS (OBLIGATORIO):**  
-> 1. **Comprobación de Esfuerzo de Razonamiento:** Al iniciar la sesión, comprueba si el modelo está en modo `High` (Thinking profundo). Si está en `High` sin autorización expresa y previa de karc0, **adviértele de inmediato y recomiéndale bajar a modo Normal/Medium** para no quemar la cuota de tokens.  
-> 2. **Límite de Carpeta Estricto:** Esta sesión pertenece al Motor Matriz Marca Blanca. Prohibido salir de este directorio o contaminarlo con marcas comerciales activas.  
-> 3. **Flujo 100% Cloud (Celeron N4120 / 3.83 GB RAM):** Prohibida la compilación local (`npm run build`, `vite build`, `tsc`). Todo desarrollo se gestiona como plantilla base para clonar hacia nuevos proyectos.
-
----
-
-## 1. ESTADO ACTUAL REAL (28 de Septiembre de 2026)
-
-* **Repositorio Oficial en GitHub:** [`dkitchencorporate-tech/dkitchen-white-label-engine`](https://github.com/dkitchencorporate-tech/dkitchen-white-label-engine) (rama `main`)
-* **Naturaleza:** Motor Matriz y Plantilla 100% Agnóstica de Marca (White-Label) para clonación instantánea de PWAs gastronómicas en D-Kitchen y clientes B2B.
-* **Componentes 100% Desacoplados, Blindados y Auditados:**
-  - **Identidad Centralizada:** [`src/config/brandConfig.ts`](file:///src/config/brandConfig.ts) controla tipografía, paleta cromática HEX, logos, splash preloader, textos de club VIP y canales de contacto.
-  - **Autenticación Super Admin 2FA TOTP:** Soporte nativo RFC 6238 compatible con Google Authenticator / Authy en `api/account.js` (`verify-2fa`).
-  - **Verificación de Email Transaccional:** Landing [`src/pages/VerifyEmail.tsx`](file:///src/pages/VerifyEmail.tsx) agnóstica de marca y endpoints `/verificar-email` y `/api/account?action=verify-email`.
-  - **Seguridad P0001 & Fidelización VIP:** `process_checkout` en `schema_white_label.sql` valida precios reales en base de datos y exige email verificado para canjear puntos VIP.
-  - **Preloader Agnóstico:** Logotipo oficial configurable en runtime con transiciones suaves y prefetching de catálogo.
-  - **Impresión Térmica ESC/POS & TPV Kiosko:** Parametrizados dinámicamente con cabeceras de marca y prefijos de ticket.
-  - **Pasarela de Pagos SumUp & Datáfono:** Soporte estructural para cobros en línea, datáfono en reparto/recogida y efectivo.
-
-### Protocolo de Clonación para Nueva Marca (Menos de 1 Hora):
-1. Rellenar `src/config/brandConfig.ts` con la identidad de marca (Nombre, slogan, colores HEX, redes, límites).
-2. Generar y sustituir los SVGs de marca en `public/assets/brand/`.
-3. Ejecutar `schema_white_label.sql` en la nueva base de datos Neon.
-4. Desplegar en Vercel con las variables de `.env.example`.
+> **Arranque de sesión:** lee SOLO este archivo y continúa desde la entrada más reciente de la §2. Instrucciones permanentes en `ARRANQUE_AGENTE_NUBE.md`.
+> **Control de contexto:** statusline en `.claude/settings.json` → `.claude/statusline.cjs` (⚠ a partir de 200k tokens: documentar; ⛔ a partir de 300k: bitácora + `/clear`).
+> **Equipo local de karc0** (Celeron N4120, 3,8 GB de RAM): no compilar allí. El agente en la nube sí instala, compila y prueba.
 
 ---
 
-## 2. HISTORIAL COMPACTADO DE HITOS PREVIOS
+## 1. Estado actual real
 
-* **28-sep-2026 (v3.1.0):** Publicación del repositorio oficial `dkitchen-white-label-engine` en GitHub, renombrado del template de pizzerías a `template-pwa-pizzerias`, e incorporación del blindaje completo 2FA TOTP y verificación de email en el motor matriz.
-* **26-sep-2026 (v3.0.0):** Saneamiento profundo completado: eliminación de binarios residuales, purga de tokens residuales, estandarización monocromática neutra y tokenización de Tailwind con variables CSS.
-* **25-sep-2026 (v2.0.0):** Desacoplamiento formal de la arquitectura v3.0 a partir de la base probada de Seven Food Fries PWA.
+*Actualizado: 3 de octubre de 2026.*
+
+- **Fase en curso:** Fase 0 (auditoría) **entregada** en el PR desde `nube/fase-0-auditoria`. **A la espera de la aprobación de karc0** para empezar la siguiente (propuesta: Fase 0.5, parches críticos).
+- **Informe:** `docs/AUDITORIA_MOTOR.md` (arquitectura, restos de identidad, paridad con la plataforma QR, seguridad, mercado, plan de fases con coste).
+- **Situación del código en `main`:**
+  - `api/account.js` y `api/orders.js` **no cargan** (importan `query`, que `api/_lib/db.js` no exporta) → login, registro y checkout dan 500.
+  - El checkout fallaría igualmente: el frontend envía `product_id` y `process_checkout` lee `productId`.
+  - El esquema no tiene RLS y le faltan funciones que la API llama.
+  - Seguridad crítica: secreto TOTP y contraseñas maestras en el código, `verify-2fa` sin paso de contraseña, `migrate-schema` y `cleanup-simulated` públicos (ver §4 del informe).
+  - `vite build` pasa; `tsc` da 14 errores; sin tests, sin lint, sin CI.
+- **Identidad:** `src/config/brandConfig.ts` (sin validación) + restos de Seven Food Fries y D-Kitchen listados en el informe §2.
+- **Decisiones pendientes de karc0:** D1–D5 en `docs/AUDITORIA_MOTOR.md` §6.
 
 ---
 
-## 3. PROTOCOLO OBLIGATORIO DE CIERRE DE SESIÓN
+## 2. Bitácora
 
-Al recibir la orden de cierre de sesión por parte de karc0:
-1. Actualizar la sección `1. ESTADO ACTUAL REAL` reflejando mejoras o nuevos módulos en el motor base.
-2. Añadir una viñeta concisa (máx. 2 líneas) en `2. HISTORIAL COMPACTADO`.
-3. Guardar este archivo in-situ.
+*(La más reciente arriba; 1–3 líneas por tarea.)*
+
+- **03-oct-2026 · Fase 0 · Auditoría.** Auditoría completa sin tocar código de la aplicación: `docs/AUDITORIA_MOTOR.md`, statusline (`.claude/`), este archivo reestructurado. PR desde `nube/fase-0-auditoria`. **Siguiente:** esperar aprobación; si se aprueba la Fase 0.5, empezar por S1–S5 y el import `query` (rama `nube/fase-0-5-parches-criticos`).
+- **28-sep-2026 · v3.1.0** (histórico previo). Publicación del repositorio en GitHub, renombrado del template de pizzerías a `template-pwa-pizzerias`, 2FA TOTP y verificación de email en el motor.
+- **26-sep-2026 · v3.0.0** (histórico previo). Saneamiento: binarios residuales, tokens, paleta neutra y tokenización de Tailwind con variables CSS.
+- **25-sep-2026 · v2.0.0** (histórico previo). Desacoplamiento de la arquitectura v3.0 a partir de la PWA de Seven Food Fries.
+
+---
+
+## 3. Decisiones
+
+- **03-oct-2026 · Memoria del proyecto en este archivo.** Estructura §1 estado (se sobrescribe) / §2 bitácora / §3 decisiones, según `ARRANQUE_AGENTE_NUBE.md` §1. *Porqué:* que cada sesión nueva arranque leyendo un único archivo.
+- **03-oct-2026 · Statusline con umbrales absolutos** (200k/300k) calculados con `context_window.used_percentage × context_window_size` o, si falta, `current_usage`. *Porqué:* el porcentaje engaña con ventanas de contexto grandes; lo que importa es el volumen absoluto.
+- **03-oct-2026 · Propuesta de Fase 0.5 antes de la Fase 1** (pendiente de aprobación). *Porqué:* hay fallos de seguridad críticos explotables y el checkout está roto; neutralizar la marca sobre una base rota multiplicaría el riesgo en cada clon.
+- **03-oct-2026 · Estimación de coste en sesiones y millones de tokens.** *Porqué:* es lo que se puede medir desde el agente; karc0 lo convierte a euros según su plan.
