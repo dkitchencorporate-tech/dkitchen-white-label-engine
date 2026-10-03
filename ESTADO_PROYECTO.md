@@ -23,10 +23,10 @@
 - **Identidad:** `src/config/brandConfig.ts` (sin validación) + restos de Seven Food Fries y D-Kitchen listados en el informe §2.
 - **Contexto:** el motor no está desplegado; los fallos de la auditoría son defectos de plantilla que heredaría cada clon.
 - **Repos de DKitchen parcheados y FUSIONADOS** (03-oct): bokadipan-pwa#1, seven-food-fries-pwa#2, wing-boss-pwa#1.
-- **Néstor Pizzas** (cliente real): pantalla de prelanzamiento **solo en frontend** (sin tocar la BD, por decisión de karc0) en **nestor-pizzas-pwa#1** (abierto, basta con fusionar). Se quita poniendo `PRELAUNCH_ACTIVE = false` en `src/components/PreLaunchScreen.tsx` y desplegando. `/admin` y el kiosko siguen operativos. Cualquier otro cambio en Néstor requiere plan aprobado.
+- **Néstor Pizzas** (cliente real): pantalla de prelanzamiento **solo en frontend** (sin tocar la BD, por decisión de karc0) en **nestor-pizzas-pwa#1**, **fusionado y desplegado** en nestorpizzas.es (03-oct, bundle `index-CDBCH5ix.js` verificado). Se quita poniendo `PRELAUNCH_ACTIVE = false` en `src/components/PreLaunchScreen.tsx` y desplegando. `/admin` y el kiosko siguen operativos. Cualquier otro cambio en Néstor requiere plan aprobado.
 - **Accesos demos (03-oct):** admin único `dkitchen@dkitchencorporate.es` con contraseña propia por marca (entregadas a karc0 en el chat, nunca en el repo). Aplicado en Neon: Wing Boss y Seven Food Fries (resto de admins → usuario normal). Bokadipan pendiente de conectar su cuenta de Neon. Seven Food y Bokadipan necesitan fusionar su PR de seguridad para que el login de admin funcione.
 - **Documentos nuevos:** `docs/ACTUALIZACIONES_MARCAS.md` (qué hacer en cada marca tras el pulido) y `docs/PLAN_NESTOR_PRELANZAMIENTO.md` (pendiente de aprobación).
-- **Pendiente de karc0:** fusionar nestor-pizzas-pwa#1; conectar la cuenta de Neon de Bokadipan (para aplicar su contraseña); abrir sesión aparte para el análisis de Néstor (solo lectura, plan a aprobar). La Fase 1A arranca en cuanto se fusione el PR #1 (rama `nube/fase-1a-reparar-plantilla`).
+- **Pendiente de karc0:** conectar la cuenta de Neon de Bokadipan (para aplicar su contraseña); abrir sesión aparte para el análisis de Néstor (solo lectura, plan a aprobar). La Fase 1A arranca en cuanto se fusione el PR #1 (rama `nube/fase-1a-reparar-plantilla`).
 
 ---
 
@@ -34,6 +34,7 @@
 
 *(La más reciente arriba; 1–3 líneas por tarea.)*
 
+- **03-oct-2026 · Néstor en prelanzamiento.** PR #1 fusionado por encargo de karc0; Vercel lo desplegó en ~40 s. Su service worker no cachea, así que todos los clientes ven la pantalla. Para el lanzamiento: `PRELAUNCH_ACTIVE = false` y desplegar. **Siguiente:** Fase 1A del motor.
 - **03-oct-2026 · Fusiones y Néstor.** PR #1 del motor y los 3 PR de seguridad fusionados por encargo de karc0. Néstor: pantalla de prelanzamiento + bloqueo en servidor (trigger) en nestor-pizzas-pwa#1, probada con Playwright y Supabase simulado. **Siguiente:** Fase 1A.
 - **03-oct-2026 · Accesos, actualizaciones por marca y plan de Néstor.** Login de admin reparado en los PR de Seven Food y Bokadipan (el desvío de superadmin/2FA bloqueaba el panel); contraseñas nuevas aplicadas en Neon (Wing Boss, Seven Food). `docs/ACTUALIZACIONES_MARCAS.md` y `docs/PLAN_NESTOR_PRELANZAMIENTO.md`. Fusión del PR #1 por encargo de karc0. **Siguiente:** Fase 1A.
 - **03-oct-2026 · Parches de seguridad en repos de DKitchen.** cleanup-simulated solo admin, fuera migrate-schema, 2FA sin claves ni PIN maestro, relé de correo cerrado. PR: bokadipan-pwa#1, seven-food-fries-pwa#2, wing-boss-pwa#1. Néstor excluido. **Siguiente:** que karc0 fusione y empezar la Fase 1A.
