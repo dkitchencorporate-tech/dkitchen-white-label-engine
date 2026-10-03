@@ -1,4 +1,5 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
+import { useClub } from '../store/settingsStore';
 import { useHardwareBack } from '../utils/useHardwareBack';
 import { useAuthStore } from '../store/authStore';
 import { useI18nStore } from '../store/i18nStore';
@@ -12,6 +13,7 @@ interface ReviewModalProps {
 
 export default function ReviewModal({ isOpen, onClose, order }: ReviewModalProps) {
   useHardwareBack(isOpen, onClose);
+  const club = useClub();
   const [rating, setRating] = useState<number>(0);
   const [hoverRating, setHoverRating] = useState<number>(0);
   const [comment, setComment] = useState('');
@@ -23,7 +25,7 @@ export default function ReviewModal({ isOpen, onClose, order }: ReviewModalProps
   if (!isOpen || !order) return null;
 
   const isGuest = !user;
-  const pointsEarned = Math.floor(order.total / 10) * 4;
+  const pointsEarned = club.puntosPor(Number(order.total) || 0);
 
   const handleSubmit = async () => {
     setIsSaving(true);

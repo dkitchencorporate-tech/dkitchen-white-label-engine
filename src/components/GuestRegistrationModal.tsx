@@ -1,4 +1,5 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
+import { useClub } from '../store/settingsStore';
 import { api } from '../lib/apiClient';
 import { useAuthStore } from '../store/authStore';
 import { useGuestOrderStore } from '../store/guestOrderStore';
@@ -13,6 +14,7 @@ interface GuestRegistrationModalProps {
 }
 
 export default function GuestRegistrationModal({ isOpen, order, onSkip, onSuccess }: GuestRegistrationModalProps) {
+  const club = useClub();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +26,7 @@ export default function GuestRegistrationModal({ isOpen, order, onSkip, onSucces
 
   if (!isOpen || !order) return null;
 
-  const pointsEarned = Math.floor(order.total / 10) * 4;
+  const pointsEarned = club.puntosPor(Number(order.total) || 0);
 
   const handleSkip = () => {
     // Si saltan, se quedan como invitados. Guardamos la orden en su persistencia.

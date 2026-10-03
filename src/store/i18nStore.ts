@@ -45,7 +45,7 @@ const dictionary: Translations = {
   saturation_mode: { es: '⚠️ MODO SATURACIÓN ACTIVO: Los pedidos tardarán más de 1 hora. Disculpen las molestias.', en: '⚠️ HIGH DEMAND MODE: Orders will take over 1 hour. We apologize for the inconvenience.' },
   full_menu: { es: 'MENÚ COMPLETO', en: 'FULL MENU' },
   order_now: { es: 'PEDIR AHORA', en: 'ORDER NOW' },
-  vip_ticker_msg: { es: '🏆 CLUB VIP: gana 4 puntos por cada 10€ y canjea tu ración favorita GRATIS desde 25 puntos', en: '🏆 VIP CLUB: earn 4 points for every €10 and redeem your favorite order FREE from 25 points' },
+  vip_ticker_msg: { es: '🏆 CLUB VIP: gana {pts} puntos por cada 10 € y canjea tu favorito GRATIS desde {meta} puntos', en: '🏆 VIP CLUB: earn {pts} points for every €10 and redeem your favourite FREE from {meta} points' },
 
   // App Level
   splash_title: { es: 'Cargando experiencia...', en: 'Loading experience...' },
@@ -229,7 +229,7 @@ const dictionary: Translations = {
   unlocked: { es: 'Desbloqueado', en: 'Unlocked' },
   locked: { es: 'Bloqueado', en: 'Locked' },
   how_it_works_title: { es: '💡 ¿Cómo funciona?', en: '💡 How does it work?' },
-  how_it_works_desc: { es: 'Acumulas puntos automáticamente con cada pedido confirmado. Obtienes 4 puntos por cada 10€ gastados. Con 25 puntos puedes canjear una ración gratis.', en: 'You automatically earn points with every confirmed order. You get 4 points for every 10€ spent. With 25 points you can redeem a free order.' },
+  how_it_works_desc: { es: 'Acumulas puntos automáticamente con cada pedido confirmado. Obtienes {pts} puntos por cada 10 € gastados. Con {meta} puntos canjeas un producto gratis.', en: 'You earn points automatically with every confirmed order: {pts} points for every €10 spent. With {meta} points you redeem a free product.' },
   logout_btn: { es: 'Cerrar Sesión', en: 'Log Out' },
   no_orders_yet: { es: 'Aún no hay pedidos', en: 'No orders yet' },
   no_orders_desc: { es: 'Tu estómago ruge... ¡Es hora de hacer tu primer pedido!', en: 'Your stomach is rumbling... It\'s time to place your first order!' },
@@ -521,8 +521,8 @@ const dictionary: Translations = {
 
   landing_vip_title: { es: 'CLUB VIP DE PUNTOS', en: 'VIP POINTS CLUB' },
   landing_vip_rate: { es: 'Por cada 10€ en tu pedido', en: 'For every €10 in your order' },
-  landing_vip_points: { es: '+4 puntos', en: '+4 points' },
-  landing_vip_reward_label: { es: 'Desde 25 puntos acumulados', en: 'From 25 points accumulated' },
+  landing_vip_points: { es: '+{pts} puntos', en: '+{pts} points' },
+  landing_vip_reward_label: { es: 'Desde {meta} puntos acumulados', en: 'From {meta} points accumulated' },
   landing_vip_reward: { es: 'el producto que TÚ elijas de tu pedido, GRATIS', en: 'the product YOU choose from your order, FREE' },
 
   landing_menu_title: { es: 'Nuestra carta te está esperando', en: 'Our menu is waiting for you' },

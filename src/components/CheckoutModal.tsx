@@ -6,7 +6,7 @@ import { isStoreOpen, getStoreStatus, generateAvailableTimeSlots } from '../util
 import { useHardwareBack } from '../utils/useHardwareBack';
 import { generateSafeUUID } from '../utils/uuid';
 import { useI18nStore } from '../store/i18nStore';
-import { useSettingsStore } from '../store/settingsStore';
+import { useClub, useSettingsStore } from '../store/settingsStore';
 import { BRAND_CONFIG } from '../config/brandConfig';
 import { moduloActivo } from '../marca';
 import { formatoEuros, precioZona, useZonaStore, zonaDe } from '../store/zonaStore';
@@ -90,8 +90,9 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
   const finalTotal = Math.round((neto + gastosEnvio) * 100) / 100;
 
   const userPoints = profile?.points || 0;
-  const canRedeem = userPoints >= 25 && eligibleDiscount > 0;
-  const pointsEarned = Math.floor(finalTotal / 10) * 4;
+  const club = useClub();
+  const canRedeem = userPoints >= club.meta && eligibleDiscount > 0;
+  const pointsEarned = club.puntosPor(finalTotal);
 
   const validateGeofence = async (): Promise<boolean> => {
     // 1. Zona de reparto configurable por el cliente (CP de España válido, 5 dígitos)
