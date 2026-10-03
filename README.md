@@ -1,67 +1,43 @@
-# 🚀 DKITCHEN WHITE-LABEL ENGINE v3.0
+# DKitchen · Motor de marca blanca
 
-> **Motor Matriz de PWA para Gastronomía y Delivery por D-Kitchen Corporate Tech**  
-> Plantilla agnóstica, segura y tokenizada para clonación y despliegue rápido de nuevas marcas gastronómicas.
+Motor de replicación de PWAs para hostelería (restaurante, bar, dark kitchen, dark store): carta, pedidos a domicilio y recogida, kiosko/TPV de mostrador, panel de gestión y fidelización. El código se reutiliza; la identidad visual de cada marca es única.
 
----
+> Estado: en pleno pulido (Fase 1A completada: API y base de datos nuevas). Plan y decisiones en `docs/ANALISIS_PRODUCTO.md`; estado vivo en `ESTADO_PROYECTO.md`.
 
-## 💎 Arquitectura y Características
+## Arquitectura
 
-1. **Seguridad y Paridad de Nivel Máximo (Matriz 20 Reglas):**
-   - **Autenticación Super Admin 2FA TOTP:** Soporte RFC 6238 compatible con Google Authenticator / Authy.
-   - **Blindaje Anti-Fraude (P0001):** Función `process_checkout` en PL/pgSQL (`SECURITY DEFINER`) que calcula precios y tarifas exclusivamente en base de datos.
-   - **Fidelización con Verificación de Email:** Puntos VIP intransferibles con validación forzosa de correo antes del canje.
-   - **Dual-Layer Admin Guard:** Verificación de token JWT y rol directo en PostgreSQL.
-   - **Rate Limiting Perimetral:** Protección anti-fuerza bruta y anti-spam en login y checkout.
+| Capa | Tecnología |
+|---|---|
+| PWA y panel | React 19 + Vite, Zustand |
+| API | Funciones de Vercel en TypeScript estricto (`api/*.ts`), validación con zod |
+| Datos | PostgreSQL (Neon) con migraciones numeradas (`db/migraciones/`), RLS en todas las tablas y lógica de negocio en funciones `SECURITY DEFINER` |
+| Pruebas | Vitest contra Postgres real (`tests/`) |
 
-2. **Identidad Desacoplada y Tokenización:**
-   - [`src/config/brandConfig.ts`](file:///src/config/brandConfig.ts): Gobierna paleta cromática HEX, logos, textos, preloader, reglas de fidelización y parámetros de cobertura.
-   - Inyección en runtime de variables CSS `--brand-*` consumidas directamente por Tailwind.
-   - Preloader personalizable por marca.
+**Principios:**
+- El precio lo calcula siempre el servidor.
+- La API usa un rol sin privilegios especiales.
+- No hay secretos en el código.
+- Ninguna contraseña por defecto.
 
-3. **Operativa Completa de Restauración:**
-   - Catálogo interactivo con personalización de extras y opciones.
-   - TPV / Kiosko de mostrador con impresión térmica ESC/POS.
-   - Panel de control administrativo (`/admin`) con gestión de pedidos, arqueo A4, campañas masivas y catálogo.
-   - Soporte para pagos en efectivo, datáfono móvil y SumUp.
+## Empezar
 
----
+Guía completa en [`docs/DESARROLLO_LOCAL.md`](docs/DESARROLLO_LOCAL.md). Resumen:
 
-## ⚡ Guía de Clonación para una Nueva Marca (Menos de 1 Hora)
-
-### 1. Preparación de la Ficha de Marca
-Editar `src/config/brandConfig.ts`:
-- Nombre comercial, slogan, CIF y datos de contacto.
-- Colores corporativos (`primary`, `primaryHover`, `primaryLight`, `accent`, etc.).
-- Textos de fidelización y límites de entrega.
-
-### 2. Base de Datos Neon Postgres
-1. Crear una base de datos en Neon.
-2. Ejecutar [`schema_white_label.sql`](file:///schema_white_label.sql) en el SQL Editor de Neon.
-
-### 3. Variables de Entorno en Vercel
-Configurar en el proyecto de Vercel:
-```env
-APP_DATABASE_URL=postgres://usuario:password@ep-pooler.c-region.neon.tech/neondb?sslmode=require
-APP_JWT_SECRET=super_jwt_secret_aleatorio_de_64_caracteres
-SUPER_ADMIN_EMAIL=dkitchen@dkitchencorporate.es
-SUPER_ADMIN_PASSWORD=ContraseñaSuperAdmin2026!
-SUPER_ADMIN_TOTP_SECRET=CLAVEBASE32PARA2FA
-BRAND_NAME=Nombre de la Marca
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=notificaciones@dkitchencorporate.es
-SMTP_PASS=app_password_smtp
-BLOB_READ_WRITE_TOKEN=token_de_vercel_blob
-```
-
-### 4. Despliegue
 ```bash
-git init
-git add .
-git commit -m "feat(init): initial brand instance from dkitchen-white-label-engine"
-git branch -M main
-git remote add origin https://github.com/dkitchencorporate-tech/<nombre-repo>.git
-git push -u origin main
-vercel --prod
+npm ci
+npm run db:migrar          # con MIGRATIONS_DATABASE_URL (rol dueño)
+npm run db:semilla -- demo # marca neutra de ejemplo
+npm run crear-admin -- tu@correo.es
+npm run dev:api & npm run dev
+npm test
 ```
+
+Variables de entorno: ver [`.env.example`](.env.example). Solo lleva nombres, nunca valores.
+
+## Documentación
+
+- `docs/AUDITORIA_MOTOR.md`: auditoría inicial del motor.
+- `docs/AUDITORIA_VERSIONES_PREVIAS.md`: lo aprendido de Wing Boss, Bokadipan, Seven Food Fries y Néstor.
+- `docs/ANALISIS_PRODUCTO.md`: visión, decisiones y plan de fases.
+- `docs/ACTUALIZACIONES_MARCAS.md`: qué hay que hacer en cada marca al terminar el pulido.
+- `docs/DESARROLLO_LOCAL.md`: desarrollo, pruebas y despliegue.

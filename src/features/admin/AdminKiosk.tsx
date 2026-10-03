@@ -8,6 +8,7 @@ import KioskIngredientsModal from '../../components/KioskIngredientsModal';
 import KioskNotesModal from '../../components/KioskNotesModal';
 import { CartItem } from '../../store/cartStore';
 import { formatAddress } from '../../utils/addressUtils';
+import { getOptionGroups } from '../../data/products';
 
 interface Category {
   id: string;
@@ -244,7 +245,7 @@ export default function AdminKiosk() {
       const formattedItems = items.map((item, index) => ({
         product_id: item.productId,
         quantity: item.quantity,
-        unit_price: item.price,
+        options: (item as any).options,
         customization_details: { 
           name: item.name, 
           notes: item.notes, 
@@ -282,13 +283,13 @@ export default function AdminKiosk() {
         });
       } else {
         await api.post('/checkout', {
+          source: 'kiosk',
           client_name: finalClientName,
           client_phone: finalClientPhone,
           delivery_address: finalDeliveryAddress,
           delivery_method: deliveryMethod,
           items: formattedItems,
           points_redeemed: false,
-          small_order_fee_accepted: true,
           notes: orderNotes,
           payment_method: paymentMethod
         });
@@ -320,7 +321,7 @@ export default function AdminKiosk() {
   };
 
   const handleKioskProductAdd = (product: Product) => {
-    if ((product as any).customization_schema?.options?.length > 0) {
+    if (getOptionGroups(product as any).length > 0) {
       setKioskIngrProduct(product);
       return;
     }

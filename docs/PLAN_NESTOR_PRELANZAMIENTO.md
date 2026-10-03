@@ -1,6 +1,6 @@
 # Plan: pantalla de prelanzamiento en Néstor Pizzas
 
-> Estado: **PROPUESTA PENDIENTE DE APROBACIÓN DE KARC0.** No se ha modificado nada en `nestor-pizzas-pwa`.
+> Estado: **EJECUTADO EN VERSIÓN SIMPLIFICADA** (nestor-pizzas-pwa#1). Por decisión de karc0, **solo frontend**: una constante `PRELAUNCH_ACTIVE` en `src/components/PreLaunchScreen.tsx`. Sin SQL, sin interruptor en el panel y sin cambios en la API de SumUp. Riesgo aceptado: la BD seguiría aceptando pedidos hechos directamente contra Supabase. El resto de este documento queda como referencia del diseño completo.
 > Base del análisis: lectura de `nestor-pizzas-pwa` @ `1f751bc` (12-sep-2026). Es el único cliente real: está en producción, usa Supabase y su repo es público.
 
 ## 1. Objetivo

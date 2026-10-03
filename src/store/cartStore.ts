@@ -11,6 +11,8 @@ export interface CartItem {
   quantity: number;
   notes?: string;
   extras?: string[];
+  /** Ids de las opciones elegidas (el servidor las valida y les pone precio). */
+  options?: string[];
   size?: string;
 }
 

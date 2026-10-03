@@ -3,7 +3,7 @@ import Hero from '../../components/Hero';
 import ProductCard from '../../components/ProductCard';
 import IngredientsModal from '../../components/IngredientsModal';
 import { useState, useEffect } from 'react';
-import { DEFAULT_EXTRA_TOPPINGS, Product, getProductImageUrl } from '../../data/products';
+import { Product, getProductImageUrl, LOCAL_IMAGE_MAP } from '../../data/products';
 import { api } from '../../lib/apiClient';
 import NotificationManager from '../../components/NotificationManager';
 import Footer from '../../components/Footer';
@@ -241,47 +241,11 @@ export default function Catalog() {
           
           if (catProducts.length === 0 && cat.id !== 'POR INGREDIENTES') return null;
 
-          const renderIngredients = isFirst && (activeCategory === 'TODOS' || (categoriesToRender.length > 0 && activeCategory === categoriesToRender[0].id)) && DEFAULT_EXTRA_TOPPINGS.length > 0;
           isFirst = false;
 
           return (
             <div key={cat.id} className="w-full">
               
-              {/* Tarjeta de Ingredientes (Antes de la primera sección) */}
-              {renderIngredients && (
-                <div className="mb-10">
-                  <div className="relative overflow-hidden rounded-3xl border border-brand-primary/30 bg-white shadow-xl p-6 sm:p-8">
-                    {/* Glow decorativo */}
-                    <div className="absolute -top-10 -right-10 w-52 h-52 rounded-full bg-brand-primary/10 blur-3xl pointer-events-none"></div>
-
-                    <div className="relative z-10 space-y-5">
-                      {/* Título sutil */}
-                      <div className="flex items-center gap-3">
-                        <div className="w-1 h-8 rounded-full bg-brand-primary"></div>
-                        <div>
-                          <span className="text-[10px] font-mono font-bold text-brand-primary uppercase tracking-widest">{t('our_ingredients_title')}</span>
-                          <p className="text-brand-ink font-display font-black text-base sm:text-lg uppercase tracking-wide leading-none mt-0.5">{t('our_ingredients_subtitle')}</p>
-                        </div>
-                      </div>
-
-                      {/* Grid de ingredientes */}
-                      <div className="flex flex-wrap gap-2">
-                        {DEFAULT_EXTRA_TOPPINGS.map(ing => (
-                          <span key={ing} className="inline-flex items-center gap-1.5 bg-brand-surface border border-brand-border text-brand-muted text-xs font-semibold px-3 py-1.5 rounded-lg hover:border-brand-primary/50 hover:text-brand-ink transition-colors cursor-default">
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-primary shrink-0"></span>
-                            {tDynamic(ing)}
-                          </span>
-                        ))}
-                      </div>
-
-                      <p className="text-[11px] text-gray-500 font-medium">
-                        {t('ingredients_note')}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
               {/* Encabezado de Categoría */}
               <div className="py-10 my-2 text-center space-y-2">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-100 border border-zinc-300 mb-2">

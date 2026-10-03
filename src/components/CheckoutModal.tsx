@@ -4,7 +4,7 @@ import { useAuthStore } from '../store/authStore';
 import { api } from '../lib/apiClient';
 import { isStoreOpen, getStoreStatus, generateAvailableTimeSlots } from '../utils/timeUtils';
 import { useHardwareBack } from '../utils/useHardwareBack';
-import { emailService } from '../lib/emailService';
+import { generateSafeUUID } from '../utils/uuid';
 import { useI18nStore } from '../store/i18nStore';
 import { useSettingsStore } from '../store/settingsStore';
 import { BRAND_CONFIG } from '../config/brandConfig';
@@ -20,6 +20,8 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
   const { items, getTotal, removeItem, kioskClientInfo, setKioskClientInfo } = useCartStore();
   const { user, profile, updateProfile } = useAuthStore();
   const [deliveryMethod, setDeliveryMethod] = useState<'delivery' | 'pickup'>('delivery');
+  // Misma clave en los reintentos de este pedido: el servidor nunca crea dos pedidos iguales.
+  const [idempotencyKey] = useState(() => generateSafeUUID());
   const [clientName, setClientName] = useState(kioskClientInfo?.name || profile?.full_name || '');
   const [clientPhone, setClientPhone] = useState(kioskClientInfo?.phone || profile?.phone || '');
 
@@ -153,8 +155,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
       const orderItems = items.map(item => ({
         product_id: item.productId,
         quantity: item.quantity,
-        unit_price: item.price,
-        redeem_target: !!(pointsRedeemed && selectedRedeemItem && item.id === selectedRedeemItem.id),
+        options: item.options,
         customization_details: {
           name: item.name,
           notes: item.notes,
@@ -164,6 +165,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
       }));
 
       const finalOrderNotes = [
+        // Aviso visible para cocina; la hora real va en scheduled_time.
         scheduledTime !== 'asap' ? `⏰ Programado: ${scheduledTime}` : '',
         addressNotes ? `Dir/Mesa: ${addressNotes}` : '',
         orderNotes.trim() ? `📝 ${orderNotes.trim()}` : ''
@@ -176,8 +178,10 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
         delivery_method: deliveryMethod,
         items: orderItems,
         points_redeemed: pointsRedeemed,
-        small_order_fee_accepted: acceptSmallOrderFee,
         notes: finalOrderNotes || null,
+        // Los huecos llegan como «12:30», «Hoy 12:30» o «Mañana 12:30»: el servidor recibe HH:MM.
+        scheduled_time: scheduledTime !== 'asap' ? scheduledTime.slice(-5) : null,
+        idempotency_key: idempotencyKey,
         payment_method: paymentMethod
       });
 
@@ -199,9 +203,7 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
         setKioskClientInfo(undefined);
       }
 
-      const orderDataForEmail = { id: orderId, total: finalTotal, clientName: clientName };
-      if (user?.email) emailService.sendOrderConfirmation(user.email, orderDataForEmail);
-      emailService.sendOrderToAdmin(orderDataForEmail);
+      // Los correos de confirmación los envía el servidor al crear el pedido.
 
       // Para recogida mostramos pantalla de confirmación interna;
       // para domicilio llamamos onSuccess directamente (va a tracking)
@@ -217,13 +219,9 @@ export default function CheckoutModal({ onClose, onSuccess }: CheckoutModalProps
       }
     } catch (error: any) {
       console.error('Error procesando pedido:', error);
-      const msg = error?.message || '';
-      const friendlyMsg = msg.includes('Manipulación')
-        ? t('error_integrity')
-        : msg.includes('Demasiados pedidos')
-        ? t('error_too_many')
-        : msg.includes('no está disponible')
-        ? t('error_unavailable')
+      // Los rechazos de negocio (4xx) llegan redactados para el cliente desde el servidor.
+      const friendlyMsg = error?.status >= 400 && error?.status < 500 && error?.message
+        ? error.message
         : t('error_processing');
       setPaymentError(friendlyMsg);
     } finally {

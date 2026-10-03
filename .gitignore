@@ -12,3 +12,4 @@ scratch/
 .agents/
 
 .claude/.coste-sesion.json
+!.env.example

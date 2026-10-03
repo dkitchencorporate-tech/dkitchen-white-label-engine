@@ -555,7 +555,7 @@ export default function RegisterLanding() {
                 <div>
                   <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">{t('password')}</label>
                   <input
-                    type="password" required minLength={6} value={password} onChange={(e) => setPassword(e.target.value)}
+                    type="password" required minLength={10} value={password} onChange={(e) => setPassword(e.target.value)}
                     className="w-full bg-white border border-gray-200 text-brand-ink rounded-xl px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors"
                     placeholder={t('min_6_chars')}
                   />

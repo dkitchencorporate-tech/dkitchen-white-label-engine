@@ -57,8 +57,21 @@ export interface UpsellCategory {
     items: UpsellItem[];
 }
 
-// Opciones estándar para el modal de extras (si la BD no provee opciones específicas)
-export const DEFAULT_EXTRA_TOPPINGS: string[] = [
-    'Queso Fundido', 'Bacon Crujiente', 'Cebolla Crujiente',
-    'Jalapeños', 'Guacamole', 'Salsa BBQ', 'Salsa Especial de la Casa'
-];
+// Grupos de opciones de un producto (customization_schema.groups). Los define
+// el negocio en el panel; el servidor valida y cobra cada opción.
+export interface ProductOption { id: string; name: string; price: number; }
+export interface OptionGroup { id: string; name: string; min: number; max?: number; options: ProductOption[]; }
+
+export function getOptionGroups(product?: { customization_schema?: any } | null): OptionGroup[] {
+    const groups = product?.customization_schema?.groups;
+    if (!Array.isArray(groups)) return [];
+    return groups
+        .filter((g: any) => g && typeof g.id === 'string' && Array.isArray(g.options))
+        .map((g: any) => ({
+            id: g.id,
+            name: String(g.name ?? ''),
+            min: Number(g.min) || 0,
+            max: g.max != null ? Number(g.max) : undefined,
+            options: g.options.map((o: any) => ({ id: String(o.id), name: String(o.name ?? o.id), price: Number(o.price) || 0 }))
+        }));
+}
