@@ -47,7 +47,9 @@ npm run test:e2e    # Playwright: carta → carrito → pedido → panel, en mó
 
 - Las pruebas de API usan `TEST_DATABASE_URL` (dueño) y `TEST_API_DATABASE_URL` (rol `motor_api`) y recrean `motor_test` desde cero.
 - Las de punta a punta usan `E2E_DATABASE_URL` y `E2E_API_DATABASE_URL` (base `motor_e2e`). Arrancan solas la API (puerto 3102) y Vite (5174), siembran la marca demo y crean un administrador con contraseña aleatoria que solo vive en `test-results/` (ignorado por git).
-- Si no se definen, todas usan el Postgres local de arriba (`CREATE DATABASE motor_test; CREATE DATABASE motor_e2e;`).
+- Las pruebas de tienda y seguridad usan `TIENDA_DATABASE_URL`/`TIENDA_API_DATABASE_URL` (base `motor_tienda`, marca `alacena-expres`), y la e2e de la tienda `E2E_TIENDA_DATABASE_URL`/`E2E_TIENDA_API_DATABASE_URL` (base `motor_e2e_tienda`).
+- Si no se definen, todas usan el Postgres local de arriba (`CREATE DATABASE motor_test; CREATE DATABASE motor_e2e; CREATE DATABASE motor_tienda; CREATE DATABASE motor_e2e_tienda;`).
+- Estrés (a mano, nunca contra producción): `npx tsx scripts/estres.ts`; ver `docs/PRUEBAS_SEGURIDAD_Y_ESTRES.md`.
 - En este contenedor, Chromium ya está instalado: `PW_CHROMIUM_PATH=/opt/pw-browsers/chromium npm run test:e2e`. En otra máquina: `npx playwright install chromium`.
 - **CI** (`.github/workflows/ci.yml`): cada PR ejecuta lint, tipos, pruebas, compilación y punta a punta contra un Postgres 16 efímero. La contraseña del rol de la API se genera al azar en cada ejecución.
 

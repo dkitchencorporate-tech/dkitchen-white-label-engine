@@ -456,8 +456,17 @@ export default function AdminOrders() {
                           <p className="text-sm text-zinc-900 font-bold">📱 {order.client_phone || t('no_phone')}</p>
                           {order.delivery_address && (
                             <p className="text-xs text-zinc-600">
-                              📍 {formatAddress(order.delivery_address as string)}
+                              📍 {formatAddress(order.delivery_address)}
                             </p>
+                          )}
+                          {order.age_confirmed && (
+                            <p className="text-xs font-black text-zinc-900 bg-zinc-100 rounded-lg px-2.5 py-1.5">🔞 Lleva alcohol: pedir DNI en la entrega</p>
+                          )}
+                          {order.gift_message && (
+                            <div className="p-2.5 bg-pink-50 border border-pink-200 rounded-lg">
+                              <p className="text-[10px] font-black text-pink-800 uppercase tracking-wider">🎁 Regalo · tarjeta sin precios:</p>
+                              <p className="text-xs font-medium text-pink-900 mt-0.5 whitespace-pre-line">{order.gift_message}</p>
+                            </div>
                           )}
                           {order.notes && (
                             <div className="p-2.5 bg-amber-50 border border-amber-200 rounded-lg">

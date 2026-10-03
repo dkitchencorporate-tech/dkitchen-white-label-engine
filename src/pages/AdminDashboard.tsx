@@ -10,6 +10,8 @@ import AdminHistory from '../features/admin/AdminHistory';
 import AdminPrinterSettings from '../features/admin/AdminPrinterSettings';
 import AdminSchedule from '../features/admin/AdminSchedule';
 import AdminBusiness from '../features/admin/AdminBusiness';
+import AdminZonas from '../features/admin/AdminZonas';
+import { moduloActivo } from '../marca';
 import { api } from '../lib/apiClient';
 import { usePWAInstall } from '../hooks/usePWAInstall';
 import { useAdminUiStore } from '../store/adminUiStore';
@@ -643,7 +645,7 @@ export default function AdminDashboard() {
               </div>
             </div>
           )}
-          {activeTab === 'schedule' && <div className="h-full overflow-y-auto"><AdminSchedule /></div>}
+          {activeTab === 'schedule' && <div className="h-full overflow-y-auto"><AdminSchedule />{moduloActivo('zonas') && <AdminZonas />}</div>}
           {activeTab === 'business' && <div className="h-full overflow-y-auto"><AdminBusiness /></div>}
         </div>
 

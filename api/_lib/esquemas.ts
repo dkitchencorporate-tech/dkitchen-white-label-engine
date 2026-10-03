@@ -68,7 +68,10 @@ export const checkoutSchema = z.object({
   scheduled_for: z.string().datetime({ offset: true }).optional().nullable(),
   scheduled_time: z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/).optional().nullable(),
   idempotency_key: uuid.optional().nullable(),
-  source: z.enum(['web', 'kiosk']).optional().default('web')
+  source: z.enum(['web', 'kiosk']).optional().default('web'),
+  // Declaración de mayoría de edad (obligatoria en SQL si el pedido lleva alcohol).
+  age_confirmed: z.boolean().optional().default(false),
+  gift_message: texto(250).optional().nullable()
 });
 
 export const reviewSchema = z.object({
@@ -126,13 +129,22 @@ const producto = z.object({
   name: textoObligatorio(150),
   description: texto(2000).optional().nullable(),
   price: z.coerce.number().min(0).max(9999),
-  image_url: z.string().trim().url().max(1000).optional().nullable().or(z.literal('')),
+  // URL https o ruta de un recurso de la marca (/marca/productos/…).
+  image_url: z
+    .union([z.string().trim().url().max(1000).refine((u) => /^https:\/\//.test(u), 'La imagen debe servirse por https'),
+            z.string().trim().regex(/^\/[\w\-./]{1,300}$/, 'Ruta de imagen no válida').refine((r) => !r.includes('..'), 'Ruta de imagen no válida'),
+            z.literal('')])
+    .optional()
+    .nullable(),
   is_available: z.boolean().optional(),
   is_upsell: z.boolean().optional(),
   badge: texto(50).optional().nullable(),
   allergens: z.array(z.enum(ALERGENOS)).max(14).optional(),
   customization_schema: customizationSchema.optional(),
-  sort_order: z.coerce.number().int().optional()
+  sort_order: z.coerce.number().int().optional(),
+  stock: z.coerce.number().int().min(0).max(1_000_000).nullable().optional(),
+  is_alcohol: z.boolean().optional(),
+  unit_label: texto(40).optional().nullable()
 });
 
 export const catalogoAltaSchema = z.discriminatedUnion('type', [
@@ -179,7 +191,10 @@ export const ajustesSchema = z.object({
       business_email: z.string().trim().email().max(150).nullable().or(z.literal('')),
       business_address: texto(255).nullable(),
       business_city: texto(100).nullable(),
-      business_postal_code: texto(20).nullable()
+      business_postal_code: texto(20).nullable(),
+      alcohol_sale_start: hora.nullable(),
+      alcohol_sale_end: hora.nullable(),
+      alcohol_min_age: z.coerce.number().int().min(16).max(21)
     })
     .partial()
     .optional(),
@@ -188,6 +203,22 @@ export const ajustesSchema = z.object({
     .max(7)
     .optional()
 });
+
+// ---------- Zonas de reparto (admin) ----------
+const zona = z.object({
+  name: textoObligatorio(80),
+  postal_codes: z.array(z.string().trim().regex(/^\d{5}$/, 'Código postal no válido')).min(1).max(300),
+  delivery_fee: z.coerce.number().min(0).max(100),
+  min_order: z.coerce.number().min(0).max(1000),
+  free_delivery_over: z.coerce.number().min(0).max(1000).nullable().optional(),
+  eta_minutes: z.coerce.number().int().min(5).max(1440),
+  price_adjust_pct: z.coerce.number().min(-50).max(100),
+  is_active: z.boolean().optional(),
+  sort_order: z.coerce.number().int().optional()
+});
+export const zonaAltaSchema = zona;
+export const zonaEdicionSchema = zona.partial().extend({ id: idNumerico });
+export const zonaBorradoSchema = z.object({ id: idNumerico });
 
 export const pedidoAdminSchema = z.object({
   id: uuid,

@@ -110,6 +110,8 @@ export async function crearMarca(o: OpcionesMarca): Promise<string> {
 function checklist(slug: string, nombre: string): string {
   return `# Alta de «${nombre}» (brands/${slug})
 
+> Procedimiento completo, paso a paso: **docs/manual/00_INDICE.md**. Esta lista es el resumen; cada apartado remite a su guía.
+
 ## Identidad (brands/${slug}/brand.config.ts)
 - [ ] Datos legales: razón social, CIF, dirección, correo de contacto.
 - [ ] Paleta completa (se ha derivado del color principal) y tipografías.

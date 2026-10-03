@@ -87,7 +87,7 @@ export default function TicketPrinter({ order }: TicketPrinterProps) {
         {isDelivery && order.delivery_address && (
           <div className="mt-1.5 p-1.5 border-2 border-black font-bold text-sm bg-gray-50 leading-snug">
             <span className="text-[10px] block font-black text-gray-700 uppercase">DIRECCIÓN DE ENTREGA:</span>
-            <span>{formatAddress(order.delivery_address as string)}</span>
+            <span>{formatAddress(order.delivery_address)}</span>
           </div>
         )}
       </div>

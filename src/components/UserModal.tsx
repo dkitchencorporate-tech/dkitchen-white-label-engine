@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useClub } from '../store/settingsStore';
 import { useAuthStore } from '../store/authStore';
 import { useCartStore } from '../store/cartStore';
 import { useHardwareBack } from '../utils/useHardwareBack';
@@ -9,6 +10,7 @@ import { BRAND_CONFIG } from '../config/brandConfig';
 export default function UserModal() {
   const { isUserModalOpen, closeUserModal, userModalView, setModalView, setLegalDoc, activeLegalDoc, user, profile, logout, orders, signIn, register: registerUser, updateProfile, deleteAccount } = useAuthStore();
   const { t, tDynamic, lang } = useI18nStore();
+  const club = useClub();
   const { businessName, businessLegalName, businessCif, businessAddress, businessCity, businessPostalCode } = useSettingsStore();
 
   const activeName = businessName || BRAND_CONFIG.name;
@@ -334,8 +336,8 @@ export default function UserModal() {
                       <div className="text-zinc-900 font-bold text-sm">25 pts</div>
                       <div className="text-brand-ink text-[11px] font-medium">{t('free_portion')}</div>
                     </div>
-                    <button className={`text-[9px] font-bold px-3 py-1.5 rounded-lg uppercase tracking-wider transition-all ${(profile?.points || 0) >= 25 ? 'bg-zinc-900 text-white' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}>
-                      {(profile?.points || 0) >= 25 ? t('unlocked') : t('locked')}
+                    <button className={`text-[9px] font-bold px-3 py-1.5 rounded-lg uppercase tracking-wider transition-all ${(profile?.points || 0) >= club.meta ? 'bg-zinc-900 text-white' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}>
+                      {(profile?.points || 0) >= club.meta ? t('unlocked') : t('locked')}
                     </button>
                   </div>
                 </div>
@@ -343,7 +345,7 @@ export default function UserModal() {
 
               <div className="text-left bg-[#F4F4F5] p-4 rounded-xl border border-gray-200">
                 <h4 className="text-[11px] font-bold text-brand-ink uppercase mb-1">{t('how_it_works_title')}</h4>
-                <p className="text-sm text-gray-600 leading-relaxed">{t('how_it_works_desc')}</p>
+                <p className="text-sm text-gray-600 leading-relaxed">{club.texto(t('how_it_works_desc'))}</p>
               </div>
 
               <button onClick={logout} className="w-full bg-transparent hover:bg-red-500/10 text-red-500 border border-red-500/30 font-bold py-3.5 rounded-xl text-sm uppercase tracking-wider transition-all mt-2">

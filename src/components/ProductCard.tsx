@@ -4,6 +4,7 @@ import IngredientsModal from './IngredientsModal';
 import SubcategoryModal from './SubcategoryModal';
 import { useI18nStore } from '../store/i18nStore';
 import { getProductImageUrl, LOCAL_IMAGE_MAP } from '../data/products';
+import { formatoEuros, precioZona, useZonaActual } from '../store/zonaStore';
 
 // Ingredientes a resaltar en la descripción: los define cada marca si quiere
 // (el motor no conoce ninguna carta concreta).
@@ -26,6 +27,10 @@ interface Product {
   image_url?: string | null;
   isGroup?: boolean;
   subProducts?: Product[];
+  /** Existencias (null/undefined = sin control). */
+  stock?: number | null;
+  is_alcohol?: boolean;
+  unit_label?: string | null;
 }
 
 // Utilidad para resaltar ingredientes en la descripción
@@ -73,7 +78,12 @@ export default function ProductCard({ product, onCustomize }: ProductCardProps) 
   const rawDescEn = product.description_en || '';
   const displayDesc = lang === 'en' && rawDescEn ? rawDescEn : tDynamic(rawDesc);
 
-  const isAvailable = (product as any).is_available !== false;
+  const agotado = product.stock === 0;
+  const isAvailable = (product as any).is_available !== false && !agotado;
+  const quedanPocas = typeof product.stock === 'number' && product.stock > 0 && product.stock <= 5;
+  // Re-render al cambiar de zona: el precio mostrado es el de la zona elegida.
+  const pct = useZonaActual()?.price_adjust_pct ?? 0;
+  const precio = formatoEuros(precioZona(product.price || 0, pct));
 
   const handleAdd = () => {
     if (!isAvailable) return;
@@ -100,7 +110,7 @@ export default function ProductCard({ product, onCustomize }: ProductCardProps) 
 
   return (
     <>
-      <div className={`group relative bg-white rounded-3xl border-2 overflow-hidden shadow-xl transition-all duration-300 flex flex-col ${
+      <div data-motor="tarjeta-producto" className={`group relative bg-white rounded-3xl border-2 overflow-hidden shadow-xl transition-all duration-300 flex flex-col ${
         !isAvailable 
           ? 'opacity-60 grayscale-[35%] border-gray-300' 
           : 'border-gray-200 hover:border-brand-primary/60 hover:shadow-[0_0_30px_rgb(var(--brand-primary-rgb)/0.2)]'
@@ -141,14 +151,24 @@ export default function ProductCard({ product, onCustomize }: ProductCardProps) 
             );
           })()}
 
+          {/* +18 y existencias */}
+          {product.is_alcohol && (
+            <span className="absolute top-3 right-3 z-20 bg-zinc-900/90 text-white font-black text-[10px] px-2 py-1 rounded-lg" title="Venta solo a mayores de edad">+18</span>
+          )}
+          {quedanPocas && (
+            <span className="absolute bottom-3 left-3 z-20 bg-amber-400 text-zinc-900 font-black text-[10px] uppercase px-2 py-1 rounded-lg">
+              ¡Últimas {product.stock}!
+            </span>
+          )}
+
           {/* Precio */}
           {!product.isGroup ? (
             <span className="absolute bottom-3 right-3 z-20 bg-brand-primary border-2 border-white text-white font-display font-black text-lg sm:text-xl px-4 py-1.5 rounded-xl shadow-lg leading-none whitespace-nowrap">
-              {(product.price || 0).toFixed(2).replace('.', ',')}&nbsp;€
+              {precio}
             </span>
           ) : (
             <span className="absolute bottom-3 right-3 z-20 bg-white/95 border-2 border-brand-border text-brand-ink font-display font-bold text-xs sm:text-sm px-3 py-1.5 rounded-xl shadow-lg whitespace-nowrap">
-              {t('from')} {(product.price || 0).toFixed(2).replace('.', ',')}&nbsp;€
+              {t('from')} {precio}
             </span>
           )}
         </div>
@@ -160,6 +180,9 @@ export default function ProductCard({ product, onCustomize }: ProductCardProps) 
             }`}>
               {displayName}
             </h3>
+            {product.unit_label && (
+              <p className="text-[11px] font-bold uppercase tracking-wider text-brand-inkSoft mt-1">{product.unit_label}</p>
+            )}
             {highlightIngredients(displayDesc)}
           </div>
 

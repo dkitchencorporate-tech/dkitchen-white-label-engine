@@ -1,4 +1,5 @@
 import Header from '../../components/Header';
+import { useClub } from '../../store/settingsStore';
 import Hero from '../../components/Hero';
 import ProductCard from '../../components/ProductCard';
 import IngredientsModal from '../../components/IngredientsModal';
@@ -44,6 +45,7 @@ const trackSiteEvent = async (eventType: 'page_view' | 'category_click', label?:
 
 export default function Catalog() {
   const { t, tDynamic, lang } = useI18nStore() as any;
+  const club = useClub();
   const [activeCategory, setActiveCategory] = useState('TODOS');
   const [ingredientsProduct, setIngredientsProduct] = useState<Product | null>(null);
   const [categories, setCategories] = useState<any[]>([]);
@@ -214,11 +216,11 @@ export default function Catalog() {
           
           <div className="flex whitespace-nowrap animate-marquee items-center">
               <span className="mx-8 text-[11px] sm:text-sm font-bold text-zinc-900 uppercase tracking-wide flex items-center gap-2">
-                  {t('vip_ticker_msg')}
+                  {club.texto(t('vip_ticker_msg'))}
               </span>
               {/* Duplicate for infinite scroll loop */}
               <span className="mx-8 text-[11px] sm:text-sm font-bold text-zinc-900 uppercase tracking-wide flex items-center gap-2">
-                  {t('vip_ticker_msg')}
+                  {club.texto(t('vip_ticker_msg'))}
               </span>
           </div>
         </div>

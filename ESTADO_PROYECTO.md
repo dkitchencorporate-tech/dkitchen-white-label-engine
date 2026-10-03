@@ -10,9 +10,9 @@
 
 *Actualizado: 3 de octubre de 2026.*
 
-- **Fase en curso:** 1A, 1B y 1C fusionadas (PR #2, #3 y #4). **Fase 2 terminada** en `nube/fase-2-sincronizacion` (PR #5 pendiente): falta que karc0 elija la vía de sincronización (recomendada la (a)). Con ella se cierra la base aprobada.
+- **Fase en curso:** base aprobada completa (1A, 1B, 1C y 2 fusionadas; vía de sincronización (a) elegida por karc0). **Fase 3 «prueba de fuego»** en `nube/fase-3-prueba-de-fuego` (PR #6): módulo de tienda en el motor y marca completa `alacena-expres` (dark store gourmet en Madrid). **Pendiente:** las 88 fotos con FLUX, cuando karc0 añada `TOGETHER_API_KEY` o `POLLINATIONS_TOKEN` al entorno (las recoge una sesión nueva).
 - **Alcance aprobado (A9–A11):** base pulida 1A + 1B + 1C + 2, con la API reescrita desde cero y solo la plantilla neutra (≈ 51 €).
-- **Presupuesto:** 100 € de crédito; ≈ 53 € gastados hasta ahora (estimación).
+- **Presupuesto:** 100 € de crédito; ≈ 66 € gastados hasta ahora (estimación).
 - **Motor tras la 1A:**
   - API en TypeScript estricto + zod (`api/*.ts`).
   - Migraciones numeradas (`db/migraciones/0001–0003`) con RLS en todas las tablas y precio, opciones, horarios, puntos e idempotencia calculados en SQL.
@@ -38,6 +38,12 @@
   - flujo «Actualizar motor» para repos de cliente (rama `motor/vX.Y.Z` + PR) y comprobación «motor intacto» en su CI;
   - 6 pruebas con repos simulados; medidas: alta de cliente 1,3 s, compilado en ~10 s;
   - informe comparativo en `docs/INFORME_SINCRONIZACION.md`. El paquete npm compila solo con apaños y deja sin resolver la API en Vercel, las migraciones y las pruebas.
+- **Motor tras la 3:**
+  - migración 0004: zonas de reparto por CP (precio, envío, mínimo y tiempo propios), existencias atómicas sin sobreventa, alcohol (+18 y franja legal), regalo y formato de venta;
+  - módulos nuevos `zonas` y `regalos`;
+  - selector de zona, panel de zonas y existencias;
+  - 53 pruebas Vitest y 3 e2e;
+  - estrés: unos 800 pedidos/s por instancia, 0 sobreventas y 0 descuadres (`docs/PRUEBAS_SEGURIDAD_Y_ESTRES.md`).
 - **Pendiente para fases siguientes:**
   - 2FA bien hecho con pantalla de código → futuro;
   - fuentes de Google autoalojadas (privacidad) y adaptadores reales de pago y hardware → fases siguientes.
@@ -54,6 +60,9 @@
 
 *(La más reciente arriba; 1–3 líneas por tarea.)*
 
+- **03-oct-2026 · Manual del motor.** `docs/manual/`: once guías paso a paso para cada marca nueva (requisitos, alta, identidad y diseño, carta, fotos, pruebas con criterios de aceptación, Neon y Vercel, actualizaciones, entrega, problemas conocidos) y plantillas de informe de pruebas y dossier. Primer informe real: `brands/alacena-expres/INFORME_PRUEBAS.md`. **Siguiente:** terminar las fotos y desplegar Alacena cuando karc0 cree el proyecto en Vercel.
+- **03-oct-2026 · Alacena: diseño propio y fotos realistas.** Portada con parallax y escaparate 3D (three.js en diferido), preloader y pie propios, efectos en `estilos.css`, carta con «Combos» arriba. Fotos fotorrealistas con Juggernaut XL vía AI Horde (gratis); el despliegue se hará desde el repo del motor con `BRAND=alacena-expres` (decisión de karc0). Neon de DKitchen está gestionado por Vercel: la base se crea desde Vercel.
+- **03-oct-2026 · Fase 3 «prueba de fuego».** Módulo de tienda (zonas con precio, existencias, alcohol, regalos), marca `alacena-expres` con 88 productos y 4 zonas de Madrid, pruebas de seguridad (18) y estrés documentadas, e2e de la tienda, `npm audit` a 0. El Flux gratuito sin cuenta ya no existe (solo «sana», de calidad baja), así que las fotos quedan pendientes del token (`scripts/imagenes-marca.ts`). **Siguiente:** fotos y fusión del PR #6.
 - **03-oct-2026 · Fase 2.** Prototipo de las dos vías de sincronización. (a) copia + PR implementada (`scripts/motor.ts`, `motor.json`, huellas, flujos de CI) y probada con repos simulados; (b) paquete npm probado con `npm pack` (compila con 3 apaños; quedan abiertas la API en Vercel, las migraciones y las pruebas). Informe y recomendación (a) en `docs/INFORME_SINCRONIZACION.md`. Motor v1.0.0. **Siguiente:** decisión de karc0 y prueba con repos reales de GitHub.
 - **03-oct-2026 · Fase 1C.** TS estricto en el frontend, oxlint (TypeScript 7 no tiene API JS para typescript-eslint), pruebas del frontend, Playwright de punta a punta y CI (`.github/workflows/ci.yml`). Corregidos el total invisible en panel/seguimiento y la barra del carrito sin rol de botón. **Siguiente:** Fase 2.
 - **03-oct-2026 · Fase 1B.** Separación motor/marca (`brands/demo`, esquema zod, huecos, preajustes), plugin de Vite de marca, Tailwind compilado + CSP, `nueva-marca`, capas de pagos y hardware, limpieza de restos (modales de salsas, geovalla fija en Madrid, claves `sff_`, colores ámbar, textos de otras marcas). Comparación de capturas antes/después sin regresiones (corrige el botón «Añadir» invisible y el diseño de escritorio). **Siguiente:** Fase 1C.
@@ -74,6 +83,10 @@
 
 ## 3. Decisiones
 
+- **03-oct-2026 · Todo procedimiento y toda prueba se documentan en `docs/manual/` y cada marca lleva su `INFORME_PRUEBAS.md`.** *Porqué:* petición expresa de karc0; el resultado no puede depender de quien lo ejecutó.
+- **03-oct-2026 · Alacena se despliega desde el repo del motor (`BRAND=alacena-expres`) y lleva diseño de autor con 3D.** *Porqué:* decisión de karc0 para la prueba de fuego; los clientes reales siguen la regla A1 de un repo por cliente.
+- **03-oct-2026 · El precio de zona se aplica solo a domicilio y se redondea por unidad a céntimos, igual en SQL que en el navegador.** *Porqué:* el cliente ve exactamente lo que pagará; el servidor sigue siendo quien decide.
+- **03-oct-2026 · Las fotos de producto se generan con FLUX mediante token (Together AI o Pollinations), nunca con el modelo anónimo.** *Porqué:* el nivel sin cuenta ya no sirve Flux y su calidad no es de entrega (decisión de karc0).
 - **03-oct-2026 · El motor se versiona por su cuenta desde la v1.0.0** (`motor.json`, sincronizado con `package.json`). *Porqué:* la API reescrita rompe la compatibilidad con las versiones 2.x/3.x anteriores, y los clientes necesitan un número claro con el que pedir actualizaciones.
 - **03-oct-2026 · Lo que es del motor lo define una lista explícita de rutas; todo lo demás es del cliente.** *Porqué:* así los archivos internos del padre (estado, arranque del agente, `.claude/`) nunca llegan a un cliente, y lo que el cliente añada fuera del motor no se pisa jamás.
 - **03-oct-2026 · oxlint en lugar de ESLint + typescript-eslint.** *Porqué:* el proyecto usa TypeScript 7 (nativo), que no expone la API de JavaScript que necesita typescript-eslint; oxlint es nativo, rápido y no depende de ella. Las reglas de corrección bloquean; las de estilo y del compilador de React avisan.

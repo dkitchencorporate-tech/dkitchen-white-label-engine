@@ -1,4 +1,5 @@
 import { gsap } from 'gsap';
+import { useClub } from '../store/settingsStore';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { api } from '../lib/apiClient';
@@ -73,6 +74,7 @@ interface MenuItem {
 
 export default function RegisterLanding() {
   const { t } = useI18nStore() as any;
+  const club = useClub();
   const { openUserModal } = useAuthStore();
 
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
@@ -422,10 +424,10 @@ export default function RegisterLanding() {
             <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
               <div className="bg-white/80 border border-brand-border rounded-2xl p-6 shadow-sm">
                 <p className="text-brand-inkSoft text-xs uppercase tracking-widest mb-2">{t('landing_vip_rate')}</p>
-                <p className="font-display font-black text-3xl text-brand-primary">{t('landing_vip_points')}</p>
+                <p className="font-display font-black text-3xl text-brand-primary">{club.texto(t('landing_vip_points'))}</p>
               </div>
               <div className="bg-brand-primaryLight/40 border border-brand-primary/30 rounded-2xl p-6 shadow-sm">
-                <p className="text-brand-primary text-xs uppercase tracking-widest mb-2 font-bold">{t('landing_vip_reward_label')}</p>
+                <p className="text-brand-primary text-xs uppercase tracking-widest mb-2 font-bold">{club.texto(t('landing_vip_reward_label'))}</p>
                 <p className="font-display font-black text-lg sm:text-xl text-brand-ink leading-snug">{BRAND_CONFIG.loyalty?.rewardDescription || t('landing_vip_reward')}</p>
               </div>
             </div>

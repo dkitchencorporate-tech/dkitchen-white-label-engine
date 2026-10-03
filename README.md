@@ -37,6 +37,8 @@ Variables de entorno: ver [`.env.example`](.env.example). Solo lleva nombres, nu
 
 ## Documentación
 
+**Para crear una marca nueva, sigue el manual paso a paso: [`docs/manual/00_INDICE.md`](docs/manual/00_INDICE.md)** (alta, identidad y diseño, carta, fotos, pruebas, base de datos y despliegue, actualizaciones, entrega y problemas conocidos).
+
 - `docs/AUDITORIA_MOTOR.md`: auditoría inicial del motor.
 - `docs/AUDITORIA_VERSIONES_PREVIAS.md`: lo aprendido de Wing Boss, Bokadipan, Seven Food Fries y Néstor.
 - `docs/ANALISIS_PRODUCTO.md`: visión, decisiones y plan de fases.
@@ -44,4 +46,6 @@ Variables de entorno: ver [`.env.example`](.env.example). Solo lleva nombres, nu
 - `docs/DESARROLLO_LOCAL.md`: desarrollo, pruebas y despliegue.
 - `docs/NUEVA_MARCA.md`: alta de una marca nueva con `npm run nueva-marca`.
 - `docs/PAGOS_Y_HARDWARE.md`: capas de pagos y hardware (adaptadores).
+- `docs/PRUEBAS_SEGURIDAD_Y_ESTRES.md`: ataques probados, hallazgos y resultados de estrés.
+- `brands/alacena-expres/ENTREGA.md`: dossier de la marca de ejemplo de dark store.
 - `docs/INFORME_SINCRONIZACION.md`: cómo llegan las versiones del motor a cada cliente (`npm run motor`).

@@ -57,11 +57,17 @@ jobs:
           psql -v ON_ERROR_STOP=1 -c "CREATE ROLE motor_api LOGIN PASSWORD '$CLAVE_API' IN ROLE motor_app;"
           psql -v ON_ERROR_STOP=1 -c "CREATE DATABASE motor_test;"
           psql -v ON_ERROR_STOP=1 -c "CREATE DATABASE motor_e2e;"
+          psql -v ON_ERROR_STOP=1 -c "CREATE DATABASE motor_tienda;"
+          psql -v ON_ERROR_STOP=1 -c "CREATE DATABASE motor_e2e_tienda;"
           {
             echo "TEST_DATABASE_URL=postgres://postgres:postgres@localhost:5432/motor_test"
             echo "TEST_API_DATABASE_URL=postgres://motor_api:$CLAVE_API@localhost:5432/motor_test"
             echo "E2E_DATABASE_URL=postgres://postgres:postgres@localhost:5432/motor_e2e"
             echo "E2E_API_DATABASE_URL=postgres://motor_api:$CLAVE_API@localhost:5432/motor_e2e"
+            echo "TIENDA_DATABASE_URL=postgres://postgres:postgres@localhost:5432/motor_tienda"
+            echo "TIENDA_API_DATABASE_URL=postgres://motor_api:$CLAVE_API@localhost:5432/motor_tienda"
+            echo "E2E_TIENDA_DATABASE_URL=postgres://postgres:postgres@localhost:5432/motor_e2e_tienda"
+            echo "E2E_TIENDA_API_DATABASE_URL=postgres://motor_api:$CLAVE_API@localhost:5432/motor_e2e_tienda"
           } >> "$GITHUB_ENV"
 
       - name: Lint
@@ -90,5 +96,5 @@ jobs:
           path: |
             playwright-report/
             test-results/
-            !test-results/.e2e-admin.json
+            !test-results/.e2e-admin*.json
           retention-days: 7

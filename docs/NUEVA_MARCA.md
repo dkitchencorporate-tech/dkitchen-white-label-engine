@@ -1,5 +1,7 @@
 # Dar de alta una marca nueva
 
+> Este documento resume la identidad. El procedimiento completo y obligatorio (carta, fotos, pruebas, despliegue y entrega) está en **[docs/manual/00_INDICE.md](manual/00_INDICE.md)**.
+
 Objetivo: de cero a una PWA desplegable **en horas, no en días**. El motor no se toca: todo lo de la marca vive en `brands/<slug>/`.
 
 > **Cliente con repo propio** (lo habitual): `npm run motor -- crear-cliente <slug> --destino ../<slug> --nombre "…" --origen <repo del motor> [mismas opciones]` crea en ~1 s un repo con el motor publicado, esta misma marca y `cliente.json`, listo para recibir actualizaciones por PR. Detalles en `docs/INFORME_SINCRONIZACION.md`. Lo que sigue explica la marca en sí.

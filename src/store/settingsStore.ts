@@ -1,9 +1,18 @@
 import { create } from 'zustand';
 import { api } from '../lib/apiClient';
+import { useZonaStore } from './zonaStore';
 
 interface SettingsState {
   deliveryFee: number;
   minOrderDelivery: number;
+  freeDeliveryThreshold: number | null;
+  /** Franja legal de venta de alcohol («HH:MM»), o null si no hay. */
+  alcoholSaleStart: string | null;
+  alcoholSaleEnd: string | null;
+  alcoholMinAge: number;
+  /** Club de puntos de la marca (ajustes de la tienda). */
+  loyaltyPointsPer10: number;
+  loyaltyRewardPoints: number;
   isStoreOpenFlag: boolean;
   estimatedPrepTime: number;
   // Identidad del negocio — nulos hasta que el admin los rellena desde la
@@ -29,6 +38,12 @@ interface SettingsState {
 export const useSettingsStore = create<SettingsState>((set) => ({
   deliveryFee: 2.50,
   minOrderDelivery: 15.00,
+  freeDeliveryThreshold: null,
+  alcoholSaleStart: null,
+  alcoholSaleEnd: null,
+  alcoholMinAge: 18,
+  loyaltyPointsPer10: 4,
+  loyaltyRewardPoints: 25,
   isStoreOpenFlag: true,
   estimatedPrepTime: 20,
   businessName: null,
@@ -44,8 +59,15 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   fetchSettings: async () => {
     try {
       const data = await api.get('/catalog');
+      useZonaStore.getState().setZonas(Array.isArray(data?.zones) ? data.zones : []);
       if (data?.settings) {
         set({
+          freeDeliveryThreshold: data.settings.free_delivery_threshold == null ? null : Number(data.settings.free_delivery_threshold),
+          alcoholSaleStart: data.settings.alcohol_sale_start || null,
+          alcoholSaleEnd: data.settings.alcohol_sale_end || null,
+          alcoholMinAge: Number(data.settings.alcohol_min_age || 18),
+          loyaltyPointsPer10: Number(data.settings.loyalty_points_per_10 ?? 4),
+          loyaltyRewardPoints: Number(data.settings.loyalty_reward_points ?? 25),
           deliveryFee: Number(data.settings.delivery_fee),
           minOrderDelivery: Number(data.settings.min_order_delivery),
           isStoreOpenFlag: !!data.settings.is_store_open,
@@ -66,3 +88,15 @@ export const useSettingsStore = create<SettingsState>((set) => ({
     }
   }
 }));
+
+/** Textos y cálculos del club con los valores de la marca ({pts} y {meta} en las traducciones). */
+export function useClub() {
+  const pts = useSettingsStore((s) => s.loyaltyPointsPer10);
+  const meta = useSettingsStore((s) => s.loyaltyRewardPoints);
+  return {
+    pts,
+    meta,
+    texto: (s: string) => s.replace(/\{pts\}/g, String(pts)).replace(/\{meta\}/g, String(meta)),
+    puntosPor: (total: number) => Math.floor(total / 10) * pts
+  };
+}

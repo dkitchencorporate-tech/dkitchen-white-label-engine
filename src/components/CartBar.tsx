@@ -18,6 +18,7 @@ export default function CartBar({ onOpenUpsell }: CartBarProps) {
   return (
     <button
       type="button"
+      data-motor="barra-carrito"
       aria-label={`${t('process_order') || 'Tramitar'} · ${totalItems} · ${total.toFixed(2).replace('.', ',')} €`}
       className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-40 bg-zinc-950/95 backdrop-blur-xl border border-zinc-700/80 rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.6),0_0_25px_rgb(var(--brand-primary-rgb)/0.25)] flex items-center justify-between p-2 pl-3 sm:pl-4 cursor-pointer hover:scale-[1.02] active:scale-[0.99] transition-all w-[calc(100%-2rem)] max-w-[430px] text-left"
       onClick={onOpenUpsell}
@@ -31,7 +32,7 @@ export default function CartBar({ onOpenUpsell }: CartBarProps) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
             </svg>
           </div>
-          <span className="absolute -top-1 -right-1 bg-red-500 text-white font-black text-[10px] sm:text-[11px] min-w-[19px] h-[19px] flex items-center justify-center rounded-full border-2 border-zinc-950 px-1 shadow-md">
+          <span key={totalItems} className="motor-latido absolute -top-1 -right-1 bg-red-500 text-white font-black text-[10px] sm:text-[11px] min-w-[19px] h-[19px] flex items-center justify-center rounded-full border-2 border-zinc-950 px-1 shadow-md">
             {totalItems}
           </span>
         </div>

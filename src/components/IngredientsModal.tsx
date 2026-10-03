@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useCartStore } from '../store/cartStore';
 import { useHardwareBack } from '../utils/useHardwareBack';
 import { useI18nStore } from '../store/i18nStore';
+import { formatoEuros, precioZona, useZonaActual } from '../store/zonaStore';
 
 interface IngredientsModalProps {
   product: Product;
@@ -32,7 +33,10 @@ export default function IngredientsModal({ product, onClose }: IngredientsModalP
   const BASE_PRICE = product.price || 0;
   const unitExtrasCost = chosen.reduce((sum, o) => sum + (o.price || 0), 0);
   const unitPrice = BASE_PRICE + unitExtrasCost;
-  const totalPrice = unitPrice * quantity;
+  // Precio de la zona elegida (orientativo: el servidor recalcula con el mismo redondeo).
+  const pct = useZonaActual()?.price_adjust_pct ?? 0;
+  const totalPrice = precioZona(unitPrice, pct) * quantity;
+  const maxCantidad = Math.min(50, typeof product.stock === 'number' ? product.stock : 50);
 
   const toggleOption = (group: OptionGroup, optionId: string) => {
     setSelected(prev => {
@@ -53,7 +57,8 @@ export default function IngredientsModal({ product, onClose }: IngredientsModalP
       quantity,
       extras: chosen.map(o => o.name),
       options: chosen.map(o => o.id),
-      notes: itemNotes.trim()
+      notes: itemNotes.trim(),
+      isAlcohol: !!product.is_alcohol
     });
     onClose();
   };
@@ -114,7 +119,7 @@ export default function IngredientsModal({ product, onClose }: IngredientsModalP
                 {displayName}
               </h2>
               <span className="font-display font-black text-brand-primaryHover text-xl sm:text-2xl shrink-0 whitespace-nowrap">
-                {BASE_PRICE.toFixed(2).replace('.', ',')}&nbsp;€
+                {formatoEuros(precioZona(BASE_PRICE, pct))}
               </span>
             </div>
             {displayDesc && (
@@ -194,7 +199,8 @@ export default function IngredientsModal({ product, onClose }: IngredientsModalP
             </span>
             <button
               type="button"
-              onClick={() => setQuantity(q => q + 1)}
+              onClick={() => setQuantity(q => Math.min(maxCantidad, q + 1))}
+              disabled={quantity >= maxCantidad}
               className="w-9 h-9 flex items-center justify-center rounded-xl bg-white text-gray-700 hover:bg-gray-50 font-black text-lg shadow-sm active:scale-90 transition-all"
             >
               +

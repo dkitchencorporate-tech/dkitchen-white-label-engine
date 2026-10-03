@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useI18nStore } from '../store/i18nStore';
 import { useCartStore } from '../store/cartStore';
+import { formatoEuros, precioZona } from '../store/zonaStore';
 import { useHardwareBack } from '../utils/useHardwareBack';
 
 interface SubcategoryModalProps {
@@ -52,7 +53,8 @@ export default function SubcategoryModal({ productGroup, onClose }: SubcategoryM
       name: subProd.name,
       price: subProd.price,
       quantity: qty,
-      notes: ''
+      notes: '',
+      isAlcohol: !!subProd.is_alcohol
     });
 
     setAddedIds(prev => ({ ...prev, [subProd.id]: true }));
@@ -122,7 +124,7 @@ export default function SubcategoryModal({ productGroup, onClose }: SubcategoryM
                     )}
                   </div>
                   <span className="font-display font-black text-brand-primaryHover text-lg sm:text-xl shrink-0 whitespace-nowrap">
-                    {itemPrice.toFixed(2).replace('.', ',')}&nbsp;€
+                    {formatoEuros(precioZona(itemPrice))}
                   </span>
                 </div>
 

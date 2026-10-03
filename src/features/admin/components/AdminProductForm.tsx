@@ -19,6 +19,10 @@ export default function AdminProductForm({ product, categories, subcategories, o
     subcategory_id: '',
     image_url: '',
     is_available: true,
+    // Vacío = sin control de existencias.
+    stock: '' as string,
+    unit_label: '',
+    is_alcohol: false,
   });
   const [customizationSchema, setCustomizationSchema] = useState<any>({});
 
@@ -41,6 +45,9 @@ export default function AdminProductForm({ product, categories, subcategories, o
         subcategory_id: product.subcategory_id || '',
         image_url: product.image_url || '',
         is_available: product.is_available !== false,
+        stock: product.stock == null ? '' : String(product.stock),
+        unit_label: product.unit_label || '',
+        is_alcohol: !!product.is_alcohol,
       });
       setCustomizationSchema(product.customization_schema || {});
     }
@@ -52,6 +59,8 @@ export default function AdminProductForm({ product, categories, subcategories, o
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
       setFormData(prev => ({ ...prev, [name]: checked }));
+    } else if (name === 'stock') {
+      setFormData(prev => ({ ...prev, stock: value.replace(/\D/g, '') }));
     } else if (type === 'number') {
       setFormData(prev => ({ ...prev, [name]: parseFloat(value) || 0 }));
     } else {
@@ -76,6 +85,9 @@ export default function AdminProductForm({ product, categories, subcategories, o
         subcategory_id: formData.subcategory_id || null,
         image_url: formData.image_url || null,
         is_available: formData.is_available,
+        stock: formData.stock === '' ? null : Number(formData.stock),
+        unit_label: formData.unit_label.trim() || null,
+        is_alcohol: formData.is_alcohol,
         customization_schema: {
           ...customizationSchema,
           badge: formData.badge || undefined
@@ -266,6 +278,25 @@ export default function AdminProductForm({ product, categories, subcategories, o
                 className="w-full bg-white border border-zinc-300 rounded-xl px-4 py-2.5 text-zinc-900 text-sm focus:outline-none focus:border-zinc-900 transition-colors"
               />
             </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1.5" htmlFor="stock">Existencias</label>
+                <input id="stock" name="stock" inputMode="numeric" value={formData.stock} onChange={handleChange} placeholder="Sin control"
+                  className="w-full bg-white border border-zinc-300 rounded-xl px-4 py-2.5 text-zinc-900 text-sm focus:outline-none focus:border-zinc-900 font-bold" />
+                <p className="text-[10px] text-zinc-500 mt-1">Vacío = ilimitado. A 0 se muestra «Agotado».</p>
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1.5" htmlFor="unit_label">Formato</label>
+                <input id="unit_label" name="unit_label" value={formData.unit_label} onChange={handleChange} maxLength={40} placeholder="Ej: Lata 33 cl"
+                  className="w-full bg-white border border-zinc-300 rounded-xl px-4 py-2.5 text-zinc-900 text-sm focus:outline-none focus:border-zinc-900" />
+              </div>
+            </div>
+
+            <label className="flex items-center gap-2.5 text-xs font-bold text-zinc-800 uppercase tracking-wider cursor-pointer">
+              <input type="checkbox" name="is_alcohol" checked={formData.is_alcohol} onChange={handleChange} className="w-4 h-4" />
+              Contiene alcohol (+18, franja legal de venta)
+            </label>
 
             <div>
               <label className="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1.5">Precio (€)</label>

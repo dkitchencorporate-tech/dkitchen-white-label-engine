@@ -3,6 +3,7 @@ import { usePWAInstall } from './hooks/usePWAInstall';
 import { useState, useEffect, useMemo, useRef, lazy, Suspense } from 'react';
 import CartDrawer from './components/CartDrawer';
 import CartBar from './components/CartBar';
+import SelectorZona from './components/SelectorZona';
 import UpsellModal from './components/UpsellModal';
 import CheckoutModal from './components/CheckoutModal';
 import UserModal from './components/UserModal';
@@ -334,6 +335,9 @@ function App() {
               </button>
             </div>
           )}
+
+          {/* Zona de reparto (módulo «zonas») */}
+          <SelectorZona />
 
           {/* Floating Cart Bar */}
           <CartBar onOpenUpsell={() => setIsUpsellOpen(true)} />

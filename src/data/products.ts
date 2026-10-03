@@ -30,6 +30,10 @@ export interface Product {
     is_available?: boolean;
     customization_schema?: any;
     sort_order?: number;
+    /** Existencias (null/undefined = sin control). */
+    stock?: number | null;
+    is_alcohol?: boolean;
+    unit_label?: string | null;
 }
 
 export const LOCAL_IMAGE_MAP: Record<string, string> = {};
